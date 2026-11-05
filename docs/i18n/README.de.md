@@ -114,6 +114,18 @@ Zum Beispiel „Text: Russisch“. Wird gesetzt, wenn die Sprache in der Zeile �
 - gelb „(Sprachausgabe: Englisch)“ – Text und Untertitel in deiner Sprache, die Sprachausgabe in der Sprache in Klammern;
 - nur umrandet, ohne Klammern – das Release verrät nicht, ob es eine Sprachausgabe gibt.
 
+### Sprachfilter
+
+„In meinen Sprachen“ und „Sprachausgabe in meinen Sprachen“ sind eine Auswahl: Drückst du einen, springt der andere heraus; drückst du ihn noch einmal, wird wieder alles angezeigt. Die übrigen Filter kommen dazu.
+
+| Release | Alle (nichts gedrückt) | In meinen Sprachen | Sprachausgabe in meinen Sprachen |
+|---|:-:|:-:|:-:|
+| Sprachausgabe: Russisch | ✅ | ✅ | ✅ |
+| Text: Russisch (ohne Sprachausgabe) | ✅ | ✅ | ✅ |
+| Text: Russisch (Sprachausgabe: Englisch) | ✅ | ✅ | ❌ |
+| „Text: Russisch“ – das Release sagt nichts zur Sprachausgabe | ✅ | ✅ | ❌ |
+| Nichts auf Russisch | ✅ | ❌ | ❌ |
+
 ### Übertakten der Switch
 
 Die Erweiterung prüft, ob der Uploader dazu auffordert, die Konsole zu übertakten, und welche Taktraten er angibt, und vergleicht sie mit dem, was das in Kefir eingebaute Übertakten erreicht:
@@ -159,6 +171,10 @@ Zwei Bewertungen:
 ## Eigene Markierungen und Wörter
 
 **Eigene Markierungen.** Füge in den Einstellungen Wörter wie `DLC|дополнения` oder `кооператив` hinzu oder einen regulären Ausdruck zwischen Schrägstrichen wie `/(лучше|рекомендуется|желательно).*разгон/`. Releases, deren Titel oder Beschreibung darauf passt, bekommen deine Markierung in der Farbe deiner Wahl, und du kannst sie auf die Filterleiste setzen. Ein paar Beispiele bringt die Erweiterung schon mit, ausgeschaltet.
+
+<p align="center">
+  <img src="../media/screenshot-badges.png" alt="Eigene Markierungen in den Einstellungen" width="520">
+</p>
 
 **Eigene Wörter fürs Übertakten der Switch.** In den Switch-Einstellungen zeigt „Eigene Wörter für die Markierungen“ die Wörter, nach denen sich die Markierung zum Übertakten richtet – zum Übertakten selbst, „empfohlen“, „nötig“, „nicht nötig“, „maximal“, die Namen von 4IFIR und Kefir –, und dort kannst du eigene hinzufügen. Sie ergänzen die eingebauten und wirken sofort, auch bei bereits geladenen Releases.
 

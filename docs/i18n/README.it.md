@@ -114,6 +114,18 @@ Per esempio «Testo in russo». Compare quando la lingua è presente nella riga 
 - gialla, «(Doppiaggio in inglese)» — testi e sottotitoli nella tua lingua, doppiaggio nella lingua indicata tra parentesi;
 - con il solo bordo e senza parentesi — la pubblicazione non dice se c’è un doppiaggio.
 
+### Filtri di lingua
+
+«Nelle mie lingue» e «Doppiaggio nelle mie lingue» sono un’unica scelta: premendone uno l’altro si disattiva; premendolo di nuovo si vede tutto. Gli altri filtri si sommano.
+
+| Pubblicazione | Tutto (niente premuto) | Nelle mie lingue | Doppiaggio nelle mie lingue |
+|---|:-:|:-:|:-:|
+| Doppiaggio in russo | ✅ | ✅ | ✅ |
+| Testo in russo (senza doppiaggio) | ✅ | ✅ | ✅ |
+| Testo in russo (Doppiaggio in inglese) | ✅ | ✅ | ❌ |
+| «Testo in russo» — la pubblicazione non dice nulla del doppiaggio | ✅ | ✅ | ❌ |
+| Niente in russo | ✅ | ❌ | ❌ |
+
 ### Overclock della Switch
 
 L’estensione verifica se l’autore della pubblicazione richiede l’overclock della console e quali frequenze indica, e le confronta con quelle raggiunte dall’overclock integrato in Kefir:
@@ -159,6 +171,10 @@ Due valutazioni:
 ## Le tue etichette e parole
 
 **Le tue etichette.** Nelle impostazioni puoi aggiungere parole come `DLC|дополнения` o `кооператив`, oppure un’espressione regolare tra barre come `/(лучше|рекомендуется|желательно).*разгон/`. Le pubblicazioni il cui titolo o la cui descrizione corrispondono ricevono la tua etichetta, nel colore che scegli, e puoi aggiungerla alla barra dei filtri. L’estensione include alcuni esempi, disattivati.
+
+<p align="center">
+  <img src="../media/screenshot-badges.png" alt="Le tue etichette nelle impostazioni" width="520">
+</p>
 
 **Parole tue per l’overclock della Switch.** Nelle impostazioni della Switch, «Parole proprie per le etichette» mostra le parole su cui si basa l’etichetta dell’overclock — quelle sull’overclock, «Consigliato», «Obbligatorio», «Non serve», «Massimo», i nomi di 4IFIR e di Kefir — e ti permette di aggiungerne di tue. Si sommano a quelle integrate e si applicano subito, anche alle pubblicazioni già caricate.
 

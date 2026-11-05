@@ -114,6 +114,18 @@ Par exemple « Texte russe ». Cette étiquette apparaît quand la langue figure
 - en jaune « (Doublage anglais) » — textes et sous-titres dans votre langue, doublage dans la langue indiquée entre parenthèses ;
 - en contour seul, sans parenthèses — la publication ne précise pas s’il y a un doublage.
 
+### Filtres de langue
+
+« Dans mes langues » et « Doublage dans mes langues » sont un seul choix : en activer un désactive l’autre, le réactiver affiche tout. Les autres filtres s’y ajoutent.
+
+| Publication | Tout (rien d’activé) | Dans mes langues | Doublage dans mes langues |
+|---|:-:|:-:|:-:|
+| Doublage russe | ✅ | ✅ | ✅ |
+| Texte russe (sans doublage) | ✅ | ✅ | ✅ |
+| Texte russe (Doublage anglais) | ✅ | ✅ | ❌ |
+| « Texte russe » — la publication ne dit rien du doublage | ✅ | ✅ | ❌ |
+| Rien en russe | ✅ | ❌ | ❌ |
+
 ### Overclocking de la Switch
 
 L’extension regarde si l’auteur de la publication demande d’overclocker la console et quelles fréquences il indique, puis les compare à ce qu’atteint l’overclocking intégré à Kefir :
@@ -159,6 +171,10 @@ Deux évaluations :
 ## Vos étiquettes et vos mots
 
 **Vos étiquettes.** Dans les paramètres, ajoutez des mots comme `DLC|дополнения` ou `кооператив`, ou une expression régulière entre barres obliques comme `/(лучше|рекомендуется|желательно).*разгон/`. Les publications dont le titre ou la description correspond reçoivent votre étiquette, dans la couleur de votre choix, et vous pouvez l’ajouter à la barre de filtres. Quelques exemples sont fournis avec l’extension, désactivés.
+
+<p align="center">
+  <img src="../media/screenshot-badges.png" alt="Vos étiquettes dans les réglages" width="520">
+</p>
 
 **Vos mots pour l’overclocking de la Switch.** Dans les paramètres de la Switch, « Mots personnels pour les étiquettes » affiche les mots sur lesquels se base l’étiquette d’overclocking — ceux qui parlent d’overclocking, « conseillé », « requis », « pas nécessaire », « maximal », les noms de 4IFIR et de Kefir — et vous permet d’ajouter les vôtres. Ils s’ajoutent aux mots intégrés et s’appliquent aussitôt, y compris aux publications déjà chargées.
 

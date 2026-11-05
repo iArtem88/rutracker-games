@@ -114,6 +114,18 @@ Na przykład „Tekst: rosyjski”. Pojawia się, gdy język jest w wierszu „�
 - żółta „(Dubbing: angielski)” — tekst i napisy w twoim języku, a dubbing w tym podanym w nawiasie;
 - obrysowana, bez nawiasu — w wydaniu nie napisano, czy jest dubbing.
 
+### Filtry języka
+
+„W moich językach” i „Dubbing w moich językach” to jeden wybór: naciśnięcie jednego wyłącza drugi, ponowne naciśnięcie pokazuje wszystko. Pozostałe filtry działają razem z nim.
+
+| Wydanie | Wszystko (nic nie naciśnięte) | W moich językach | Dubbing w moich językach |
+|---|:-:|:-:|:-:|
+| Dubbing: rosyjski | ✅ | ✅ | ✅ |
+| Tekst: rosyjski (bez dubbingu) | ✅ | ✅ | ✅ |
+| Tekst: rosyjski (Dubbing: angielski) | ✅ | ✅ | ❌ |
+| „Tekst: rosyjski” — wydanie nie mówi nic o dubbingu | ✅ | ✅ | ❌ |
+| Nic po rosyjsku | ✅ | ❌ | ❌ |
+
 ### Podkręcanie Switcha
 
 Rozszerzenie sprawdza, czy autor wydania prosi o podkręcenie konsoli i jakie taktowania podaje, a potem porównuje je z tym, co daje wbudowane podkręcanie Kefiru:
@@ -159,6 +171,10 @@ Dwie oceny:
 ## Własne etykiety i słowa
 
 **Twoje etykiety.** W ustawieniach dodaj słowa w rodzaju `DLC|дополнения` lub `кооператив` albo wyrażenie regularne między ukośnikami, np. `/(лучше|рекомендуется|желательно).*разгон/`. Wydania, których tytuł lub opis pasuje, dostaną twoją etykietę w wybranym kolorze, a samą etykietę możesz dodać do paska filtrów. Kilka przykładów jest dołączonych do rozszerzenia, ale są wyłączone.
+
+<p align="center">
+  <img src="../media/screenshot-badges.png" alt="Własne etykiety w ustawieniach" width="520">
+</p>
 
 **Własne słowa dla podkręcania Switcha.** W ustawieniach Switcha sekcja „Własne słowa dla etykiet” pokazuje słowa, według których nadawana jest etykieta podkręcania — o podkręcaniu, „Zalecane”, „Wymagane”, „Niepotrzebne”, „Maksymalne”, nazwy 4IFIR i Kefiru — i pozwala dodać własne. Sumują się z wbudowanymi i działają od razu, także dla już wczytanych wydań.
 

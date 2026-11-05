@@ -13,7 +13,8 @@
 //   parse(lines, title, post, settings) => extra,  // optional, as topic.extra
 //   lookup(topic, settings, ctx) => Promise,  // optional, data from elsewhere: ctx.lookup
 //   badges(topic, settings, ctx) => [{text, cls|color, title, href}],  // optional
-//   filters: [{id, label(settings), test(topic, settings, ctx)}],  // optional
+//   filters: [{id, label(settings), test(topic, settings, ctx), group}],  // optional; filters of one
+//     group are levels of one choice, broadest first: one is on at a time
 // }
 // ctx is {forumId, title, lookup}.
 // See docs/section-template.js.

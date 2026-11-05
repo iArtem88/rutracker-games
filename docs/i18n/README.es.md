@@ -114,6 +114,18 @@ Por ejemplo, «Texto en ruso». Aparece cuando el idioma figura en la línea «�
 - amarilla, «(Doblaje en inglés)» — textos y subtítulos en tu idioma; el doblaje, en el que aparece entre paréntesis;
 - solo con contorno y sin paréntesis — la publicación no indica si hay doblaje.
 
+### Filtros de idioma
+
+«En mis idiomas» y «Doblaje en mis idiomas» son una sola elección: al pulsar uno se suelta el otro; al pulsarlo de nuevo se ve todo. Los demás filtros se suman a él.
+
+| Publicación | Todo (nada pulsado) | En mis idiomas | Doblaje en mis idiomas |
+|---|:-:|:-:|:-:|
+| Doblaje en ruso | ✅ | ✅ | ✅ |
+| Texto en ruso (sin doblaje) | ✅ | ✅ | ✅ |
+| Texto en ruso (Doblaje en inglés) | ✅ | ✅ | ❌ |
+| «Texto en ruso» — la publicación no dice nada del doblaje | ✅ | ✅ | ❌ |
+| Nada en ruso | ✅ | ❌ | ❌ |
+
 ### Overclock de Switch
 
 La extensión comprueba si el autor de la publicación pide hacer overclock a la consola y qué frecuencias indica, y las compara con las que alcanza el overclock integrado de Kefir:
@@ -159,6 +171,10 @@ Dos valoraciones:
 ## Tus etiquetas y palabras
 
 **Tus etiquetas.** En los ajustes, añade palabras como `DLC|дополнения` o `кооператив`, o una expresión regular entre barras como `/(лучше|рекомендуется|желательно).*разгон/`. Las publicaciones cuyo título o descripción coincidan recibirán tu etiqueta, con el color que elijas, y podrás ponerla en la barra de filtros. La extensión incluye algunos ejemplos, desactivados.
+
+<p align="center">
+  <img src="../media/screenshot-badges.png" alt="Tus etiquetas en los ajustes" width="520">
+</p>
 
 **Tus palabras para el overclock de Switch.** En los ajustes de Switch, «Palabras propias para las etiquetas» muestra las palabras en las que se basa la etiqueta de overclock — sobre el overclock, «Recomendado», «Obligatorio», «No hace falta», «Máximo», los nombres de 4IFIR y de Kefir — y te permite añadir las tuyas. Se suman a las integradas y se aplican al instante, también a las publicaciones ya cargadas.
 

@@ -114,6 +114,18 @@ E.g. «Russian text». Set when the language is in the «Язык интерфе
 - yellow «(English voice-over)» — text and subtitles in your language, the voice-over in the one in brackets;
 - outlined, without brackets — the release doesn't say whether there's a voice-over.
 
+### Language filters
+
+«In my languages» and «Voice-over in my languages» are one choice: pressing one releases the other, pressing it again shows everything. The other filters add up with it.
+
+| Release | All (nothing pressed) | In my languages | Voice-over in my languages |
+|---|:-:|:-:|:-:|
+| Russian voice-over | ✅ | ✅ | ✅ |
+| Russian text (no voice-over) | ✅ | ✅ | ✅ |
+| Russian text (English voice-over) | ✅ | ✅ | ❌ |
+| «Russian text» — the release doesn’t say about the voice-over | ✅ | ✅ | ❌ |
+| Nothing in Russian | ✅ | ❌ | ❌ |
+
 ### Switch overclock
 
 The extension looks for whether the uploader asks to overclock the console and what clocks they give, and compares them with what Kefir's own overclock reaches:
@@ -159,6 +171,10 @@ Two ratings:
 ## Your own badges and words
 
 **Your badges.** In the settings, add words like `DLC|дополнения` or `кооператив`, or a regular expression between slashes like `/(лучше|рекомендуется|желательно).*разгон/`. The releases whose title or description match get your badge, in the color you pick, and you can put it on the filter bar. A few examples come with the extension, turned off.
+
+<p align="center">
+  <img src="docs/media/screenshot-badges.png" alt="Your badges in the settings" width="520">
+</p>
 
 **Your words for the Switch overclock.** Under the Switch settings, «Own words for the badges» shows the words the overclock badge goes by — about overclocking, «advised», «required», «not needed», «maximum», the names of 4IFIR and Kefir — and lets you add your own. They add up with the built-in ones and apply at once, to the releases already loaded too.
 

@@ -53,6 +53,34 @@ describe('Switch', () => {
   });
 });
 
+test('language chips are one choice: «Есть мои языки» or «Озвучка на моих языках»', async () => {
+  const tab = await forum('1605');
+  await settled(tab);
+  const pressed = () => tab.ev(`[...document.querySelectorAll('.rts-chip[aria-pressed="true"]')].map((c) => c.textContent)`);
+  const visible = async () => {
+    const rows = await tab.ev(ROWS);
+    return ['101', '102', '103', '104'].filter((id) => !rows[id].hidden).join(' ');
+  };
+  // 101 Russian voice-over, 102 Russian text and English voice-over, 103 nothing in Russian, 104 Russian text, no voice-over
+  await clickChip(tab, 'Есть мои языки');
+  await sleep(300);
+  assert.deepEqual(await pressed(), ['Есть мои языки']);
+  assert.equal(await visible(), '101 102 104');
+  await clickChip(tab, 'Озвучка на моих языках');
+  await sleep(300);
+  assert.deepEqual(await pressed(), ['Озвучка на моих языках']);
+  assert.equal(await visible(), '101 104');
+  await clickChip(tab, 'Озвучка на моих языках');
+  await sleep(300);
+  assert.deepEqual(await pressed(), []);
+  assert.equal(await visible(), '101 102 103 104');
+  // Both saved on by an older version: the strictest stays
+  await chrome.storage.setSettings({ uiLanguage: 'ru', filters: { myText: true, myVoice: true } });
+  const again = await forum('1605');
+  await settled(again);
+  assert.deepEqual(await again.ev(`[...document.querySelectorAll('.rts-chip[aria-pressed="true"]')].map((c) => c.textContent)`), ['Озвучка на моих языках']);
+});
+
 test('PlayStation: firmware', async () => {
   const rows = await settled(await forum('973'));
   assert.ok(rows['201'].badges.some((b) => b.includes('9.00')), rows['201'].badges.join(' | '));

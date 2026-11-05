@@ -410,23 +410,46 @@ function updateStatus(activeCount, hidden, waiting) {
   else status.textContent = t('filter.status', { hidden, total: entries.length });
 }
 
+// Turns `id` on and the rest of its group off: one level of a choice at a time
+function onlyInGroup(filters, id, all) {
+  const group = all.find((filter) => filter.id === id)?.group;
+  const next = { ...filters, [id]: true };
+  for (const other of all) {
+    if (group && other.group === group && other.id !== id) next[other.id] = false;
+  }
+  return next;
+}
+
 function renderFilterBar() {
   filterBar?.remove();
   filterBar = null;
   if (!settings.showFilterBar || !entries.length) return;
+  const all = pageFilters();
+  // Saved with several levels of a group on (an older version): the strictest stays
+  let filters = settings.filters;
+  for (const filter of all.filter((f) => f.group && filters[f.id])) filters = onlyInGroup(filters, filter.id, all);
+  if (JSON.stringify(filters) !== JSON.stringify(settings.filters)) {
+    settings = { ...settings, filters };
+    saveSettings({ filters });
+  }
   filterBar = el('div', 'rts-filterbar');
   filterBar.append(el('span', 'rts-filterbar-title', t('filter.title')));
-  for (const filter of pageFilters()) {
+  for (const filter of all) {
     const chip = el('button', 'rts-chip', filter.label(settings));
     chip.type = 'button';
+    chip.dataset.filter = filter.id;
     if (filter.title) chip.title = filter.title(settings);
     chip.setAttribute('aria-pressed', String(!!settings.filters[filter.id]));
     chip.addEventListener('click', () => {
-      const filters = { ...settings.filters, [filter.id]: !settings.filters[filter.id] };
-      settings = { ...settings, filters };
-      chip.setAttribute('aria-pressed', String(filters[filter.id]));
+      const next = settings.filters[filter.id]
+        ? { ...settings.filters, [filter.id]: false }
+        : onlyInGroup(settings.filters, filter.id, all);
+      settings = { ...settings, filters: next };
+      for (const other of filterBar.querySelectorAll('.rts-chip')) {
+        other.setAttribute('aria-pressed', String(!!next[other.dataset.filter]));
+      }
       applyFilters();
-      saveSettings({ filters });
+      saveSettings({ filters: next });
     });
     filterBar.append(chip);
   }

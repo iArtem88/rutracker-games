@@ -276,21 +276,25 @@ function pickedLanguages(settings, which) {
   return LANGUAGES.filter((code) => which.some((key) => settings.languages?.[code]?.[key]));
 }
 
+// «Есть мои языки» and «Озвучка на моих языках» are levels of one choice, the
+// broadest first: one of them is on at a time (see `group` in registry.js)
 const GAME_FILTERS = [
   {
+    id: 'myText',
+    group: 'language',
+    label: () => t('filter.myText'),
+    title: (settings) => t('filter.myLanguages', { languages: pickedLanguages(settings, ['voice', 'text']).map(languageName).join(', ') }),
+    test: (topic, settings) => pickedLanguages(settings, ['voice', 'text'])
+      .some((code) => topic.voices?.[code] || topic.texts?.[code]),
+  },
+  {
     id: 'myVoice',
+    group: 'language',
     label: () => t('filter.myVoice'),
     title: (settings) => t('filter.myVoiceTitle', { languages: pickedLanguages(settings, ['voice']).map(languageName).join(', ') }),
     // A game with no voice-over at all and the text in my language has nothing
     // foreign to hear, so it passes too (the green "без озвучки" badge)
     test: (topic, settings) => pickedLanguages(settings, ['voice'])
       .some((code) => topic.voices?.[code] || (topic.noVoice && topic.texts?.[code])),
-  },
-  {
-    id: 'myText',
-    label: () => t('filter.myText'),
-    title: (settings) => t('filter.myLanguages', { languages: pickedLanguages(settings, ['voice', 'text']).map(languageName).join(', ') }),
-    test: (topic, settings) => pickedLanguages(settings, ['voice', 'text'])
-      .some((code) => topic.voices?.[code] || topic.texts?.[code]),
   },
 ];
