@@ -15,6 +15,7 @@ LOCALES.en = {
   'filter.myVoice': 'Voice-over in my languages',
   'filter.myText': 'In my languages',
   'filter.myLanguages': 'My languages: {languages}',
+  'filter.myVoiceTitle': 'My languages: {languages}. Games with no voice-over at all and text in these languages count too.',
   'custom.tooltip': 'Your badge: {pattern}',
   'source.title': 'In the release title: {title}',
   // Language badges: "{language}" is the language's name

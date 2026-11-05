@@ -13,6 +13,7 @@ LOCALES.fr = {
   'filter.myVoice': 'Doublage dans mes langues',
   'filter.myText': 'Dans mes langues',
   'filter.myLanguages': 'Mes langues : {languages}',
+  'filter.myVoiceTitle': 'Mes langues : {languages}. Les jeux sans doublage avec un texte dans ces langues comptent aussi.',
   'custom.tooltip': 'Votre étiquette : {pattern}',
   'source.title': 'Dans le titre de la publication : {title}',
   'badge.voice': 'Doublage {language}',

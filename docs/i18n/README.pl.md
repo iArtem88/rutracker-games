@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/licencja-GPL--3.0--or--later-blue.svg" alt="Licencja: GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/wersja-1.0.0-green.svg" alt="Wersja 1.0.0"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/wersja-1.0.1-green.svg" alt="Wersja 1.0.1"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/interfejs-10%20języków-orange.svg" alt="10 języków">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>

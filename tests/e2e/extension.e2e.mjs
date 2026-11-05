@@ -47,8 +47,9 @@ describe('Switch', () => {
     await clickChip(tab, 'Озвучка на моих языках');
     await sleep(300);
     rows = await tab.ev(ROWS);
-    assert.deepEqual(['101', '104'].map((id) => rows[id].hidden), [false, true]);
-    assert.match(await tab.ev(`document.querySelector('.rts-status').textContent`), /^Скрыто 3 из 4/);
+    // 104 has no voice-over at all and Russian text: nothing foreign to hear
+    assert.deepEqual(['101', '104'].map((id) => rows[id].hidden), [false, false]);
+    assert.match(await tab.ev(`document.querySelector('.rts-status').textContent`), /^Скрыто 2 из 4/);
   });
 });
 

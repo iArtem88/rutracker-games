@@ -13,6 +13,7 @@ LOCALES.ja = {
   'filter.myVoice': '自分の言語の音声',
   'filter.myText': '自分の言語あり',
   'filter.myLanguages': '自分の言語: {languages}',
+  'filter.myVoiceTitle': '自分の言語: {languages}。音声なしで、これらの言語のテキストがあるゲームも含みます。',
   'custom.tooltip': '自分のラベル: {pattern}',
   'source.title': '配布のタイトルより: {title}',
   'badge.voice': '{language}音声',

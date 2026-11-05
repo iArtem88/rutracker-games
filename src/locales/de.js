@@ -13,6 +13,7 @@ LOCALES.de = {
   'filter.myVoice': 'Sprachausgabe in meinen Sprachen',
   'filter.myText': 'In meinen Sprachen',
   'filter.myLanguages': 'Meine Sprachen: {languages}',
+  'filter.myVoiceTitle': 'Meine Sprachen: {languages}. Spiele ganz ohne Sprachausgabe mit Text in diesen Sprachen zählen auch.',
   'custom.tooltip': 'Eigene Markierung: {pattern}',
   'source.title': 'Im Titel des Releases: {title}',
   'badge.voice': 'Sprachausgabe: {language}',

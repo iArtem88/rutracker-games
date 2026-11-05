@@ -1,6 +1,6 @@
 {
   "name": "rutracker-games",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Screenshots and badges in RuTracker release lists: Russian voice-over, Switch overclock, PS firmware, PC RAM. Filters and your own badges.",
   "license": "GPL-3.0-or-later",

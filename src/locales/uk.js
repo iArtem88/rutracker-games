@@ -27,6 +27,7 @@ LOCALES.uk = {
   'filter.myVoice': 'Озвучення моїми мовами',
   'filter.myText': 'Є мої мови',
   'filter.myLanguages': 'Мої мови: {languages}',
+  'filter.myVoiceTitle': 'Мої мови: {languages}. Підходять і ігри без озвучення з текстом цими мовами.',
   'custom.tooltip': 'Власна мітка: {pattern}',
   'source.title': 'У назві роздачі: {title}',
   'badge.voice': 'Озвучення: {language}',

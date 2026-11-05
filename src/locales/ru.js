@@ -27,6 +27,7 @@ LOCALES.ru = {
   'filter.myVoice': 'Озвучка на моих языках',
   'filter.myText': 'Есть мои языки',
   'filter.myLanguages': 'Мои языки: {languages}',
+  'filter.myVoiceTitle': 'Мои языки: {languages}. Подходят и игры без озвучки с текстом на этих языках.',
   'custom.tooltip': 'Своя метка: {pattern}',
   'source.title': 'В названии раздачи: {title}',
   'badge.voice': 'Озвучка: {language}',

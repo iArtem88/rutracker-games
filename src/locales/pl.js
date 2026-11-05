@@ -13,6 +13,7 @@ LOCALES.pl = {
   'filter.myVoice': 'Dubbing w moich językach',
   'filter.myText': 'W moich językach',
   'filter.myLanguages': 'Moje języki: {languages}',
+  'filter.myVoiceTitle': 'Moje języki: {languages}. Liczą się też gry bez dubbingu z tekstem w tych językach.',
   'custom.tooltip': 'Twoja etykieta: {pattern}',
   'source.title': 'W tytule wydania: {title}',
   'badge.voice': 'Dubbing: {language}',

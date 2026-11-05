@@ -13,6 +13,7 @@ LOCALES.it = {
   'filter.myVoice': 'Doppiaggio nelle mie lingue',
   'filter.myText': 'Nelle mie lingue',
   'filter.myLanguages': 'Le mie lingue: {languages}',
+  'filter.myVoiceTitle': 'Le mie lingue: {languages}. Valgono anche i giochi senza doppiaggio con testo in queste lingue.',
   'custom.tooltip': 'La tua etichetta: {pattern}',
   'source.title': 'Nel titolo della pubblicazione: {title}',
   'badge.voice': 'Doppiaggio in {language}',

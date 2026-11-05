@@ -132,6 +132,21 @@ describe('text without a voice-over in the language', () => {
     assert.deepEqual(await classes('Язык интерфейса: русский<br>'), ['Русский текст | rts-text rts-soft']);
   });
 
+  test('«Озвучка на моих языках» lets through a game with no voice-over and my text', async () => {
+    const passes = (body) => page.evaluate((body) => GAME_FILTERS.find((filter) => filter.id === 'myVoice').test(
+      parseTopic(`<div class="post_body">${body}</div>`, '', sectionForForum('635')),
+      { languages: { ru: { voice: true, text: true } } },
+    ), body);
+    assert.equal(await passes('Язык интерфейса: русский<br>Язык озвучки: русский<br>'), true);
+    // Nothing to hear, all in Russian: the green badge
+    assert.equal(await passes('Язык интерфейса: русский<br>Язык озвучки: отсутствует<br>'), true);
+    // The voice-over is in another language, or the release doesn't say
+    assert.equal(await passes('Язык интерфейса: русский<br>Язык озвучки: английский<br>'), false);
+    assert.equal(await passes('Язык интерфейса: русский<br>'), false);
+    // No voice-over, but not my language either
+    assert.equal(await passes('Язык интерфейса: английский<br>Язык озвучки: отсутствует<br>'), false);
+  });
+
   test('machine translation, "Язык озвучивания: отсутствует"', async () => {
     const body = 'Язык интерфейса: Английский [ENG] + русский машинный<br>Язык озвучивания: отсутствует<br>';
     assert.deepEqual(await labels(body, { title: '[DL] Game [P] [RUS + ENG]', forumId: '635' }), ['Русский текст (машинный, без озвучки)']);

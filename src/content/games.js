@@ -280,8 +280,11 @@ const GAME_FILTERS = [
   {
     id: 'myVoice',
     label: () => t('filter.myVoice'),
-    title: (settings) => t('filter.myLanguages', { languages: pickedLanguages(settings, ['voice']).map(languageName).join(', ') }),
-    test: (topic, settings) => pickedLanguages(settings, ['voice']).some((code) => topic.voices?.[code]),
+    title: (settings) => t('filter.myVoiceTitle', { languages: pickedLanguages(settings, ['voice']).map(languageName).join(', ') }),
+    // A game with no voice-over at all and the text in my language has nothing
+    // foreign to hear, so it passes too (the green "без озвучки" badge)
+    test: (topic, settings) => pickedLanguages(settings, ['voice'])
+      .some((code) => topic.voices?.[code] || (topic.noVoice && topic.texts?.[code])),
   },
   {
     id: 'myText',
