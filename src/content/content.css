@@ -1,0 +1,234 @@
+/* --rts-thumb-h is set from the settings; 84px is the height of fastpic thumbnails */
+:root {
+  --rts-thumb-h: 84px;
+}
+
+.rts-hidden {
+  display: none !important;
+}
+
+/* Under the topic title */
+.rts-box {
+  margin: 4px 0 3px;
+}
+
+.rts-error {
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+}
+
+/* Loading: a light sweeping over gray shapes */
+@keyframes rts-shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: -100% 0; }
+}
+
+.rts-skeleton,
+.rts-thumbs .rts-pending {
+  background: linear-gradient(90deg, #e2e6ea 25%, #f4f6f8 50%, #e2e6ea 75%);
+  background-size: 200% 100%;
+  animation: rts-shimmer 1.3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rts-skeleton,
+  .rts-thumbs .rts-pending {
+    animation: none;
+  }
+}
+
+.rts-skeleton-badges,
+.rts-skeleton-thumbs {
+  display: flex;
+  gap: 4px;
+}
+
+.rts-skeleton-badges {
+  margin-bottom: 4px;
+}
+
+.rts-skeleton-badge {
+  width: 120px;
+  height: 18px;
+  border-radius: 3px;
+}
+
+.rts-skeleton-short {
+  width: 80px;
+}
+
+.rts-skeleton-thumbs {
+  max-height: var(--rts-thumb-h);
+  overflow: hidden;
+}
+
+.rts-skeleton-thumb {
+  flex: none;
+  width: calc(var(--rts-thumb-h) * 150 / 84);
+  height: var(--rts-thumb-h);
+  border-radius: 2px;
+}
+
+.rts-error {
+  color: #a33;
+  cursor: pointer;
+}
+
+.rts-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+/* Colors come from lib/badges.js (defaults) and the "Внешний вид" settings tab */
+.rts-badge {
+  padding: 0 6px;
+  border: 1px solid #607d8b;
+  border-radius: 3px;
+  background: #607d8b;
+  color: #fff;
+  font: bold 11px/16px Verdana, Arial, sans-serif;
+  cursor: default;
+}
+
+/* Valve's Steam Deck ratings: a thicker frame, same height */
+.rts-deck-verified,
+.rts-deck-playable,
+.rts-deck-unsupported {
+  border-width: 2px;
+  line-height: 14px;
+}
+
+a.rts-badge {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.rts-badge:hover {
+  filter: brightness(1.1);
+}
+
+.rts-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rts-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-width: 0;
+  max-height: var(--rts-thumb-h);
+  overflow: hidden;
+  /* offsetTop of the thumbnails is counted from here */
+  position: relative;
+}
+
+.rts-expanded .rts-thumbs {
+  max-height: none;
+}
+
+.rts-thumbs img {
+  display: block;
+  height: var(--rts-thumb-h);
+  width: auto;
+  border-radius: 2px;
+}
+
+.rts-thumbs a:hover img {
+  opacity: 0.85;
+}
+
+/* Placeholder until the thumbnail loads, 150x84 like fastpic; it shimmers, see above */
+.rts-thumbs .rts-pending {
+  width: calc(var(--rts-thumb-h) * 150 / 84);
+  height: var(--rts-thumb-h);
+  border-radius: 2px;
+}
+
+.rts-more,
+.rts-chip,
+.rts-settings {
+  flex: none;
+  padding: 2px 9px;
+  border: 1px solid #b8c4d0;
+  border-radius: 12px;
+  background: #fff;
+  color: #333;
+  font: 11px/16px Verdana, Arial, sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* "ещё N" and "свернуть": framed in the extension's gradient, as on the icon */
+.rts-more {
+  padding: 1px 8px;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(90deg, #1565c0, #6a1b9a) border-box;
+}
+
+.rts-more:hover {
+  background:
+    linear-gradient(#eef2f6, #eef2f6) padding-box,
+    linear-gradient(90deg, #1565c0, #6a1b9a) border-box;
+}
+
+/* Above the topic list: on the extension's gradient, the icon's blue to purple,
+   dark enough for white text all the way */
+.rts-filterbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0;
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #1565c0, #6a1b9a);
+  font: 11px Verdana, Arial, sans-serif;
+}
+
+.rts-filterbar-title {
+  font-weight: bold;
+  color: aliceblue;
+}
+
+.rts-chip {
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.rts-chip:hover {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+/* On: white, so it stands out on the gradient */
+.rts-chip[aria-pressed="true"] {
+  border-color: #fff;
+  background: #fff;
+  color: #1565c0;
+}
+
+.rts-chip[aria-pressed="true"]::before {
+  content: "✓ ";
+}
+
+.rts-status {
+  color: #fff;
+}
+
+.rts-settings {
+  margin-left: auto;
+  border-color: transparent;
+  background: transparent;
+  color: #fff;
+}
+
+.rts-settings:hover {
+  background: rgba(255, 255, 255, 0.18);
+}

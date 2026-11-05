@@ -1,0 +1,48 @@
+# Tests and builds every push and pull request. A v* tag also publishes a
+# GitHub release with the Chrome and Firefox zips.
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    # Pinned: Playwright doesn't know newer Ubuntu images yet
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # The tests run in the runner's Google Chrome, no browser download needed
+      - run: npm test
+      # The extension in the runner's Google Chrome against a mock RuTracker
+      - run: npm run test:e2e
+      - run: npm run lint:firefox
+      - uses: actions/upload-artifact@v4
+        with:
+          name: extension
+          path: dist/*.zip
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: extension
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: '*.zip'
+          generate_release_notes: true

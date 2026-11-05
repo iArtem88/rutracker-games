@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RuTracker Games</title>
+  <!-- The page's badge styles, for the previews on the "Внешний вид" tab -->
+  <link rel="stylesheet" href="../content/content.css">
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <!-- Texts come from src/locales/*: data-i18n (text), data-i18n-title, data-i18n-placeholder -->
+  <header class="header">
+    <img src="../icons/icon-48.png" alt="" width="32" height="32">
+    <div class="header-text">
+      <h1>RuTracker Games</h1>
+      <span class="muted" id="version"></span>
+    </div>
+    <label class="switch" data-i18n-title="ui.enabled">
+      <input type="checkbox" data-key="enabled">
+      <span class="slider"></span>
+    </label>
+  </header>
+
+  <nav class="tabs full-only" role="tablist">
+    <button type="button" role="tab" data-tab="settings" data-i18n="ui.tabSettings"></button>
+    <button type="button" role="tab" data-tab="appearance" data-i18n="ui.tabAppearance"></button>
+  </nav>
+
+  <main id="main">
+   <div data-panel="settings">
+    <p class="intro full-only" data-i18n="ui.intro"></p>
+
+    <section class="card">
+      <h2 data-i18n="ui.show"></h2>
+      <label class="row"><span data-i18n="ui.shots"></span><span class="switch"><input type="checkbox" data-key="showShots"><span class="slider"></span></span></label>
+      <label class="row"><span data-i18n="ui.filterBar"></span><span class="switch"><input type="checkbox" data-key="showFilterBar"><span class="slider"></span></span></label>
+      <label class="row full-only" data-i18n-title="ui.filterLoadsAllHint"><span data-i18n="ui.filterLoadsAll"></span><span class="switch"><input type="checkbox" data-key="filterLoadsAll"><span class="slider"></span></span></label>
+      <div class="row">
+        <span data-i18n="ui.thumbSize"></span>
+        <div class="segmented" id="thumb-size">
+          <button type="button" data-height="64" data-i18n="ui.small"></button>
+          <button type="button" data-height="84" data-i18n="ui.medium"></button>
+          <button type="button" data-height="120" data-i18n="ui.large"></button>
+        </div>
+      </div>
+      <label class="row">
+        <span data-i18n="ui.interfaceLanguage"></span>
+        <select id="ui-language"></select>
+      </label>
+    </section>
+
+    <section class="card full-only">
+      <h2 data-i18n="ui.languages"></h2>
+      <p class="muted hint-top" data-i18n="ui.languagesHint"></p>
+      <table class="languages">
+        <thead>
+          <tr><th data-i18n="ui.language"></th><th data-i18n="ui.voice"></th><th data-i18n="ui.text"></th></tr>
+        </thead>
+        <tbody id="languages"></tbody>
+      </table>
+    </section>
+
+    <div id="sections"></div>
+
+    <section class="card full-only">
+      <h2 data-i18n="ui.custom"></h2>
+      <p class="muted" data-i18n="ui.customHint"></p>
+      <div id="custom-badges"></div>
+      <button type="button" class="button" id="add-badge" data-i18n="ui.addBadge"></button>
+    </section>
+
+    <section class="card full-only">
+      <h2 data-i18n="ui.cache"></h2>
+      <div class="row">
+        <span class="muted" id="cache-info" data-i18n="ui.cacheCounting"></span>
+        <button type="button" class="button" id="clear-cache" data-i18n="ui.clear"></button>
+      </div>
+    </section>
+
+    <button type="button" class="button wide popup-only" id="open-options" data-i18n="ui.allSettings"></button>
+   </div>
+
+   <div data-panel="appearance" hidden>
+    <p class="intro" data-i18n="ui.appearanceHint"></p>
+    <div id="appearance"></div>
+    <button type="button" class="button" id="reset-colors" data-i18n="ui.resetAll"></button>
+   </div>
+  </main>
+
+  <footer class="footer muted full-only">
+    <span data-i18n="ui.footer"></span>
+    <a id="project-link" target="_blank" rel="noopener" hidden data-i18n="ui.source"></a>
+  </footer>
+
+  <template id="badge-row">
+    <div class="badge-row">
+      <span class="switch small" data-i18n-title="ui.badgeEnabled"><input type="checkbox" class="badge-enabled"><span class="slider"></span></span>
+      <input type="text" class="badge-label" maxlength="30" data-i18n-placeholder="ui.badgeName">
+      <input type="text" class="badge-pattern" data-i18n-placeholder="ui.badgeWords">
+      <select class="badge-color" data-i18n-title="ui.badgeColor"></select>
+      <label class="badge-filter" data-i18n-title="ui.badgeFilterTooltip"><input type="checkbox"> <span data-i18n="ui.badgeFilter"></span></label>
+      <button type="button" class="icon-button badge-delete" data-i18n-title="ui.badgeDelete">✕</button>
+    </div>
+  </template>
+
+  <!-- The locales and sections are loaded from the manifest's list, see settings.js -->
+  <script src="../lib/i18n.js"></script>
+  <script src="../lib/settings.js"></script>
+  <script src="../content/registry.js"></script>
+  <script src="../lib/badges.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html>
