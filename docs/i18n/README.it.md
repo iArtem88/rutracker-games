@@ -4,15 +4,15 @@
 </h1>
 
 <p align="center">
-  <a href="../../README.md">🇬🇧 English</a> •
-  <a href="README.uk.md">🇺🇦 Українська</a> •
-  <a href="README.ru.md">🇷🇺 Русский</a> •
-  <a href="README.de.md">🇩🇪 Deutsch</a> •
-  <a href="README.fr.md">🇫🇷 Français</a> •
-  <a href="README.es.md">🇪🇸 Español</a> •
-  <a href="README.it.md">🇮🇹 Italiano</a> •
-  <a href="README.pl.md">🇵🇱 Polski</a> •
-  <a href="README.pt.md">🇧🇷 Português</a> •
+  <a href="../../README.md">🇬🇧 English</a> &nbsp;•&nbsp;
+  <a href="README.uk.md">🇺🇦 Українська</a> &nbsp;•&nbsp;
+  <a href="README.ru.md">🇷🇺 Русский</a> &nbsp;•&nbsp;
+  <a href="README.de.md">🇩🇪 Deutsch</a> &nbsp;•&nbsp;
+  <a href="README.fr.md">🇫🇷 Français</a> &nbsp;•&nbsp;
+  <a href="README.es.md">🇪🇸 Español</a> &nbsp;•&nbsp;
+  <a href="README.it.md">🇮🇹 Italiano</a> &nbsp;•&nbsp;
+  <a href="README.pl.md">🇵🇱 Polski</a> &nbsp;•&nbsp;
+  <a href="README.pt.md">🇧🇷 Português</a> &nbsp;•&nbsp;
   <a href="README.ja.md">🇯🇵 日本語</a>
 </p>
 

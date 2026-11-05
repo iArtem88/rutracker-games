@@ -4,15 +4,15 @@
 </h1>
 
 <p align="center">
-  <a href="README.md">🇬🇧 English</a> •
-  <a href="docs/i18n/README.uk.md">🇺🇦 Українська</a> •
-  <a href="docs/i18n/README.ru.md">🇷🇺 Русский</a> •
-  <a href="docs/i18n/README.de.md">🇩🇪 Deutsch</a> •
-  <a href="docs/i18n/README.fr.md">🇫🇷 Français</a> •
-  <a href="docs/i18n/README.es.md">🇪🇸 Español</a> •
-  <a href="docs/i18n/README.it.md">🇮🇹 Italiano</a> •
-  <a href="docs/i18n/README.pl.md">🇵🇱 Polski</a> •
-  <a href="docs/i18n/README.pt.md">🇧🇷 Português</a> •
+  <a href="README.md">🇬🇧 English</a> &nbsp;•&nbsp;
+  <a href="docs/i18n/README.uk.md">🇺🇦 Українська</a> &nbsp;•&nbsp;
+  <a href="docs/i18n/README.ru.md">🇷🇺 Русский</a> &nbsp;•&nbsp;
+  <a href="docs/i18n/README.de.md">🇩🇪 Deutsch</a> &nbsp;•&nbsp;
+  <a href="docs/i18n/README.fr.md">🇫🇷 Français</a> &nbsp;•&nbsp;
+  <a href="docs/i18n/README.es.md">🇪🇸 Español</a> &nbsp;•&nbsp;
+  <a href="docs/i18n/README.it.md">🇮🇹 Italiano</a> &nbsp;•&nbsp;
+  <a href="docs/i18n/README.pl.md">🇵🇱 Polski</a> &nbsp;•&nbsp;
+  <a href="docs/i18n/README.pt.md">🇧🇷 Português</a> &nbsp;•&nbsp;
   <a href="docs/i18n/README.ja.md">🇯🇵 日本語</a>
 </p>
 
