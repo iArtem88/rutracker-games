@@ -4,16 +4,16 @@
 </h1>
 
 <p align="center">
-  <a href="../../README.md">🇬🇧 English</a> &nbsp;•&nbsp;
-  <a href="README.uk.md">🇺🇦 Українська</a> &nbsp;•&nbsp;
-  <a href="README.ru.md">🇷🇺 Русский</a> &nbsp;•&nbsp;
-  <a href="README.de.md">🇩🇪 Deutsch</a> &nbsp;•&nbsp;
-  <a href="README.fr.md">🇫🇷 Français</a> &nbsp;•&nbsp;
-  <a href="README.es.md">🇪🇸 Español</a> &nbsp;•&nbsp;
-  <a href="README.it.md">🇮🇹 Italiano</a> &nbsp;•&nbsp;
-  <a href="README.pl.md">🇵🇱 Polski</a> &nbsp;•&nbsp;
-  <a href="README.pt.md">🇧🇷 Português</a> &nbsp;•&nbsp;
-  <a href="README.ja.md">🇯🇵 日本語</a>
+  <a href="../../README.md">🇬🇧&nbsp;English</a> •
+  <a href="README.uk.md">🇺🇦&nbsp;Українська</a> •
+  <a href="README.ru.md">🇷🇺&nbsp;Русский</a> •
+  <a href="README.de.md">🇩🇪&nbsp;Deutsch</a> •
+  <a href="README.fr.md">🇫🇷&nbsp;Français</a> •
+  <a href="README.es.md">🇪🇸&nbsp;Español</a> •
+  <a href="README.it.md">🇮🇹&nbsp;Italiano</a> •
+  <a href="README.pl.md">🇵🇱&nbsp;Polski</a> •
+  <a href="README.pt.md">🇧🇷&nbsp;Português</a> •
+  <a href="README.ja.md">🇯🇵&nbsp;日本語</a>
 </p>
 
 <h4 align="center">Скриншоти й зручні мітки просто в списках ігрових роздач RuTracker — без потреби відкривати кожну тему.</h4>
