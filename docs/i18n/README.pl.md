@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/licencja-GPL--3.0--or--later-blue.svg" alt="Licencja: GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/wersja-1.1.0-green.svg" alt="Wersja 1.1.0"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/wersja-1.2.0-green.svg" alt="Wersja 1.2.0"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/interfejs-10%20języków-orange.svg" alt="10 języków">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -52,6 +52,7 @@
 Prosto na liście wydań, między tytułem a autorem:
 
 - **Zrzuty ekranu** ze spoilera „Скриншоты” w wydaniu: te same miniatury co w temacie. Te z lupą otwierają się w pełnym rozmiarze we własnej przeglądarce obrazów rozszerzenia, na tej samej stronie i bez reklam hostingu: ← → albo pasek miniatur pod spodem przełączają obrazy, Esc zamyka. Bez lupy kliknięcie otwiera stronę hostingu. Widać jeden rząd, resztę rozwija przycisk „jeszcze N”.
+- **W temacie wydania** spoilery ze zrzutami ekranu rozwijają się same (można to wyłączyć w ustawieniach), a zrzuty otwierają się w tej samej przeglądarce obrazów.
 - **Etykiety z opisu wydania:**
   - <img src="https://img.shields.io/badge/-Dubbing:%20rosyjski-d32f2f" alt="Dubbing: rosyjski"> — dubbing w twoim języku, ze szczegółami w nawiasie: maszynowy, amatorski, częściowy, mod;
   - <img src="https://img.shields.io/badge/-Tekst:%20rosyjski%20(bez%20dubbingu)-2e7d32" alt="Tekst: rosyjski (bez dubbingu)"> — gra jest w twoim języku, po prostu nie ma dubbingu;
@@ -66,7 +67,7 @@ Prosto na liście wydań, między tytułem a autorem:
 
 ## Obsługiwane działy
 
-Rozszerzenie działa na listach tematów i w wynikach wyszukiwania w działach z grami na RuTrackerze:
+Rozszerzenie działa na listach tematów, w wynikach wyszukiwania i w tematach wydań w działach z grami na RuTrackerze:
 
 | Dział | Co pokazuje |
 |---|---|
@@ -74,6 +75,9 @@ Rozszerzenie działa na listach tematów i w wynikach wyszukiwania w działach z
 | Gry na konsole » PS4, PS5 | zrzuty ekranu, języki, wymagany firmware |
 | Inne konsole (PS1–PS3, PSP, Vita, Xbox, Wii, DS, Dreamcast…) | zrzuty ekranu, języki |
 | Gry na Windows | zrzuty ekranu, języki, minimum RAM i karta graficzna, Steam Deck |
+| Gry na Maca, gry na Linuksa | zrzuty ekranu, języki |
+| Gry na urządzenia mobilne (Android, Oculus Quest, Symbian, Windows Mobile) | zrzuty ekranu, języki |
+| Dodatki: mody i tłumaczenia do gier na Windows, Train Simulator, symulatory lotu | zrzuty ekranu, języki |
 
 Filmy, muzyka i cała reszta celowo pozostają poza zakresem: lepiej, żeby trafiły do osobnych rozszerzeń — wtedy każde z nich pozostaje proste.
 

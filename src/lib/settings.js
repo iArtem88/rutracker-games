@@ -15,6 +15,8 @@ const DEFAULT_SETTINGS = {
   showFilterBar: true,
   // A filter loads every release on the page at once, or only those scrolled to
   filterLoadsAll: true,
+  // In a release's topic, its screenshot spoilers open by themselves, see topic.js
+  openShotSpoilers: true,
   thumbHeight: THUMB_HEIGHTS.medium,
   // Which filter chips are on, by filter id
   filters: {},

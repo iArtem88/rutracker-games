@@ -364,16 +364,27 @@ function showTab(name) {
 
 // --- Cache
 
+// Topic descriptions and Steam Deck ratings (see background.js)
+const isCached = (key) => key.startsWith(CACHE_PREFIX) || key.startsWith('steam:');
+
+// 840 KB, 4.2 MB in the interface's language
+function formatSize(bytes) {
+  const [value, unit] = bytes >= 1e6 ? [bytes / 1e6, 'megabyte'] : [Math.max(1, Math.round(bytes / 1e3)), 'kilobyte'];
+  return new Intl.NumberFormat(uiLanguage, { style: 'unit', unit, maximumFractionDigits: 1 }).format(value);
+}
+
 async function showCacheInfo() {
   const all = await ext.storage.local.get(null);
-  const count = Object.keys(all).filter((key) => key.startsWith(CACHE_PREFIX)).length;
-  document.getElementById('cache-info').textContent = count ? t('ui.cacheInfo', { n: count }) : t('ui.cacheEmpty');
+  const keys = Object.keys(all).filter(isCached);
+  const count = keys.filter((key) => key.startsWith(CACHE_PREFIX)).length;
+  // As stored: the key and the value as JSON
+  const bytes = keys.reduce((sum, key) => sum + new TextEncoder().encode(key + JSON.stringify(all[key])).length, 0);
+  document.getElementById('cache-info').textContent = count ? t('ui.cacheInfo', { n: count, size: formatSize(bytes) }) : t('ui.cacheEmpty');
 }
 
 async function clearCache() {
   const all = await ext.storage.local.get(null);
-  // Topic descriptions and Steam Deck ratings (see background.js)
-  await ext.storage.local.remove(Object.keys(all).filter((key) => key.startsWith(CACHE_PREFIX) || key.startsWith('steam:')));
+  await ext.storage.local.remove(Object.keys(all).filter(isCached));
   showCacheInfo();
 }
 

@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="Licencia: GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.1.0-green.svg" alt="Versión 1.1.0"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.0-green.svg" alt="Versión 1.2.0"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10 idiomas">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -52,6 +52,7 @@
 Directamente en la lista de publicaciones, entre el título y el autor:
 
 - **Capturas de pantalla** del spoiler «Скриншоты» de la publicación: las mismas miniaturas que en el tema. Las que llevan una lupa se abren a tamaño completo en el visor propio de la extensión, en la misma página y sin la publicidad del alojamiento: ← → o la tira de miniaturas de abajo pasan de una a otra, Esc cierra. Sin lupa, un clic abre la página del alojamiento. Se muestra una fila, y «N más» despliega el resto.
+- **En el tema de la publicación**, los spoilers con capturas se abren solos (se puede desactivar en los ajustes), y las capturas se abren en el mismo visor.
 - **Etiquetas a partir de la descripción de la publicación:**
   - <img src="https://img.shields.io/badge/-Doblaje%20en%20ruso-d32f2f" alt="Doblaje en ruso"> — doblaje en tu idioma, con detalles entre paréntesis: automático, amateur, parcial, mod;
   - <img src="https://img.shields.io/badge/-Texto%20en%20ruso%20(sin%20doblaje)-2e7d32" alt="Texto en ruso (sin doblaje)"> — el juego está en tu idioma y, sencillamente, no tiene voces;
@@ -66,7 +67,7 @@ Directamente en la lista de publicaciones, entre el título y el autor:
 
 ## Secciones compatibles
 
-La extensión funciona en las listas y en los resultados de búsqueda de las secciones de juegos de RuTracker:
+La extensión funciona en las listas, en los resultados de búsqueda y en los temas de las publicaciones de las secciones de juegos de RuTracker:
 
 | Sección | Qué muestra |
 |---|---|
@@ -74,6 +75,9 @@ La extensión funciona en las listas y en los resultados de búsqueda de las sec
 | Juegos para consolas » PS4, PS5 | capturas, idiomas, el firmware necesario |
 | Otras consolas (PS1–PS3, PSP, Vita, Xbox, Wii, DS, Dreamcast…) | capturas, idiomas |
 | Juegos para Windows | capturas, idiomas, RAM mínima y tarjeta gráfica, Steam Deck |
+| Juegos para Mac, juegos para Linux | capturas, idiomas |
+| Juegos para dispositivos móviles (Android, Oculus Quest, Symbian, Windows Mobile) | capturas, idiomas |
+| Complementos: mods y traducciones para juegos de Windows, Train Simulator, simuladores de vuelo | capturas, idiomas |
 
 Las películas, la música y todo lo demás quedan fuera a propósito: es mejor que sean extensiones aparte, para que cada una siga siendo sencilla.
 

@@ -113,6 +113,10 @@ LOCALES.en = {
 
   // Other consoles
   'consoles.title': 'Other consoles',
+  'mac.title': 'Games for Mac',
+  'linux.title': 'Games for Linux',
+  'mobile.title': 'Mobile games',
+  'addons.title': 'Add-ons and mods',
 
   // Settings
   'ui.title': 'RuTracker Games — settings',
@@ -122,6 +126,7 @@ LOCALES.en = {
   'ui.show': 'What to show',
   'ui.shots': 'Release screenshots',
   'ui.filterBar': 'Filter bar above the list',
+  'ui.openShotSpoilers': 'Open the screenshot spoilers in a release’s topic',
   'ui.filterLoadsAll': 'A filter checks the whole page at once',
   'ui.filterLoadsAllHint': 'To hide the releases that don’t fit, a filter loads every topic on the page. Turn it off to load only those you scroll to: less load on the site, but releases not checked yet stay visible till their turn.',
   'ui.thumbSize': 'Screenshot size',
@@ -155,8 +160,9 @@ LOCALES.en = {
   'ui.placeholder': 'e.g. {example}',
   'ui.cache': 'Cache',
   'ui.cacheCounting': 'Counting…',
-  'ui.cacheInfo': 'Descriptions of {n} releases are kept for a month, or till the release is updated, so they aren’t loaded again.',
+  'ui.cacheInfo': 'Descriptions of {n} releases ({size}) are kept for a month, or till the release is updated, so they aren’t loaded again.',
   'ui.cacheEmpty': 'Empty for now.',
+  'ui.cachePictures': 'Pictures aren’t kept by the extension: the browser caches them itself, as on any site.',
   'ui.clear': 'Clear',
   'ui.allSettings': 'Your badges and all settings',
   'ui.tabSettings': 'Settings',

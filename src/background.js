@@ -55,9 +55,10 @@ async function steamDeck({ appId, name }) {
 }
 
 // The pages read, and the pictures they may name:
-// https://ibb.co/d4DJp6fq -> https://i.ibb.co/CKQs9vwZ/name.jpg
+// https://ibb.co/d4DJp6fq -> https://i.ibb.co/CKQs9vwZ/name.jpg (ibb.co.com is
+// ImgBB too)
 const PAGE_PICTURES = [
-  [/^https?:\/\/ibb\.co\/[A-Za-z0-9]+\/?$/i, /^https:\/\/i\.ibb\.co\/[^\s"'<>]+$/],
+  [/^https?:\/\/ibb\.co(?:\.com)?\/[A-Za-z0-9]+\/?$/i, /^https:\/\/i\.ibb\.co(?:\.com)?\/[^\s"'<>]+$/],
   [/^https?:\/\/postimg\.cc\/(?:image\/)?[A-Za-z0-9]+\/?$/i, /^https:\/\/i\.postimg\.cc\/[^\s"'<>]+$/],
 ];
 

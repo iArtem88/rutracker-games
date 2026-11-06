@@ -15,8 +15,10 @@ async function extensionCopy() {
   await cp(SRC, dir, { recursive: true });
   const manifest = JSON.parse(await readFile(join(dir, 'manifest.json'), 'utf8'));
   // Match patterns ignore the port
-  manifest.content_scripts[0].matches.push('http://127.0.0.1/forum/viewforum.php*', 'http://127.0.0.1/forum/tracker.php*');
-  manifest.content_scripts[1].matches.push('http://127.0.0.1/view/*');
+  const script = (file) => manifest.content_scripts.find((entry) => entry.js.includes(file));
+  script('content/content.js').matches.push('http://127.0.0.1/forum/viewforum.php*', 'http://127.0.0.1/forum/tracker.php*');
+  script('content/topic.js').matches.push('http://127.0.0.1/forum/viewtopic.php*');
+  script('content/fastpic.js').matches.push('http://127.0.0.1/view/*');
   manifest.host_permissions = [...(manifest.host_permissions || []), 'https://store.steampowered.com/*'];
   await writeFile(join(dir, 'manifest.json'), JSON.stringify(manifest, null, 2));
   // fastpic's pages are the mock's own
@@ -28,9 +30,9 @@ async function extensionCopy() {
   return dir;
 }
 
-// CHROME_PATH, else the installed Chrome
+// CHROME_PATH, else the installed Chrome; HEADED=1 shows its window
 async function launch() {
-  const options = { headless: true, args: ['--enable-unsafe-extension-debugging'], ignoreDefaultArgs: ['--disable-extensions'] };
+  const options = { headless: !process.env.HEADED, args: ['--enable-unsafe-extension-debugging'], ignoreDefaultArgs: ['--disable-extensions'] };
   if (process.env.CHROME_PATH) return chromium.launch({ ...options, executablePath: process.env.CHROME_PATH });
   return chromium.launch({ ...options, channel: 'chrome' });
 }
@@ -86,7 +88,7 @@ export async function startBrowser() {
       await writeFile(file, Buffer.from((await send('Page.captureScreenshot', params)).data, 'base64'));
     };
     const close = () => cdp.send('Target.closeTarget', { targetId });
-    return { ev, shot, close, consoleMessages };
+    return { ev, send, shot, close, consoleMessages };
   }
 
   const options = `chrome-extension://${id}/ui/settings.html`;

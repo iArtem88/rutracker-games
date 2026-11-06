@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="ライセンス：GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.1.0-green.svg" alt="バージョン 1.1.0"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.0-green.svg" alt="バージョン 1.2.0"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome、Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10言語">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -52,6 +52,7 @@
 配布一覧のタイトルと投稿者のあいだに、次のものを表示します。
 
 - **スクリーンショット**：配布の「Скриншоты」スポイラーから取得します。トピックと同じサムネイルです。虫眼鏡の付いたものは、拡張機能のビューアーでページ上にそのまま元の大きさで開き、画像ホスティングの広告は表示されません。← → または下のサムネイル列で切り替え、Escで閉じます。虫眼鏡のないものは、クリックすると画像ホスティングのページが開きます。最初は1列だけ表示され、「あとN枚」で残りを展開できます。
+- **配布のトピック**では、スクリーンショットのスポイラーが自動で開き（設定でオフにできます）、スクリーンショットは同じビューアーで開きます。
 - **配布の説明から読み取ったラベル：**
   - <img src="https://img.shields.io/badge/-ロシア語音声-d32f2f" alt="ロシア語音声"> — 自分の言語の音声です。かっこ内に詳細（機械音声、有志、一部、MOD）が付きます。
   - <img src="https://img.shields.io/badge/-ロシア語テキスト%20(音声なし)-2e7d32" alt="ロシア語テキスト (音声なし)"> — ゲームが自分の言語に対応していて、もともと音声がありません。
@@ -66,7 +67,7 @@
 
 ## 対応区分
 
-この拡張機能は、RuTrackerのゲーム区分の一覧と検索結果で動作します。
+この拡張機能は、RuTrackerのゲーム区分の一覧、検索結果、配布のトピックで動作します。
 
 | 区分 | 表示する内容 |
 |---|---|
@@ -74,6 +75,9 @@
 | ゲーム機用ゲーム » PS4、PS5 | スクリーンショット、言語、必要なファームウェア |
 | その他のゲーム機（PS1–PS3、PSP、Vita、Xbox、Wii、DS、Dreamcast…） | スクリーンショット、言語 |
 | Windows用ゲーム | スクリーンショット、言語、最低RAMとグラフィックカード、Steam Deck |
+| Mac用ゲーム、Linux用ゲーム | スクリーンショット、言語 |
+| モバイル端末用ゲーム（Android、Oculus Quest、Symbian、Windows Mobile） | スクリーンショット、言語 |
+| 追加コンテンツ：Windowsゲーム用MODと翻訳、Train Simulator、フライトシミュレーター | スクリーンショット、言語 |
 
 映画や音楽などは、あえて対象外にしています。それぞれをシンプルに保つため、別の拡張機能にしたほうがよいと考えているからです。
 

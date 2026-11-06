@@ -17,8 +17,6 @@ const MAX_PARALLEL = 2;
 const REQUEST_GAP_MS = 400;
 const BACKOFF_MS = [20_000, 60_000, 180_000];
 const THUMB_TIMEOUT_MS = 20_000;
-// A "thumbnail" this big is a picture put in as it is: the full one
-const FULL_SIZE_MIN = 600;
 
 let settings = null;
 let entries = [];

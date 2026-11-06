@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="Licence : GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.1.0-green.svg" alt="Version 1.1.0"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.0-green.svg" alt="Version 1.2.0"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10 langues">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -52,6 +52,7 @@
 Directement dans la liste des publications, entre le titre et l’auteur :
 
 - **Des captures d’écran** tirées du spoiler « Скриншоты » de la publication : les mêmes miniatures que dans le sujet. Celles qui portent une loupe s’ouvrent en taille réelle dans la visionneuse de l’extension, sur la page même et sans les publicités de l’hébergeur : ← → ou le bandeau de miniatures en dessous pour passer de l’une à l’autre, Échap pour fermer. Sans loupe, un clic ouvre la page de l’hébergeur. Une seule rangée est affichée, « N de plus » déplie le reste.
+- **Dans le sujet d’une publication**, les spoilers de captures s’ouvrent d’eux-mêmes (désactivable dans les réglages), et les captures s’ouvrent dans la même visionneuse.
 - **Des étiquettes tirées de la description de la publication :**
   - <img src="https://img.shields.io/badge/-Doublage%20russe-d32f2f" alt="Doublage russe"> — un doublage dans votre langue, avec des précisions entre parenthèses : automatique, amateur, partiel, mod ;
   - <img src="https://img.shields.io/badge/-Texte%20russe%20(sans%20doublage)-2e7d32" alt="Texte russe (sans doublage)"> — le jeu est dans votre langue et n’a tout simplement pas de doublage ;
@@ -66,7 +67,7 @@ Directement dans la liste des publications, entre le titre et l’auteur :
 
 ## Sections prises en charge
 
-L’extension fonctionne dans les listes des sections de jeux de RuTracker et dans leurs résultats de recherche :
+L’extension fonctionne dans les listes des sections de jeux de RuTracker, dans leurs résultats de recherche et dans les sujets des publications :
 
 | Section | Ce qui s’affiche |
 |---|---|
@@ -74,6 +75,9 @@ L’extension fonctionne dans les listes des sections de jeux de RuTracker et da
 | Jeux pour consoles » PS4, PS5 | captures, langues, firmware requis |
 | Autres consoles (PS1–PS3, PSP, Vita, Xbox, Wii, DS, Dreamcast…) | captures, langues |
 | Jeux pour Windows | captures, langues, RAM et carte graphique minimales, Steam Deck |
+| Jeux pour Mac, jeux pour Linux | captures, langues |
+| Jeux pour appareils mobiles (Android, Oculus Quest, Symbian, Windows Mobile) | captures, langues |
+| Extensions : mods et traductions pour jeux Windows, Train Simulator, simulateurs de vol | captures, langues |
 
 Les films, la musique et le reste sont volontairement laissés de côté : mieux vaut en faire des extensions séparées, pour que chacune reste simple.
 

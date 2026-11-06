@@ -18,7 +18,34 @@ const shots = (n, full = 'full', from = 0) => `<div class="sp-wrap"><div class="
 const game = (name, ram, gpu) => `<div class="sp-wrap"><div class="sp-head"><span>${name}</span></div><div class="sp-body">
   Системные требования:<br>${field('Оперативная память', ram)}${field('Видеокарта', gpu)}${shots(1)}</div></div>`;
 
-// topic id -> {forum, title, post}; ORIGIN becomes the mock's address (thumbnails need full URLs)
+// The site's spoilers: closed at first, an open one makes <img> of its <var>.
+// Their handler comes a moment after the page is parsed, as the site's does.
+// A press of a mouse button on an outside link swaps it for out.php?url=….
+const SPOILERS = `<style>.sp-body { display: none; }</style><script>
+document.addEventListener('mousedown', (event) => {
+  const link = event.target.closest('a.postLink:not(.out)');
+  if (!link) return;
+  link.classList.add('out');
+  link.target = '_blank';
+  link.setAttribute('href', 'out.php?url=' + encodeURIComponent(link.getAttribute('href')));
+});
+document.addEventListener('DOMContentLoaded', () => setTimeout(() => document.addEventListener('click', (event) => {
+  const head = event.target.closest('.sp-head');
+  if (!head) return;
+  const body = head.nextElementSibling;
+  const open = !head.classList.contains('unfolded');
+  head.classList.toggle('unfolded', open);
+  body.style.display = open ? 'block' : 'none';
+  for (const v of body.querySelectorAll('var.postImg')) {
+    const img = document.createElement('img');
+    img.className = 'postImg';
+    img.src = v.title;
+    v.replaceWith(img);
+  }
+}), 300));
+</script>`;
+
+// topic id -> {forum, title, post, comment}; ORIGIN becomes the mock's address (thumbnails need full URLs)
 export const TOPICS = {
   // Switch
   101: { forum: '1605', title: '[Nintendo Switch] Alpha Quest [NSP][RUS]',
@@ -29,6 +56,13 @@ export const TOPICS = {
     post: `${field('Язык интерфейса', 'Английский')}${field('Язык озвучки', 'Английский')}Обязательно нужен разгон: 2397 МГц CPU.<br>${shots(1, 'bare')}<div class="sp-wrap"><div class="sp-head"><span>Скриншоты</span></div><div class="sp-body"><var class="postImg" title="https://thumbs4.imagebam.com/1/2/3/ME1_t.jpg"></var></div></div>` },
   104: { forum: '1605', title: '[Nintendo Switch] Delta Tale [NSP][RUS]',
     post: `${field('Язык интерфейса', 'Русский')}${field('Озвучка', 'отсутствует')}Работает без разгона.<br>${shots(1, 'missing')}` },
+  // An anthology on its own page: a spoiler per game, its screenshots inside
+  401: { forum: '908', title: '[PS] Iota Collection [RUS]',
+    post: `<div class="sp-wrap"><div class="sp-head folded"><span>Iota</span></div><div class="sp-body">${shots(2)}</div></div>
+      <div class="sp-wrap"><div class="sp-head folded"><span>Iota 2</span></div><div class="sp-body">${shots(2, 'full', 2).replace('<a class="postLink"', '<a class="postLink" href="ORIGIN/img/full-9.png"><var class="postImg" title="ORIGIN/img/missing-9.png"></var></a><a class="postLink"')}${shots(1, 'bare', 4)}</div></div>`,
+    comment: `${shots(1, 'full', 9)}` },
+  // A forum the extension doesn't know
+  402: { forum: '9999', title: 'Some film', post: `${shots(1)}` },
   // PlayStation 4
   201: { forum: '973', title: '[PS4] Epsilon [CUSA00001] [RUS]', post: `${field('Минимальная версия прошивки', '9.00')}` },
   202: { forum: '973', title: '[PS4] Zeta [CUSA00002] [ENG]', post: `${field('Минимальная версия прошивки', '5.05')}` },
@@ -114,8 +148,12 @@ export function startMockSite() {
       }
       const topic = TOPICS[q.t];
       if (!topic) return send(404, page('gone', 'gone'));
-      const post = topic.post.replaceAll('ORIGIN', `http://${req.headers.host}`);
-      return send(200, page(topic.title, `<table><tr><td><div class="post_body">${post}</div></td></tr></table>`));
+      const origin = `http://${req.headers.host}`;
+      const post = topic.post.replaceAll('ORIGIN', origin);
+      const comment = (topic.comment || '').replaceAll('ORIGIN', origin);
+      return send(200, page(topic.title, `<div class="t-breadcrumb-top"><a href="index.php?c=19">Игры</a> » <a href="viewforum.php?f=${topic.forum}">forum</a></div>
+        <table id="topic_main"><tbody id="post_1"><tr><td><div class="post_body">${post}</div><table class="attach"><tr><td><a class="dl-link" href="dl.php?t=${q.t}">torrent</a></td></tr></table></td></tr></tbody>
+        <tbody id="post_2"><tr><td><div class="post_body">${comment}</div></td></tr></tbody></table>${SPOILERS}`));
     }
     send(404, '');
   });

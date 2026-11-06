@@ -25,6 +25,23 @@ before(async () => {
 
 after(() => browser?.close());
 
+test('every game forum of the site is a known section', async () => {
+  const sections = await page.evaluate((ids) => ids.map((id) => sectionForForum(id)?.id ?? null), [
+    '1605', '973', '546', '908', '129', '646', '635', '2118', // Switch, PS4, PS5, PS1, other platforms, Windows
+    '960', '537', '637', '899', '1992', '2059', // Mac, Linux
+    '650', '2149', '2420', '1004', '1002', // mobile
+    '139', '2480', '2481', '2478', '2142', '2060', '2145', '2146', '2143', '2012', // add-ons
+    '7', '2415', // films, game videos: not games
+  ]);
+  assert.deepEqual(sections, [
+    'switch', 'playstation', 'playstation', 'consoles', 'consoles', 'windows', 'windows', 'windows',
+    'mac', 'mac', 'mac', 'linux', 'linux', 'linux',
+    'mobile', 'mobile', 'mobile', 'mobile', 'mobile',
+    'addons', 'addons', 'addons', 'addons', 'addons', 'addons', 'addons', 'addons', 'addons', 'addons',
+    null, null,
+  ]);
+});
+
 // parseTopic() on a first post with this HTML
 function parse(body, title = '[Nintendo Switch] Game [NSZ][RUS/ENG]', forumId = '1605') {
   return page.evaluate(({ body, title, forumId }) => parseTopic(
@@ -204,6 +221,7 @@ describe('screenshots', () => {
     assert.equal(await viewable({ link: 'https://www.imagebam.com/view/MEABCD', full: null }), false);
     // ImgBB's page: the full picture is read off it
     assert.equal(await viewable({ link: 'https://ibb.co/d4DJp6fq', full: null }), true);
+    assert.equal(await viewable({ link: 'https://ibb.co.com/n0c8fjp', full: null }), true);
     assert.equal(await viewable({ link: 'https://postimg.cc/t1Q1Sc2K', full: null }), true);
     assert.equal(await viewable({ link: 'https://postimg.cc/image/5nf6uoltd/', full: null }), true);
     assert.equal(await viewable({ link: 'https://www.imagebam.com/view/MEABCD', full: 'https://i1.imageban.ru/out/a.png' }), true);

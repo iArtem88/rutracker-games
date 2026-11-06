@@ -148,7 +148,19 @@ a.rts-badge:hover {
   cursor: zoom-in;
 }
 
-.rts-thumbs a.rts-zoom::after {
+/* The same in a release's topic (see topic.js) */
+a.rts-topic-zoom {
+  position: relative;
+  display: inline-block;
+  cursor: zoom-in;
+}
+
+img.rts-topic-zoom {
+  cursor: zoom-in;
+}
+
+.rts-thumbs a.rts-zoom::after,
+a.rts-topic-zoom::after {
   content: "";
   position: absolute;
   right: 4px;
@@ -161,7 +173,8 @@ a.rts-badge:hover {
   pointer-events: none;
 }
 
-.rts-thumbs a.rts-zoom:hover::after {
+.rts-thumbs a.rts-zoom:hover::after,
+a.rts-topic-zoom:hover::after {
   opacity: 1;
 }
 

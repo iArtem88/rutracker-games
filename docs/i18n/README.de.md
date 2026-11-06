@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="Lizenz: GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.1.0-green.svg" alt="Version 1.1.0"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.0-green.svg" alt="Version 1.2.0"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10 Sprachen">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -52,6 +52,7 @@
 Direkt in der Release-Liste, zwischen Titel und Autor:
 
 - **Screenshots** aus dem Spoiler „Скриншоты“ des Releases: dieselben Vorschaubilder wie im Thema. Eines mit Lupe öffnet sich in voller Größe im eigenen Bildbetrachter der Erweiterung, direkt auf der Seite und ohne die Werbung des Bildhosters: ← → oder der Streifen mit Vorschaubildern darunter blättern, Esc schließt. Ohne Lupe öffnet ein Klick die Seite des Bildhosters. Angezeigt wird eine Reihe, „N weitere“ klappt den Rest auf.
+- **Im Thema eines Releases** klappen die Spoiler mit Screenshots von selbst auf (das lässt sich in den Einstellungen abschalten), und die Screenshots öffnen sich im selben Bildbetrachter.
 - **Markierungen aus der Release-Beschreibung:**
   - <img src="https://img.shields.io/badge/-Sprachausgabe:%20Russisch-d32f2f" alt="Sprachausgabe: Russisch"> – Sprachausgabe in deiner Sprache, mit Details in Klammern: maschinell, Fan-Version, teilweise, Mod;
   - <img src="https://img.shields.io/badge/-Text:%20Russisch%20(ohne%20Sprachausgabe)-2e7d32" alt="Text: Russisch (ohne Sprachausgabe)"> – das Spiel ist in deiner Sprache und hat schlicht keine Sprachausgabe;
@@ -66,7 +67,7 @@ Direkt in der Release-Liste, zwischen Titel und Autor:
 
 ## Unterstützte Bereiche
 
-Die Erweiterung funktioniert in den Listen der Spielebereiche von RuTracker und in deren Suchergebnissen:
+Die Erweiterung funktioniert in den Listen der Spielebereiche von RuTracker, in deren Suchergebnissen und in den Themen der Releases:
 
 | Bereich | Was angezeigt wird |
 |---|---|
@@ -74,6 +75,9 @@ Die Erweiterung funktioniert in den Listen der Spielebereiche von RuTracker und 
 | Spiele für Konsolen » PS4, PS5 | Screenshots, Sprachen, benötigte Firmware |
 | Andere Konsolen (PS1–PS3, PSP, Vita, Xbox, Wii, DS, Dreamcast…) | Screenshots, Sprachen |
 | Spiele für Windows | Screenshots, Sprachen, Mindest-RAM und Grafikkarte, Steam Deck |
+| Spiele für Mac, Spiele für Linux | Screenshots, Sprachen |
+| Spiele für Mobilgeräte (Android, Oculus Quest, Symbian, Windows Mobile) | Screenshots, Sprachen |
+| Erweiterungen: Mods und Übersetzungen für Windows-Spiele, Train Simulator, Flugsimulatoren | Screenshots, Sprachen |
 
 Filme, Musik und alles Übrige bleiben bewusst außen vor: Dafür sind eigene Erweiterungen besser, damit jede für sich einfach bleibt.
 

@@ -78,9 +78,18 @@ function fastpicPage(link) {
   return big ? `https://fastpic.${big[2]}/view/${big[1]}/${big[3]}/${big[4]}/${big[5]}.html#rutracker-games` : null;
 }
 
+// A picture in a post, linked or not: {thumb, link, full}
+function makeShot(thumb, href) {
+  const linked = isHttpUrl(href) ? href : null;
+  return { thumb, link: linked || thumb, full: fullImage(thumb, linked) };
+}
+
+// A "thumbnail" this big is a picture put in as it is: the full one
+const FULL_SIZE_MIN = 600;
+
 // ImgBB's and PostImages' page of a picture: the full one is in its og:image
 // (see background.js)
-const IMAGE_PAGE = /^https?:\/\/(?:ibb\.co\/[A-Za-z0-9]+|postimg\.cc\/(?:image\/)?[A-Za-z0-9]+)\/?$/i;
+const IMAGE_PAGE = /^https?:\/\/(?:ibb\.co(?:\.com)?\/[A-Za-z0-9]+|postimg\.cc\/(?:image\/)?[A-Za-z0-9]+)\/?$/i;
 const IMAGEBAM = /^https?:\/\/[^/]*imagebam\.com\//i;
 
 // The link of a thumbnail
@@ -126,9 +135,7 @@ function findShots(post) {
       // imagebam gives other sites a "Thumbnail Temporarily Unavailable" stub
       if (!isHttpUrl(thumb) || seen.has(thumb) || IMAGEBAM.test(thumb)) continue;
       seen.add(thumb);
-      const href = img.closest('a.postLink')?.getAttribute('href');
-      const link = isHttpUrl(href) ? href : thumb;
-      shots.push({ thumb, link, full: fullImage(thumb, isHttpUrl(href) ? href : null) });
+      shots.push(makeShot(thumb, img.closest('a.postLink')?.getAttribute('href')));
     }
   }
   return shots;

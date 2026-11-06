@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="Licenza: GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.1.0-green.svg" alt="Versione 1.1.0"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.0-green.svg" alt="Versione 1.2.0"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10 lingue">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -52,6 +52,7 @@
 Direttamente nell’elenco delle pubblicazioni, tra il titolo e l’autore:
 
 - **Screenshot** dallo spoiler «Скриншоты» della pubblicazione: le stesse miniature della discussione. Quelle con la lente si aprono a grandezza piena nel visualizzatore dell’estensione, sulla pagina stessa e senza la pubblicità del servizio di hosting: ← → o la striscia di miniature in basso per scorrerle, Esc per chiudere. Senza lente, un clic apre la pagina del servizio di hosting. Viene mostrata una sola riga, e «altri N» espande il resto.
+- **Nella discussione della pubblicazione** gli spoiler con gli screenshot si aprono da soli (si può disattivare nelle impostazioni), e gli screenshot si aprono nello stesso visualizzatore.
 - **Etichette ricavate dalla descrizione della pubblicazione:**
   - <img src="https://img.shields.io/badge/-Doppiaggio%20in%20russo-d32f2f" alt="Doppiaggio in russo"> — doppiaggio nella tua lingua, con i dettagli tra parentesi: automatico, amatoriale, parziale, mod;
   - <img src="https://img.shields.io/badge/-Testo%20in%20russo%20(senza%20doppiaggio)-2e7d32" alt="Testo in russo (senza doppiaggio)"> — il gioco è nella tua lingua e semplicemente non ha dialoghi parlati;
@@ -66,7 +67,7 @@ Direttamente nell’elenco delle pubblicazioni, tra il titolo e l’autore:
 
 ## Sezioni supportate
 
-L’estensione funziona negli elenchi e nei risultati di ricerca delle sezioni giochi di RuTracker:
+L’estensione funziona negli elenchi, nei risultati di ricerca e nelle discussioni delle pubblicazioni delle sezioni giochi di RuTracker:
 
 | Sezione | Cosa mostra |
 |---|---|
@@ -74,6 +75,9 @@ L’estensione funziona negli elenchi e nei risultati di ricerca delle sezioni g
 | Giochi per console » PS4, PS5 | screenshot, lingue, firmware richiesto |
 | Altre console (PS1–PS3, PSP, Vita, Xbox, Wii, DS, Dreamcast…) | screenshot, lingue |
 | Giochi per Windows | screenshot, lingue, RAM minima e scheda video, Steam Deck |
+| Giochi per Mac, giochi per Linux | screenshot, lingue |
+| Giochi per dispositivi mobili (Android, Oculus Quest, Symbian, Windows Mobile) | screenshot, lingue |
+| Componenti aggiuntivi: mod e traduzioni per giochi Windows, Train Simulator, simulatori di volo | screenshot, lingue |
 
 Film, musica e tutto il resto sono esclusi di proposito: è meglio che siano estensioni separate, così ognuna resta semplice.
 

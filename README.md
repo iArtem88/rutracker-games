@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="License: GPL-3.0-or-later"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.1.0-green.svg" alt="Version 1.1.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.0-green.svg" alt="Version 1.2.0"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10 languages">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -52,6 +52,7 @@
 Right in the list of releases, between the title and the author:
 
 - **Screenshots** from the release's «Скриншоты» spoiler: the same thumbnails as in the topic. One with a magnifier opens full-size in the extension's own viewer, right on the page and without the image host's ads: ← → or the strip of thumbnails below switch between them, Esc closes. Without a magnifier, a click opens the image host's page. One row is shown, «N more» unfolds the rest.
+- **In a release's topic** the spoilers with screenshots open by themselves (this can be turned off in the settings), and the screenshots open in the same viewer.
 - **Badges from the release description:**
   - <img src="https://img.shields.io/badge/-Russian%20voice--over-d32f2f" alt="Russian voice-over"> — voice-over in your language, with details in brackets: machine, amateur, partial, a mod;
   - <img src="https://img.shields.io/badge/-Russian%20text%20(no%20voice--over)-2e7d32" alt="Russian text (no voice-over)"> — the game is in your language and simply has no voice-over;
@@ -66,7 +67,7 @@ Right in the list of releases, between the title and the author:
 
 ## Supported sections
 
-The extension works in the section lists and in the search results of RuTracker's game sections:
+The extension works in the section lists, in the search results and in the releases' topics of RuTracker's game sections:
 
 | Section | What it shows |
 |---|---|
@@ -74,6 +75,9 @@ The extension works in the section lists and in the search results of RuTracker'
 | Games for consoles » PS4, PS5 | screenshots, languages, the firmware needed |
 | Other consoles (PS1–PS3, PSP, Vita, Xbox, Wii, DS, Dreamcast…) | screenshots, languages |
 | Games for Windows | screenshots, languages, minimum RAM and video card, Steam Deck |
+| Games for Mac, games for Linux | screenshots, languages |
+| Games for mobile devices (Android, Oculus Quest, Symbian, Windows Mobile) | screenshots, languages |
+| Add-ons: mods and translations for Windows games, Train Simulator, flight simulators | screenshots, languages |
 
 Films, music and the rest are out of scope on purpose: they'd better be separate extensions, so that each one stays simple.
 

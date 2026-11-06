@@ -167,6 +167,56 @@ describe('screenshots', () => {
   });
 });
 
+test("a release's topic: its screenshot spoilers open, the screenshots open in the viewer", async () => {
+  const tab = await chrome.open(`${site.origin}/forum/viewtopic.php?t=401`);
+  await sleep(800);
+  const heads = () => tab.ev(`[...document.querySelectorAll('.sp-head')].map((h) => h.textContent.trim() + (h.classList.contains('unfolded') ? ' +' : ''))`);
+  // The games' spoilers as they were, the screenshots' ones open; the comment untouched
+  assert.deepEqual(await heads(), ['Iota', 'Скриншоты +', 'Iota 2', 'Скриншоты +', 'Скриншоты +', 'Скриншоты']);
+  const zoomed = `[...document.querySelectorAll('.rts-topic-zoom')].map((n) => (n.querySelector('img') || n).src.replace(/^.*\\//, ''))`;
+  assert.deepEqual(await tab.ev(zoomed), ['0.png', '1.png', '2.png', '3.png', 'big-4.svg']);
+  // The screenshots of the spoiler clicked in: the second game's two (not the
+  // one that never came). A real
+  // click: the site swaps the link at the press of the button
+  const click = async (name) => {
+    const { x, y } = await tab.ev(`(() => { const img = [...document.querySelectorAll('.post_body')[0].querySelectorAll('img.postImg')].find((i) => i.src.endsWith('/${name}'));
+      img.scrollIntoView({ block: 'center' });
+      const r = img.getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; })()`);
+    for (const type of ['mousePressed', 'mouseReleased']) await tab.send('Input.dispatchMouseEvent', { type, x, y, button: 'left', clickCount: 1 });
+  };
+  // As a person does: the game's spoiler first
+  await tab.ev(`[...document.querySelectorAll('.sp-head')].find((h) => h.textContent.trim() === 'Iota 2').click()`);
+  await sleep(200);
+  await click('3.png');
+  await sleep(400);
+  const viewer = () => tab.ev(`(() => { const v = document.querySelector('.rts-viewer');
+    return v && [v.querySelector('.rts-viewer-count').textContent, v.querySelector('.rts-viewer-img').src.replace(/^.*\\//, '')]; })()`);
+  assert.deepEqual(await viewer(), ['2 / 2', 'full-3.png']);
+  await tab.ev(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }))`);
+  await sleep(300);
+  assert.deepEqual(await viewer(), ['1 / 2', 'full-2.png']);
+  await tab.ev(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))`);
+  // A big picture put in as it is
+  await click('big-4.svg');
+  await sleep(400);
+  assert.deepEqual(await viewer(), ['1 / 1', 'big-4.svg']);
+  await tab.ev(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))`);
+  await tab.close();
+
+  // Turned off in the settings, the spoilers stay closed; the viewer still works
+  await chrome.storage.setSettings({ uiLanguage: 'ru', openShotSpoilers: false });
+  const closed = await chrome.open(`${site.origin}/forum/viewtopic.php?t=401`);
+  await sleep(1000);
+  assert.deepEqual((await closed.ev(`[...document.querySelectorAll('.sp-head')].map((h) => h.classList.contains('unfolded'))`)), [false, false, false, false, false, false]);
+  await closed.close();
+
+  // Off the extension's sections, nothing happens
+  const other = await chrome.open(`${site.origin}/forum/viewtopic.php?t=402`);
+  await sleep(800);
+  assert.deepEqual(await other.ev(`[...document.querySelectorAll('.sp-head')].map((h) => h.classList.contains('unfolded'))`), [false]);
+  await other.close();
+});
+
 test('PlayStation: firmware', async () => {
   const rows = await settled(await forum('973'));
   assert.ok(rows['201'].badges.some((b) => b.includes('9.00')), rows['201'].badges.join(' | '));
