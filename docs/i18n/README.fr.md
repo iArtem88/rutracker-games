@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="Licence : GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.0.1-green.svg" alt="Version 1.0.1"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.1.0-green.svg" alt="Version 1.1.0"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10 langues">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -51,7 +51,7 @@
 
 Directement dans la liste des publications, entre le titre et l’auteur :
 
-- **Des captures d’écran** tirées du spoiler « Скриншоты » de la publication : les mêmes miniatures que dans le sujet, et un clic ouvre l’image en taille réelle. Une seule rangée est affichée, « N de plus » déplie le reste.
+- **Des captures d’écran** tirées du spoiler « Скриншоты » de la publication : les mêmes miniatures que dans le sujet. Celles qui portent une loupe s’ouvrent en taille réelle dans la visionneuse de l’extension, sur la page même et sans les publicités de l’hébergeur : ← → ou le bandeau de miniatures en dessous pour passer de l’une à l’autre, Échap pour fermer. Sans loupe, un clic ouvre la page de l’hébergeur. Une seule rangée est affichée, « N de plus » déplie le reste.
 - **Des étiquettes tirées de la description de la publication :**
   - <img src="https://img.shields.io/badge/-Doublage%20russe-d32f2f" alt="Doublage russe"> — un doublage dans votre langue, avec des précisions entre parenthèses : automatique, amateur, partiel, mod ;
   - <img src="https://img.shields.io/badge/-Texte%20russe%20(sans%20doublage)-2e7d32" alt="Texte russe (sans doublage)"> — le jeu est dans votre langue et n’a tout simplement pas de doublage ;
@@ -185,7 +185,7 @@ Deux évaluations :
 ## Confidentialité
 
 - Ni publicité, ni statistiques d’utilisation, ni comptes, ni serveurs à elle.
-- L’extension ne demande que des pages de RuTracker, comme si vous ouvriez le sujet vous-même, et charge les images depuis les mêmes hébergeurs que ceux du sujet. La seule exception est la note Steam Deck de Valve : si vous l’activez, l’extension demande à Steam l’identifiant et la note du jeu (sans vos cookies ni vos données).
+- L’extension ne demande que des pages de RuTracker, comme si vous ouvriez le sujet vous-même, et charge les images depuis les mêmes hébergeurs que ceux du sujet. La seule exception est la note Steam Deck de Valve : si vous l’activez, l’extension demande à Steam l’identifiant et la note du jeu (sans vos cookies ni vos données). Pour les images fastpic que l’hébergeur ne donne que par sa propre page, la visionneuse ouvre cette page sans l’afficher, sans ses scripts ni ses publicités, et y prend le lien vers l’image, comme si vous aviez cliqué vous-même sur la miniature. Pour les images ImgBB et PostImages, elle lit l’adresse de l’image complète sur sa page chez l’hébergeur (sans vos cookies).
 - Les paramètres et le cache des descriptions de publications restent dans votre navigateur.
 - Le code est ouvert, chacun peut le vérifier. Plus de détails dans [PRIVACY.md](../../PRIVACY.md).
 

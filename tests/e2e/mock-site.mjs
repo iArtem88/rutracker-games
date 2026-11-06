@@ -7,8 +7,14 @@ import http from 'node:http';
 const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==', 'base64');
 
 const field = (name, value) => `<span class="post-b">${name}</span>: ${value}<br>`;
-const shots = (n) => `<div class="sp-wrap"><div class="sp-head"><span>Скриншоты</span></div><div class="sp-body">${
-  Array.from({ length: n }, (_, i) => `<a class="postLink" href="ORIGIN/img/full-${i}.png"><var class="postImg" title="ORIGIN/img/${i}.png"></var></a>`).join('')}</div></div>`;
+// Thumbnails linked straight to their full pictures; "missing" ones answer 404,
+// "page" ones link to fastpic's page of the picture, with none (null) to the
+// host's page. "bare" ones are big pictures put in with no link at all.
+const shotLink = (full, i) => (full === 'page' ? `view/126/2025/1204/_${i}.png.html` : full ? `img/${full}-${i}.png` : `show/${i}`);
+const shot = (full, i) => (full === 'bare' ? `<var class="postImg" title="ORIGIN/img/big-${i}.svg"></var>`
+  : `<a class="postLink" href="ORIGIN/${shotLink(full, i)}"><var class="postImg" title="ORIGIN/img/${i}.png"></var></a>`);
+const shots = (n, full = 'full', from = 0) => `<div class="sp-wrap"><div class="sp-head"><span>Скриншоты</span></div><div class="sp-body">${
+  Array.from({ length: n }, (_, k) => shot(full, from + k)).join('')}</div></div>`;
 const game = (name, ram, gpu) => `<div class="sp-wrap"><div class="sp-head"><span>${name}</span></div><div class="sp-body">
   Системные требования:<br>${field('Оперативная память', ram)}${field('Видеокарта', gpu)}${shots(1)}</div></div>`;
 
@@ -18,11 +24,11 @@ export const TOPICS = {
   101: { forum: '1605', title: '[Nintendo Switch] Alpha Quest [NSP][RUS]',
     post: `${field('Язык интерфейса', 'Русский')}${field('Язык озвучки', 'Русский')}Лучше всего использовать разгон консоли.<br>${shots(3)}` },
   102: { forum: '1605', title: '[Nintendo Switch] Beta Racer [NSZ][RUS/ENG]',
-    post: `${field('Язык интерфейса', 'Русский')}${field('Язык озвучки', 'Английский')}Лучше всего максимально разогнать консоль.<br>${shots(2)}` },
+    post: `${field('Язык интерфейса', 'Русский')}${field('Язык озвучки', 'Английский')}Лучше всего максимально разогнать консоль.<br>${shots(1, 'page')}${shots(1, null, 1)}` },
   103: { forum: '1605', title: '[Nintendo Switch] Gamma Port [NRO][ENG]',
-    post: `${field('Язык интерфейса', 'Английский')}${field('Язык озвучки', 'Английский')}Обязательно нужен разгон: 2397 МГц CPU.<br>` },
+    post: `${field('Язык интерфейса', 'Английский')}${field('Язык озвучки', 'Английский')}Обязательно нужен разгон: 2397 МГц CPU.<br>${shots(1, 'bare')}<div class="sp-wrap"><div class="sp-head"><span>Скриншоты</span></div><div class="sp-body"><var class="postImg" title="https://thumbs4.imagebam.com/1/2/3/ME1_t.jpg"></var></div></div>` },
   104: { forum: '1605', title: '[Nintendo Switch] Delta Tale [NSP][RUS]',
-    post: `${field('Язык интерфейса', 'Русский')}${field('Озвучка', 'отсутствует')}Работает без разгона.<br>${shots(1)}` },
+    post: `${field('Язык интерфейса', 'Русский')}${field('Озвучка', 'отсутствует')}Работает без разгона.<br>${shots(1, 'missing')}` },
   // PlayStation 4
   201: { forum: '973', title: '[PS4] Epsilon [CUSA00001] [RUS]', post: `${field('Минимальная версия прошивки', '9.00')}` },
   202: { forum: '973', title: '[PS4] Zeta [CUSA00002] [ENG]', post: `${field('Минимальная версия прошивки', '5.05')}` },
@@ -75,6 +81,17 @@ export function startMockSite() {
       if (q.tall) tall = q.tall === '1';
       return send(200, 'ok');
     }
+    // fastpic's page of a picture: the signed link to it, and the same as a download
+    if (url.pathname.startsWith('/view/')) {
+      const origin = `http://${req.headers.host}`;
+      const file = url.pathname.split('/').pop().replace(/\.html$/, '');
+      const big = `${origin}/big/2025/1204/ab/${file}?md5=abc&amp;expires=1793988000`;
+      return send(200, page('fastpic', `<img src="${origin}/preview/2025/1204/ab/${file}?md5=abc&amp;expires=1793988000">
+        <a href="${big}&amp;dl=1">download</a> <input value="[IMG]${big}[/IMG]">`));
+    }
+    if (url.pathname.startsWith('/big/') || url.pathname.startsWith('/preview/')) return send(200, PNG, 'image/png');
+    if (url.pathname.startsWith('/img/big-')) return send(200, '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><rect width="800" height="600" fill="teal"/></svg>', 'image/svg+xml');
+    if (url.pathname.startsWith('/img/missing')) return send(404, '');
     if (url.pathname.startsWith('/img/')) return send(200, PNG, 'image/png');
     if (url.pathname === '/forum/viewforum.php') {
       const ids = Object.keys(TOPICS).filter((id) => TOPICS[id].forum === q.f);

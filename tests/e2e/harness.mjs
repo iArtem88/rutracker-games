@@ -16,8 +16,15 @@ async function extensionCopy() {
   const manifest = JSON.parse(await readFile(join(dir, 'manifest.json'), 'utf8'));
   // Match patterns ignore the port
   manifest.content_scripts[0].matches.push('http://127.0.0.1/forum/viewforum.php*', 'http://127.0.0.1/forum/tracker.php*');
-  manifest.host_permissions = ['https://store.steampowered.com/*'];
+  manifest.content_scripts[1].matches.push('http://127.0.0.1/view/*');
+  manifest.host_permissions = [...(manifest.host_permissions || []), 'https://store.steampowered.com/*'];
   await writeFile(join(dir, 'manifest.json'), JSON.stringify(manifest, null, 2));
+  // fastpic's pages are the mock's own
+  const games = join(dir, 'content/games.js');
+  const code = await readFile(games, 'utf8');
+  const fastpic = String.raw`(?:www\.)?fastpic\.(?:org|ru)\/view`;
+  if (!code.includes(fastpic)) throw new Error('No FASTPIC_VIEW to point at the mock');
+  await writeFile(games, code.replace(fastpic, String.raw`(?:(?:www\.)?fastpic\.(?:org|ru)|127\.0\.0\.1:\d+)\/view`));
   return dir;
 }
 

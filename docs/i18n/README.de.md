@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="Lizenz: GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.0.1-green.svg" alt="Version 1.0.1"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.1.0-green.svg" alt="Version 1.1.0"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10 Sprachen">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -51,7 +51,7 @@
 
 Direkt in der Release-Liste, zwischen Titel und Autor:
 
-- **Screenshots** aus dem Spoiler „Скриншоты“ des Releases: dieselben Vorschaubilder wie im Thema, ein Klick öffnet das Bild in voller Größe. Angezeigt wird eine Reihe, „N weitere“ klappt den Rest auf.
+- **Screenshots** aus dem Spoiler „Скриншоты“ des Releases: dieselben Vorschaubilder wie im Thema. Eines mit Lupe öffnet sich in voller Größe im eigenen Bildbetrachter der Erweiterung, direkt auf der Seite und ohne die Werbung des Bildhosters: ← → oder der Streifen mit Vorschaubildern darunter blättern, Esc schließt. Ohne Lupe öffnet ein Klick die Seite des Bildhosters. Angezeigt wird eine Reihe, „N weitere“ klappt den Rest auf.
 - **Markierungen aus der Release-Beschreibung:**
   - <img src="https://img.shields.io/badge/-Sprachausgabe:%20Russisch-d32f2f" alt="Sprachausgabe: Russisch"> – Sprachausgabe in deiner Sprache, mit Details in Klammern: maschinell, Fan-Version, teilweise, Mod;
   - <img src="https://img.shields.io/badge/-Text:%20Russisch%20(ohne%20Sprachausgabe)-2e7d32" alt="Text: Russisch (ohne Sprachausgabe)"> – das Spiel ist in deiner Sprache und hat schlicht keine Sprachausgabe;
@@ -185,7 +185,7 @@ Zwei Bewertungen:
 ## Datenschutz
 
 - Keine Werbung, keine Analyse, keine Konten, keine eigenen Server.
-- Die Erweiterung ruft nur Seiten von RuTracker selbst ab, so als würdest du das Thema selbst öffnen, und lädt Bilder von denselben Bildhostern, die das Thema verwendet. Die einzige Ausnahme ist die Steam-Deck-Bewertung von Valve: Wenn du sie einschaltest, fragt die Erweiterung bei Steam die ID und die Bewertung des Spiels ab (ohne deine Cookies oder Daten).
+- Die Erweiterung ruft nur Seiten von RuTracker selbst ab, so als würdest du das Thema selbst öffnen, und lädt Bilder von denselben Bildhostern, die das Thema verwendet. Die einzige Ausnahme ist die Steam-Deck-Bewertung von Valve: Wenn du sie einschaltest, fragt die Erweiterung bei Steam die ID und die Bewertung des Spiels ab (ohne deine Cookies oder Daten). Bei fastpic-Bildern, die der Hoster nur über seine eigene Seite herausgibt, öffnet der Bildbetrachter diese Seite unsichtbar, ohne ihre Skripte und Werbung, und nimmt von dort den Link zum Bild, so als hättest du selbst auf das Vorschaubild geklickt. Bei Bildern von ImgBB und PostImages liest sie die Adresse des vollen Bildes von dessen Seite beim Hoster ab (ohne deine Cookies).
 - Die Einstellungen und der Cache der Release-Beschreibungen bleiben in deinem Browser.
 - Der Code ist offen, jeder kann ihn prüfen. Mehr dazu in [PRIVACY.md](../../PRIVACY.md).
 

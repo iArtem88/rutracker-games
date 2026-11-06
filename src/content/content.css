@@ -142,6 +142,45 @@ a.rts-badge:hover {
   opacity: 0.85;
 }
 
+/* Opens in the viewer (see viewer.js): a magnifier in the corner */
+.rts-thumbs a.rts-zoom {
+  position: relative;
+  cursor: zoom-in;
+}
+
+.rts-thumbs a.rts-zoom::after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6'/%3E%3Cpath d='M15 15l5 5M10.5 8v5M8 10.5h5'/%3E%3C/svg%3E") center / 13px no-repeat;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.rts-thumbs a.rts-zoom:hover::after {
+  opacity: 1;
+}
+
+.rts-thumbs a.rts-pending::after {
+  display: none;
+}
+
+/* fastpic's page handing a picture over, unseen (see viewer.js) */
+.rts-viewer-frame {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Placeholder until the thumbnail loads, 150x84 like fastpic; it shimmers, see above */
 .rts-thumbs .rts-pending {
   width: calc(var(--rts-thumb-h) * 150 / 84);
@@ -231,4 +270,192 @@ a.rts-badge:hover {
 
 .rts-settings:hover {
   background: rgba(255, 255, 255, 0.18);
+}
+
+/* The screenshot viewer, see viewer.js: the picture, the counter and the link
+   to the image host, the strip of thumbnails */
+.rts-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0 12px;
+  box-sizing: border-box;
+  background: rgba(10, 14, 20, 0.92);
+}
+
+.rts-viewer-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rts-viewer-img {
+  max-width: calc(100vw - 160px);
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+  background: #111;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
+.rts-viewer-prev,
+.rts-viewer-next,
+.rts-viewer-close {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font: 28px/48px Verdana, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.rts-viewer-prev:hover:not(:disabled),
+.rts-viewer-next:hover:not(:disabled),
+.rts-viewer-close:hover {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.rts-viewer-prev:disabled,
+.rts-viewer-next:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.rts-viewer-prev,
+.rts-viewer-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.rts-viewer-prev {
+  left: 20px;
+}
+
+.rts-viewer-next {
+  right: 20px;
+}
+
+.rts-viewer-close {
+  top: 16px;
+  right: 20px;
+  font-size: 20px;
+}
+
+.rts-viewer-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin: 10px 0 8px;
+  color: aliceblue;
+  font: 13px Verdana, Arial, sans-serif;
+}
+
+.rts-viewer-original {
+  color: aliceblue !important;
+  opacity: 0.75;
+}
+
+.rts-viewer-original:hover {
+  opacity: 1;
+}
+
+/* The picture shows once it's here; till then a shimmer in its place; with
+   no full picture to have, a word and the link to the host instead */
+.rts-viewer-img,
+.rts-viewer-none {
+  display: none;
+}
+
+.rts-viewer-ready .rts-viewer-img {
+  display: block;
+}
+
+.rts-viewer-wait {
+  width: min(960px, calc(100vw - 160px));
+  aspect-ratio: 16 / 9;
+  max-height: 100%;
+  border-radius: 4px;
+}
+
+.rts-viewer-ready .rts-viewer-wait,
+.rts-viewer-failed .rts-viewer-wait {
+  display: none;
+}
+
+.rts-viewer-failed .rts-viewer-none {
+  display: block;
+  max-width: 420px;
+  color: aliceblue;
+  font: 15px/1.5 Verdana, Arial, sans-serif;
+  text-align: center;
+}
+
+.rts-viewer-none-link {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 8px 18px;
+  border-radius: 18px;
+  background: linear-gradient(90deg, #1565c0, #6a1b9a);
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.rts-viewer-none-link:hover {
+  filter: brightness(1.15);
+}
+
+.rts-viewer-strip {
+  display: flex;
+  gap: 6px;
+  max-width: 100%;
+  padding: 4px 20px 6px;
+  box-sizing: border-box;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.rts-viewer-strip[hidden] {
+  display: none;
+}
+
+.rts-viewer-tile {
+  flex: none;
+  width: 96px;
+  height: 54px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #222;
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+.rts-viewer-tile:hover {
+  opacity: 0.9;
+}
+
+.rts-viewer-tile.rts-viewer-current {
+  border-color: aliceblue;
+  opacity: 1;
+}
+
+.rts-viewer-tile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

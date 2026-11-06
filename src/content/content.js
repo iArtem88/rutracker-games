@@ -17,6 +17,8 @@ const MAX_PARALLEL = 2;
 const REQUEST_GAP_MS = 400;
 const BACKOFF_MS = [20_000, 60_000, 180_000];
 const THUMB_TIMEOUT_MS = 20_000;
+// A "thumbnail" this big is a picture put in as it is: the full one
+const FULL_SIZE_MIN = 600;
 
 let settings = null;
 let entries = [];
@@ -287,11 +289,24 @@ function renderThumbs(box, shots) {
     }
   }
 
-  for (const { thumb, link } of shots) {
-    const a = el('a', 'rts-pending');
-    a.href = link;
+  // The viewer shows the ones still in the list: dead image hosts drop out
+  const anchors = [];
+  shots.forEach((shot) => {
+    // A magnifier on the ones that open in our viewer
+    const a = el('a', viewable(shot) ? 'rts-pending rts-zoom' : 'rts-pending');
+    anchors.push(a);
+    a.href = hostLink(shot.link);
     a.target = '_blank';
     a.rel = 'noopener';
+    // A plain click shows the full pictures in our viewer; Ctrl, Shift or the
+    // middle button open the link as before
+    a.addEventListener('click', (event) => {
+      if (!viewable(shot) || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      // The viewer has the ones it can show, still in the list
+      const shown = shots.filter((s, i) => viewable(s) && anchors[i].isConnected);
+      openViewer(shown, shown.indexOf(shot), a);
+    });
     const img = el('img');
     img.alt = '';
     const drop = () => {
@@ -299,19 +314,34 @@ function renderThumbs(box, shots) {
       if (thumbs.children.length) scheduleUpdate();
       else row.remove();
     };
+    // The thumbnails are 150×84 or so: at the large size the full picture,
+    // scaled down, is the sharp one; the thumbnail if it doesn't come
+    let src = settings.thumbHeight >= THUMB_HEIGHTS.large && shot.full ? shot.full : shot.thumb;
+    let timer = null;
+    const load = (url) => {
+      src = url;
+      img.src = url;
+      clearTimeout(timer);
+      // A dead image host, or one blocked where the user is
+      timer = setTimeout(() => {
+        if (a.classList.contains('rts-pending')) fail();
+      }, THUMB_TIMEOUT_MS);
+    };
+    const fail = () => (src !== shot.thumb ? load(shot.thumb) : drop());
     img.addEventListener('load', () => {
+      clearTimeout(timer);
       a.classList.remove('rts-pending');
+      if (!viewable(shot) && Math.max(img.naturalWidth, img.naturalHeight) >= FULL_SIZE_MIN) {
+        shot.full = shot.thumb;
+        a.classList.add('rts-zoom');
+      }
       scheduleUpdate();
     });
-    // A dead image host, or one blocked where the user is
-    img.addEventListener('error', drop);
-    setTimeout(() => {
-      if (a.classList.contains('rts-pending')) drop();
-    }, THUMB_TIMEOUT_MS);
-    img.src = thumb;
+    img.addEventListener('error', fail);
+    load(src);
     a.append(img);
     thumbs.append(a);
-  }
+  });
   row.append(thumbs, more);
   new ResizeObserver(scheduleUpdate).observe(row);
   return row;

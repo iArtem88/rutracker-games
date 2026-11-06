@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extName__",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "__MSG_extDescription__",
   "homepage_url": "https://github.com/iArtem88/rutracker-games",
   "default_locale": "en",
@@ -14,6 +14,10 @@
   "permissions": [
     "storage",
     "unlimitedStorage"
+  ],
+  "host_permissions": [
+    "https://ibb.co/*",
+    "https://postimg.cc/*"
   ],
   "optional_host_permissions": [
     "https://store.steampowered.com/*"
@@ -63,12 +67,24 @@
         "sections/playstation.js",
         "sections/consoles.js",
         "sections/windows.js",
+        "content/viewer.js",
         "content/content.js"
       ],
       "css": [
         "content/content.css"
       ],
       "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://*.fastpic.org/view/*",
+        "*://*.fastpic.ru/view/*"
+      ],
+      "js": [
+        "content/fastpic.js"
+      ],
+      "all_frames": true,
+      "run_at": "document_end"
     }
   ]
 }

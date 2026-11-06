@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="Licenza: GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.0.1-green.svg" alt="Versione 1.0.1"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.1.0-green.svg" alt="Versione 1.1.0"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10 lingue">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -51,7 +51,7 @@
 
 Direttamente nell’elenco delle pubblicazioni, tra il titolo e l’autore:
 
-- **Screenshot** dallo spoiler «Скриншоты» della pubblicazione: le stesse miniature della discussione, e un clic apre l’immagine intera. Viene mostrata una sola riga, e «altri N» espande il resto.
+- **Screenshot** dallo spoiler «Скриншоты» della pubblicazione: le stesse miniature della discussione. Quelle con la lente si aprono a grandezza piena nel visualizzatore dell’estensione, sulla pagina stessa e senza la pubblicità del servizio di hosting: ← → o la striscia di miniature in basso per scorrerle, Esc per chiudere. Senza lente, un clic apre la pagina del servizio di hosting. Viene mostrata una sola riga, e «altri N» espande il resto.
 - **Etichette ricavate dalla descrizione della pubblicazione:**
   - <img src="https://img.shields.io/badge/-Doppiaggio%20in%20russo-d32f2f" alt="Doppiaggio in russo"> — doppiaggio nella tua lingua, con i dettagli tra parentesi: automatico, amatoriale, parziale, mod;
   - <img src="https://img.shields.io/badge/-Testo%20in%20russo%20(senza%20doppiaggio)-2e7d32" alt="Testo in russo (senza doppiaggio)"> — il gioco è nella tua lingua e semplicemente non ha dialoghi parlati;
@@ -185,7 +185,7 @@ Due valutazioni:
 ## Privacy
 
 - Niente pubblicità, niente analytics, niente account, nessun server proprio.
-- Richiede solo le pagine di RuTracker stesso, come se aprissi tu la discussione, e carica le immagini dagli stessi servizi di hosting usati nella discussione. L’unica eccezione è la valutazione Steam Deck di Valve: se la attivi, l’estensione chiede a Steam l’id e la valutazione del gioco (senza i tuoi cookie né i tuoi dati).
+- Richiede solo le pagine di RuTracker stesso, come se aprissi tu la discussione, e carica le immagini dagli stessi servizi di hosting usati nella discussione. L’unica eccezione è la valutazione Steam Deck di Valve: se la attivi, l’estensione chiede a Steam l’id e la valutazione del gioco (senza i tuoi cookie né i tuoi dati). Per le immagini di fastpic che il servizio fornisce solo tramite la propria pagina, il visualizzatore apre quella pagina senza mostrarla, senza i suoi script né la pubblicità, e ne prende il link all’immagine, come se cliccassi tu sulla miniatura. Per le immagini di ImgBB e PostImages, legge l’indirizzo dell’immagine intera dalla sua pagina sul servizio di hosting (senza i tuoi cookie).
 - Le impostazioni e la cache delle descrizioni delle pubblicazioni restano nel tuo browser.
 - Il codice è aperto e chiunque può verificarlo. Maggiori dettagli in [PRIVACY.md](../../PRIVACY.md).
 

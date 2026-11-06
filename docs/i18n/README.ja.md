@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="ライセンス：GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.0.1-green.svg" alt="バージョン 1.0.1"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.1.0-green.svg" alt="バージョン 1.1.0"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome、Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10言語">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -51,7 +51,7 @@
 
 配布一覧のタイトルと投稿者のあいだに、次のものを表示します。
 
-- **スクリーンショット**：配布の「Скриншоты」スポイラーから取得します。トピックと同じサムネイルで、クリックすると元の大きさの画像が開きます。最初は1列だけ表示され、「あとN枚」で残りを展開できます。
+- **スクリーンショット**：配布の「Скриншоты」スポイラーから取得します。トピックと同じサムネイルです。虫眼鏡の付いたものは、拡張機能のビューアーでページ上にそのまま元の大きさで開き、画像ホスティングの広告は表示されません。← → または下のサムネイル列で切り替え、Escで閉じます。虫眼鏡のないものは、クリックすると画像ホスティングのページが開きます。最初は1列だけ表示され、「あとN枚」で残りを展開できます。
 - **配布の説明から読み取ったラベル：**
   - <img src="https://img.shields.io/badge/-ロシア語音声-d32f2f" alt="ロシア語音声"> — 自分の言語の音声です。かっこ内に詳細（機械音声、有志、一部、MOD）が付きます。
   - <img src="https://img.shields.io/badge/-ロシア語テキスト%20(音声なし)-2e7d32" alt="ロシア語テキスト (音声なし)"> — ゲームが自分の言語に対応していて、もともと音声がありません。
@@ -185,7 +185,7 @@
 ## プライバシー
 
 - 広告、アクセス解析、アカウント、独自のサーバーは一切ありません。
-- リクエストするのはRuTracker自体のページだけで、自分でトピックを開いたときと変わりません。画像も、トピックが使っているのと同じ画像ホスティングから読み込みます。唯一の例外はValveのSteam Deck評価です。これをオンにすると、拡張機能はSteamにゲームのIDと評価を問い合わせます（あなたのCookieやデータは送りません）。
+- リクエストするのはRuTracker自体のページだけで、自分でトピックを開いたときと変わりません。画像も、トピックが使っているのと同じ画像ホスティングから読み込みます。唯一の例外はValveのSteam Deck評価です。これをオンにすると、拡張機能はSteamにゲームのIDと評価を問い合わせます（あなたのCookieやデータは送りません）。fastpicが自分のページ経由でしか渡さない画像については、ビューアーがそのページを見えない状態で、スクリプトと広告を無効にして開き、そこから画像へのリンクを取得します。自分でサムネイルをクリックしたときと同じです。ImgBBとPostImagesの画像については、ホスティングのページから元の画像のアドレスを読み取ります（あなたのCookieは送りません）。
 - 設定と配布の説明のキャッシュは、ブラウザー内に保存されます。
 - コードは公開されており、誰でも確認できます。詳しくは[PRIVACY.md](../../PRIVACY.md)をご覧ください。
 

@@ -48,6 +48,73 @@ function isHttpUrl(url) {
   return /^https?:\/\//i.test(url || '');
 }
 
+const IMAGE_URL = /\.(?:jpe?g|png|gif|webp)(?:[?#].*)?$/i;
+
+// The full-size picture behind a thumbnail, worked out from the URLs alone,
+// without opening the image host's page: a link straight to a picture, a
+// thumbnail that is the full picture already, or the URL schemes of fastpic
+// (and its old fastpic.ru) and imageban, the hosts RuTracker recommends; old
+// releases have them over http://, the browser asks for pictures over https
+// on an https page. null when there's none to have: imagebam gives its
+// pictures out only through its own page, and so does fastpic with files
+// named "_…" (most of the newer ones), see FASTPIC_PROTECTED.
+function fullImage(thumb, link) {
+  const full = guessFullImage(thumb, link);
+  return full && !FASTPIC_PROTECTED.test(full) ? full : null;
+}
+
+// fastpic hands these out only through a signed link on its own page
+const FASTPIC_PROTECTED = /\.fastpic\.(?:org|ru)\/big\/.*\/_[^/]*$/i;
+
+// fastpic's page of a picture, marked: in a tab it gives way to the picture
+// itself, in our viewer it hands the picture over (see fastpic.js)
+const FASTPIC_VIEW = /^https?:\/\/(?:www\.)?fastpic\.(?:org|ru)\/view\//i;
+// i128.fastpic.org/big/2026/0923/77/_6c1d….jpg, a "_…" one linked as is (it
+// opens no more): its page is fastpic.org/view/128/2026/0923/_6c1d….jpg.html
+const FASTPIC_BIG = /^https?:\/\/i(\d+)\.fastpic\.(org|ru)\/big\/(\d{4})\/(\d{4})\/[^/]+\/([^/?#]+)$/i;
+function fastpicPage(link) {
+  if (FASTPIC_VIEW.test(link)) return `${link.replace(/#.*$/, '')}#rutracker-games`;
+  const big = FASTPIC_PROTECTED.test(link) && FASTPIC_BIG.exec(link);
+  return big ? `https://fastpic.${big[2]}/view/${big[1]}/${big[3]}/${big[4]}/${big[5]}.html#rutracker-games` : null;
+}
+
+// ImgBB's and PostImages' page of a picture: the full one is in its og:image
+// (see background.js)
+const IMAGE_PAGE = /^https?:\/\/(?:ibb\.co\/[A-Za-z0-9]+|postimg\.cc\/(?:image\/)?[A-Za-z0-9]+)\/?$/i;
+const IMAGEBAM = /^https?:\/\/[^/]*imagebam\.com\//i;
+
+// The link of a thumbnail
+function hostLink(link) {
+  return fastpicPage(link) || link;
+}
+
+// Opens in our viewer: a full picture to have, or a page to get it from
+function viewable(shot) {
+  return Boolean(shot.full || fastpicPage(shot.link) || IMAGE_PAGE.test(shot.link));
+}
+
+function guessFullImage(thumb, link) {
+  if (link && link !== thumb && IMAGE_URL.test(link)) return link;
+  if (/^https?:\/\/i\d+\.fastpic\.(?:org|ru)\/big\//i.test(thumb) || /^https?:\/\/i\d+\.imageban\.ru\/out\//i.test(thumb)) return thumb;
+  // i123.fastpic.org/thumb/2024/0325/08/hash.jpeg -> i123.fastpic.org/big/2024/0325/08/hash.jpg,
+  // the extension from the link: fastpic.org/view/123/2024/0325/hash.jpg.html
+  const fastpic = /^https?:\/\/(i\d+)\.fastpic\.(org|ru)\/thumb\/(.+)\/([^/.]+)\.\w+$/i.exec(thumb);
+  const ext = /\/([^/.]+)\.(\w+)\.html$/i.exec(link || '');
+  if (fastpic && ext && ext[1] === fastpic[4]) return `https://${fastpic[1]}.fastpic.${fastpic[2]}/big/${fastpic[3]}/${fastpic[4]}.${ext[2]}`;
+  // i5.imageban.ru/thumbs/2026.09.29/hash.jpg -> i5.imageban.ru/out/2026/09/29/hash.jpg
+  const imageban = /^https?:\/\/(i\d+)\.imageban\.ru\/thumbs\/(\d{4})\.(\d{2})\.(\d{2})\/([^/]+)$/i.exec(thumb);
+  if (imageban) return `https://${imageban[1]}.imageban.ru/out/${imageban[2]}/${imageban[3]}/${imageban[4]}/${imageban[5]}`;
+  // GOG's own screenshots: <hash>.jpg is the picture, <hash>_<format>.jpg a smaller copy
+  const gog = /^https?:\/\/images\.gog-statics\.com\/([0-9a-f]{64})(?:_\w+)?\.(jpe?g|png|webp)$/i.exec(thumb);
+  if (gog) return `https://images.gog-statics.com/${gog[1]}.${gog[2]}`;
+  // riotpixels: ….jpg.240p.jpg is the thumbnail of ….jpg
+  const riotpixels = /^https?:\/\/(s\d+\.riotpixels\.net\/data\/.+\.(?:jpe?g|png))\.\d+p\.jpe?g$/i.exec(thumb);
+  if (riotpixels) return `https://${riotpixels[1]}`;
+  return null;
+}
+
+// [{thumb, link, full}]: the thumbnail, where a click on it leads in the
+// release, and the full-size picture if it can be worked out (see fullImage)
 function findShots(post) {
   const seen = new Set();
   const shots = [];
@@ -56,10 +123,12 @@ function findShots(post) {
     // Spoilers can be nested, hence the dedup
     for (const img of wrap.querySelectorAll(':scope > .sp-body var.postImg')) {
       const thumb = img.getAttribute('title');
-      if (!isHttpUrl(thumb) || seen.has(thumb)) continue;
+      // imagebam gives other sites a "Thumbnail Temporarily Unavailable" stub
+      if (!isHttpUrl(thumb) || seen.has(thumb) || IMAGEBAM.test(thumb)) continue;
       seen.add(thumb);
-      const link = img.closest('a.postLink')?.getAttribute('href');
-      shots.push({ thumb, link: isHttpUrl(link) ? link : thumb });
+      const href = img.closest('a.postLink')?.getAttribute('href');
+      const link = isHttpUrl(href) ? href : thumb;
+      shots.push({ thumb, link, full: fullImage(thumb, isHttpUrl(href) ? href : null) });
     }
   }
   return shots;

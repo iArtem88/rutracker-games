@@ -4,7 +4,10 @@
 // - open the options page (the filter bar's "Настройки" button);
 // - Valve's Steam Deck rating of a game (Windows section). Steam doesn't allow
 //   cross-site requests from pages, and the user grants access to it when
-//   turning the feature on.
+//   turning the feature on;
+// - the full picture of an ImgBB or PostImages screenshot, opened in the
+//   viewer: its page names it in og:image, the tag that's there for link
+//   previews.
 const ext = globalThis.browser ?? globalThis.chrome;
 
 const STEAM = 'https://store.steampowered.com';
@@ -51,6 +54,23 @@ async function steamDeck({ appId, name }) {
   return { appId: String(id), category: await cached(`${STEAM_PREFIX}deck:${id}`, () => deckCategory(id)) };
 }
 
+// The pages read, and the pictures they may name:
+// https://ibb.co/d4DJp6fq -> https://i.ibb.co/CKQs9vwZ/name.jpg
+const PAGE_PICTURES = [
+  [/^https?:\/\/ibb\.co\/[A-Za-z0-9]+\/?$/i, /^https:\/\/i\.ibb\.co\/[^\s"'<>]+$/],
+  [/^https?:\/\/postimg\.cc\/(?:image\/)?[A-Za-z0-9]+\/?$/i, /^https:\/\/i\.postimg\.cc\/[^\s"'<>]+$/],
+];
+
+async function pagePicture({ link }) {
+  const [, picture] = PAGE_PICTURES.find(([page]) => page.test(link || '')) || [];
+  if (!picture) return null;
+  const res = await fetch(link.replace(/^http:/, 'https:'), { credentials: 'omit' });
+  if (!res.ok) return null;
+  const meta = /<meta\s[^>]*property=["']og:image["'][^>]*>/i.exec(await res.text())?.[0] || '';
+  const url = /\scontent=["']([^"']+)["']/i.exec(meta)?.[1];
+  return url && picture.test(url) ? url : null;
+}
+
 async function pruneSteamCache() {
   const all = await ext.storage.local.get(null);
   const stale = Object.keys(all).filter((key) => key.startsWith(STEAM_PREFIX) && Date.now() - all[key].time > STEAM_TTL);
@@ -66,6 +86,12 @@ ext.runtime.onMessage.addListener((message, _sender, sendResponse) => {
       sendResponse(null);
     });
     // The answer comes later
+    return true;
+  } else if (message?.type === 'pagePicture') {
+    pagePicture(message).then(sendResponse, (err) => {
+      console.warn('[RuTracker Games] image host', err);
+      sendResponse(null);
+    });
     return true;
   }
   return false;

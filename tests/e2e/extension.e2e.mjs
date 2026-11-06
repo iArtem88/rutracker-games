@@ -81,6 +81,92 @@ test('language chips are one choice: «Есть мои языки» or «Озв�
   assert.deepEqual(await again.ev(`[...document.querySelectorAll('.rts-chip[aria-pressed="true"]')].map((c) => c.textContent)`), ['Озвучка на моих языках']);
 });
 
+describe('screenshots', () => {
+  const picture = (url) => url.replace(/^.*\/img\//, '');
+
+  test('a click opens the full pictures in our viewer: ← → and Esc', async () => {
+    const tab = await forum('1605');
+    await settled(tab);
+    await sleep(500);
+    const viewer = () => tab.ev(`(() => { const v = document.querySelector('.rts-viewer');
+      return v && { count: v.querySelector('.rts-viewer-count').textContent, img: v.querySelector('.rts-viewer-img').src,
+        original: v.querySelector('.rts-viewer-original').href }; })()`);
+    // A magnifier on the ones that open in the viewer
+    assert.equal(await tab.ev(`document.querySelectorAll('tr[data-topic_id="101"] .rts-thumbs a.rts-zoom').length`), 3);
+    await tab.ev(`document.querySelector('tr[data-topic_id="101"] .rts-thumbs a').click()`);
+    await sleep(300);
+    let state = await viewer();
+    assert.deepEqual([state.count, picture(state.img), picture(state.original)], ['1 / 3', 'full-0.png', 'full-0.png']);
+    await tab.ev(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }))`);
+    await sleep(300);
+    state = await viewer();
+    assert.deepEqual([state.count, picture(state.img)], ['2 / 3', 'full-1.png']);
+    // The strip of thumbnails: one per screenshot, a click goes there
+    assert.equal(await tab.ev(`document.querySelectorAll('.rts-viewer-tile').length`), 3);
+    await tab.ev(`document.querySelectorAll('.rts-viewer-tile')[2].click()`);
+    await sleep(300);
+    state = await viewer();
+    assert.deepEqual([state.count, picture(state.img)], ['3 / 3', 'full-2.png']);
+    assert.equal(await tab.ev(`[...document.querySelectorAll('.rts-viewer-tile')].findIndex((t) => t.classList.contains('rts-viewer-current'))`), 2);
+    await tab.ev(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))`);
+    await sleep(200);
+    assert.equal(await viewer(), null);
+
+    // No full picture comes (404): no blurry thumbnail, a word and the link to the host
+    await tab.ev(`document.querySelector('tr[data-topic_id="104"] .rts-thumbs a').click()`);
+    await sleep(500);
+    const failed = await tab.ev(`(() => { const v = document.querySelector('.rts-viewer');
+      return { failed: v.classList.contains('rts-viewer-failed'), ready: v.classList.contains('rts-viewer-ready'),
+        imgShown: getComputedStyle(v.querySelector('.rts-viewer-img')).display !== 'none',
+        link: v.querySelector('.rts-viewer-none-link').href }; })()`);
+    assert.deepEqual({ ...failed, link: picture(failed.link) }, { failed: true, ready: false, imgShown: false, link: 'missing-0.png' });
+    await tab.ev(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))`);
+
+    // fastpic's "_…" picture: its page, unseen, hands the full one over. No
+    // magnifier where there's nothing to show: the click goes to the host's page
+    const thumbs = `[...document.querySelectorAll('tr[data-topic_id="102"] .rts-thumbs a')]`;
+    assert.deepEqual(await tab.ev(`${thumbs}.map((a) => a.classList.contains('rts-zoom'))`), [true, false]);
+    await tab.ev(`${thumbs}[0].click()`);
+    for (let i = 0; i < 40 && !(await tab.ev(`document.querySelector('.rts-viewer').classList.contains('rts-viewer-ready')`)); i++) await sleep(200);
+    state = await viewer();
+    assert.deepEqual([state.count, state.img], ['1 / 1', `${site.origin}/big/2025/1204/ab/_0.png?md5=abc&expires=1793988000`]);
+    assert.equal(await tab.ev(`document.querySelectorAll('iframe').length`), 0);
+    await tab.ev(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))`);
+    assert.equal(await tab.ev(`!${thumbs}[1].dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 }))`), false);
+    assert.equal(await viewer(), null);
+
+    // A big picture put in with no link is the full one; imagebam's stubs aren't shown
+    assert.deepEqual(await tab.ev(`[...document.querySelectorAll('tr[data-topic_id="103"] .rts-thumbs a')].map((a) => [a.classList.contains('rts-zoom'), a.querySelector('img').src.replace(/^.*\\//, '')])`), [[true, 'big-0.svg']]);
+    await tab.ev(`document.querySelector('tr[data-topic_id="103"] .rts-thumbs a').click()`);
+    await sleep(500);
+    state = await viewer();
+    assert.deepEqual([state.count, picture(state.img)], ['1 / 1', 'big-0.svg']);
+    await tab.ev(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))`);
+  });
+
+  test("fastpic's page opened from a thumbnail gives way to the picture", async () => {
+    const page = `${site.origin}/view/126/2025/1204/_b4ba.png.html`;
+    // The signed link, not the download
+    let tab = await chrome.open(`${page}#rutracker-games`);
+    assert.equal(await tab.ev('location.pathname + location.search'), '/big/2025/1204/ab/_b4ba.png?md5=abc&expires=1793988000');
+    await tab.close();
+    // Opened any other way, the page stays
+    tab = await chrome.open(page);
+    assert.equal(await tab.ev('location.pathname'), '/view/126/2025/1204/_b4ba.png.html');
+    await tab.close();
+  });
+
+  test('the large size shows the full pictures, the thumbnail when the full one fails', async () => {
+    await chrome.storage.setSettings({ uiLanguage: 'ru', thumbHeight: 120 });
+    const tab = await forum('1605');
+    await settled(tab);
+    await sleep(1000);
+    const pictures = (id) => tab.ev(`[...document.querySelectorAll('tr[data-topic_id="${id}"] .rts-thumbs img')].map((i) => i.src)`);
+    assert.deepEqual((await pictures('101')).map(picture), ['full-0.png', 'full-1.png', 'full-2.png']);
+    assert.deepEqual((await pictures('104')).map(picture), ['0.png']);
+  });
+});
+
 test('PlayStation: firmware', async () => {
   const rows = await settled(await forum('973'));
   assert.ok(rows['201'].badges.some((b) => b.includes('9.00')), rows['201'].badges.join(' | '));

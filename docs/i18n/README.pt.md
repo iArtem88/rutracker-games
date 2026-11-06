@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="Licença: GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.0.1-green.svg" alt="Versão 1.0.1"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.1.0-green.svg" alt="Versão 1.1.0"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10 idiomas">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -51,7 +51,7 @@
 
 Direto na lista de lançamentos, entre o título e o autor:
 
-- **Capturas de tela** do spoiler «Скриншоты» do lançamento: as mesmas miniaturas do tópico, e um clique abre a imagem em tamanho real. Aparece uma fileira, e «mais N» mostra o resto.
+- **Capturas de tela** do spoiler «Скриншоты» do lançamento: as mesmas miniaturas do tópico. As que têm uma lupa abrem em tamanho real no visualizador da própria extensão, na mesma página e sem os anúncios do serviço de hospedagem: ← → ou a faixa de miniaturas embaixo passam de uma para outra, Esc fecha. Sem lupa, um clique abre a página do serviço de hospedagem. Aparece uma fileira, e «mais N» mostra o resto.
 - **Etiquetas tiradas da descrição do lançamento:**
   - <img src="https://img.shields.io/badge/-Dublagem%20em%20russo-d32f2f" alt="Dublagem em russo"> — dublagem no seu idioma, com detalhes entre parênteses: automática, amadora, parcial, mod;
   - <img src="https://img.shields.io/badge/-Texto%20em%20russo%20(sem%20dublagem)-2e7d32" alt="Texto em russo (sem dublagem)"> — o jogo está no seu idioma e simplesmente não tem dublagem;
@@ -185,7 +185,7 @@ Há duas classificações:
 ## Privacidade
 
 - Sem anúncios, sem analytics, sem contas, sem servidores próprios.
-- A extensão só acessa as páginas do próprio RuTracker, como se você mesmo abrisse o tópico, e carrega as imagens dos mesmos serviços de hospedagem que o tópico usa. A única exceção é a classificação da Valve para o Steam Deck: se você ativá-la, a extensão consulta na Steam o id do jogo e a classificação dele (sem seus cookies nem seus dados).
+- A extensão só acessa as páginas do próprio RuTracker, como se você mesmo abrisse o tópico, e carrega as imagens dos mesmos serviços de hospedagem que o tópico usa. A única exceção é a classificação da Valve para o Steam Deck: se você ativá-la, a extensão consulta na Steam o id do jogo e a classificação dele (sem seus cookies nem seus dados). Nas imagens do fastpic que o serviço só entrega pela própria página, o visualizador abre essa página sem mostrá-la, sem os scripts e os anúncios dela, e pega ali o link da imagem, como se você mesmo clicasse na miniatura. Nas imagens do ImgBB e do PostImages, ela lê o endereço da imagem completa na página dela no serviço de hospedagem (sem seus cookies).
 - As configurações e o cache das descrições dos lançamentos ficam no seu navegador.
 - O código é aberto, e qualquer pessoa pode conferi-lo. Mais detalhes em [PRIVACY.md](../../PRIVACY.md).
 

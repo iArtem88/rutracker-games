@@ -176,10 +176,108 @@ describe('screenshots', () => {
         <var class="postImg" title="https://i1.fastpic.org/thumb/3.jpeg"></var>
       </div></div>`);
     assert.deepEqual(topic.shots, [
-      { thumb: 'https://i1.fastpic.org/thumb/1.jpeg', link: 'https://fastpic.org/view/1.jpg.html' },
+      { thumb: 'https://i1.fastpic.org/thumb/1.jpeg', link: 'https://fastpic.org/view/1.jpg.html', full: null },
       // Not a javascript: link
-      { thumb: 'https://i1.fastpic.org/thumb/2.jpeg', link: 'https://i1.fastpic.org/thumb/2.jpeg' },
+      { thumb: 'https://i1.fastpic.org/thumb/2.jpeg', link: 'https://i1.fastpic.org/thumb/2.jpeg', full: null },
     ]);
+  });
+
+  test("fastpic's page from a thumbnail is marked to open as the picture itself", async () => {
+    const link = (url) => page.evaluate((url) => hostLink(url), url);
+    assert.equal(
+      await link('https://fastpic.org/view/126/2025/1204/_b4ba236b0677732b420367d70c420be5.png.html'),
+      'https://fastpic.org/view/126/2025/1204/_b4ba236b0677732b420367d70c420be5.png.html#rutracker-games',
+    );
+    assert.equal(await link('http://fastpic.ru/view/40/2012/0306/1a.jpg.html#x'), 'http://fastpic.ru/view/40/2012/0306/1a.jpg.html#rutracker-games');
+    // A "_…" one linked straight to its picture, which opens no more: its page
+    assert.equal(
+      await link('https://i128.fastpic.org/big/2026/0923/77/_6c1d83934c8bbc7aed71e1484d4c1377.jpg'),
+      'https://fastpic.org/view/128/2026/0923/_6c1d83934c8bbc7aed71e1484d4c1377.jpg.html#rutracker-games',
+    );
+    // Other hosts and fastpic's own picture links as they are
+    assert.equal(await link('https://imageban.ru/show/2021/12/17/2c4bc8c4/png'), 'https://imageban.ru/show/2021/12/17/2c4bc8c4/png');
+    assert.equal(await link('https://i128.fastpic.org/big/2026/0922/a0/1.jpg'), 'https://i128.fastpic.org/big/2026/0922/a0/1.jpg');
+    // Opens in our viewer: a full picture, or fastpic's page to get it from
+    const viewable = (shot) => page.evaluate((shot) => viewable(shot), shot);
+    assert.equal(await viewable({ link: 'https://fastpic.org/view/126/2025/1204/_b4ba.png.html', full: null }), true);
+    assert.equal(await viewable({ link: 'https://i128.fastpic.org/big/2026/1006/cb/_87dbaaf5448afae842ae83a13a7524cb.jpg', full: null }), true);
+    assert.equal(await viewable({ link: 'https://www.imagebam.com/view/MEABCD', full: null }), false);
+    // ImgBB's page: the full picture is read off it
+    assert.equal(await viewable({ link: 'https://ibb.co/d4DJp6fq', full: null }), true);
+    assert.equal(await viewable({ link: 'https://postimg.cc/t1Q1Sc2K', full: null }), true);
+    assert.equal(await viewable({ link: 'https://postimg.cc/image/5nf6uoltd/', full: null }), true);
+    assert.equal(await viewable({ link: 'https://www.imagebam.com/view/MEABCD', full: 'https://i1.imageban.ru/out/a.png' }), true);
+  });
+
+  test('the full-size picture from the URLs alone, as the releases have them', async () => {
+    const full = (thumb, link) => page.evaluate(([thumb, link]) => fullImage(thumb, link), [thumb, link]);
+    // fastpic: the thumbnail and the view page
+    assert.equal(
+      await full('https://i123.fastpic.org/thumb/2024/0325/08/e7050adac6d15396b8e68379f5647008.jpeg', 'https://fastpic.org/view/123/2024/0325/e7050adac6d15396b8e68379f5647008.jpg.html'),
+      'https://i123.fastpic.org/big/2024/0325/08/e7050adac6d15396b8e68379f5647008.jpg',
+    );
+    assert.equal(
+      await full('https://i114.fastpic.org/thumb/2021/0514/03/14288fc4437f6f4b22c3db01ff67f303.jpeg', 'https://fastpic.org/view/114/2021/0514/14288fc4437f6f4b22c3db01ff67f303.png.html'),
+      'https://i114.fastpic.org/big/2021/0514/03/14288fc4437f6f4b22c3db01ff67f303.png',
+    );
+    // fastpic files named "_…" open only through a signed link on fastpic's page: none to have
+    assert.equal(
+      await full('https://i114.fastpic.org/thumb/2021/0514/03/_14288fc4437f6f4b22c3db01ff67f303.jpeg', 'https://fastpic.org/view/114/2021/0514/_14288fc4437f6f4b22c3db01ff67f303.png.html'),
+      null,
+    );
+    // A link straight to the picture
+    assert.equal(
+      await full('https://i128.fastpic.org/thumb/2026/0922/a0/3981288683084fb28cebe9250ca74aa0.jpeg', 'https://i128.fastpic.org/big/2026/0922/a0/3981288683084fb28cebe9250ca74aa0.jpg'),
+      'https://i128.fastpic.org/big/2026/0922/a0/3981288683084fb28cebe9250ca74aa0.jpg',
+    );
+    assert.equal(
+      await full('https://i128.fastpic.org/thumb/2026/0922/a0/_3981288683084fb28cebe9250ca74aa0.jpeg', 'https://i128.fastpic.org/big/2026/0922/a0/_3981288683084fb28cebe9250ca74aa0.jpg'),
+      null,
+    );
+    assert.equal(await full('https://c.radikal.ru/c21/2202/f3/1b48649be17bt.jpg', 'https://c.radikal.ru/c21/2202/f3/1b48649be17b.jpg'), 'https://c.radikal.ru/c21/2202/f3/1b48649be17b.jpg');
+    assert.equal(
+      await full('https://i3.imageban.ru/out/2021/12/17/8dfefbdb8f59a5f988290f2d700042ff.png', 'https://i6.imageban.ru/out/2021/12/17/2c4bc8c4cfd09f0c3ba0b27e57f9a109.png'),
+      'https://i6.imageban.ru/out/2021/12/17/2c4bc8c4cfd09f0c3ba0b27e57f9a109.png',
+    );
+    // The thumbnail is the full picture already
+    assert.equal(await full('https://i116.fastpic.org/big/2022/0206/ae/6af98924fa14bcfe78469697ecaa3aae.png', null), 'https://i116.fastpic.org/big/2022/0206/ae/6af98924fa14bcfe78469697ecaa3aae.png');
+    assert.equal(
+      await full('https://i116.fastpic.org/big/2022/0206/b8/87a18358787eb7535b034695b402eab8.jpg', 'https://i116.fastpic.org/big/2022/0206/b8/87a18358787eb7535b034695b402eab8.jpg.html'),
+      'https://i116.fastpic.org/big/2022/0206/b8/87a18358787eb7535b034695b402eab8.jpg',
+    );
+    // imageban: the thumbnail and the show page
+    assert.equal(
+      await full('https://i5.imageban.ru/thumbs/2026.09.29/08ece1843232058d88d3d94f0ac4b56d.jpg', 'https://imageban.ru/show/2026/09/29/08ece1843232058d88d3d94f0ac4b56d/jpg'),
+      'https://i5.imageban.ru/out/2026/09/29/08ece1843232058d88d3d94f0ac4b56d.jpg',
+    );
+    // Old releases: http:// and fastpic.ru, the picture over https
+    assert.equal(
+      await full('http://i3.imageban.ru/thumbs/2016.12.11/81af7a524e9f87a59a48e5b1b571ba62.jpg', 'http://imageban.ru/show/2016/12/11/81af7a524e9f87a59a48e5b1b571ba62/jpg'),
+      'https://i3.imageban.ru/out/2016/12/11/81af7a524e9f87a59a48e5b1b571ba62.jpg',
+    );
+    assert.equal(
+      await full('http://i89.fastpic.ru/thumb/2017/0101/aa/0123456789abcdef0123456789abcdaa.jpeg', 'http://fastpic.ru/view/89/2017/0101/0123456789abcdef0123456789abcdaa.png.html'),
+      'https://i89.fastpic.ru/big/2017/0101/aa/0123456789abcdef0123456789abcdaa.png',
+    );
+    assert.equal(await full('http://images.vfl.ru/ii/1606676875/8577fcf1/32485214.jpg', 'http://images.vfl.ru/ii/1606676876/b0d7ef5c/32485217.jpg'), 'http://images.vfl.ru/ii/1606676876/b0d7ef5c/32485217.jpg');
+    // GOG's screenshots put in as they are: the full picture already; a smaller copy's name has it
+    assert.equal(
+      await full('https://images.gog-statics.com/33bb0b67d64b801102f2071dd66f92a5a9e6525d12e5715d806ebd8578640a1e.jpg', null),
+      'https://images.gog-statics.com/33bb0b67d64b801102f2071dd66f92a5a9e6525d12e5715d806ebd8578640a1e.jpg',
+    );
+    assert.equal(
+      await full('https://images.gog-statics.com/33bb0b67d64b801102f2071dd66f92a5a9e6525d12e5715d806ebd8578640a1e_product_card_v2_mobile_slider_639.jpg', null),
+      'https://images.gog-statics.com/33bb0b67d64b801102f2071dd66f92a5a9e6525d12e5715d806ebd8578640a1e.jpg',
+    );
+    // riotpixels: the thumbnail's name has the picture's name in it
+    assert.equal(
+      await full('http://s01.riotpixels.net/data/36/80/3680c4e7-babf-48fb-b06c-a50cd381fc77.jpg.240p.jpg', 'http://ru.riotpixels.com/games/destroy-all-humans-ii-2020/screenshots/93/?utm_source=emb-gfx-bbcode'),
+      'https://s01.riotpixels.net/data/36/80/3680c4e7-babf-48fb-b06c-a50cd381fc77.jpg',
+    );
+    // Unknown: imagebam hands its pictures out only through its page; a fastpic view of another picture
+    assert.equal(await full('https://thumbs4.imagebam.com/da/1c/6c/ME12DVVN_t.jpg', 'https://www.imagebam.com/view/ME12DVVN'), null);
+    assert.equal(await full('https://i123.fastpic.org/thumb/2024/0325/08/aaaa.jpeg', 'https://fastpic.org/view/123/2024/0325/bbbb.jpg.html'), null);
+    assert.equal(await full('https://i123.fastpic.org/thumb/2024/0325/08/aaaa.jpeg', null), null);
   });
 
   test('"Cкриншоты" with a Latin C', async () => {
