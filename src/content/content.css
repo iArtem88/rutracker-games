@@ -26,7 +26,7 @@
 
 .rts-skeleton,
 .rts-thumbs .rts-pending {
-  background: linear-gradient(90deg, #e2e6ea 25%, #f4f6f8 50%, #e2e6ea 75%);
+  background: linear-gradient(90deg, #dfe4e8 25%, #f4f6f8 50%, #dfe4e8 75%);
   background-size: 200% 100%;
   animation: rts-shimmer 1.3s ease-in-out infinite;
 }
@@ -400,6 +400,11 @@ a.rts-topic-zoom:hover::after {
   aspect-ratio: 16 / 9;
   max-height: 100%;
   border-radius: 4px;
+}
+
+/* The full picture is a longer wait: a shimmer that shows more */
+.rts-viewer-wait.rts-skeleton {
+  background-image: linear-gradient(90deg, #bec6ce 25%, #f4f6f8 50%, #bec6ce 75%);
 }
 
 .rts-viewer-ready .rts-viewer-wait,
