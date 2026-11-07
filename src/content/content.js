@@ -125,9 +125,10 @@ class Overloaded extends HttpError {}
 
 // Load the topic once: from the cache, or through the queue
 function request(entry) {
-  if (!entry || entry.state) return;
+  if (!entry || entry.state || !extensionAlive()) return;
   entry.state = 'queued';
-  readCache(entry).then((post) => {
+  // A cache that can't be read is an empty one
+  readCache(entry).catch(() => null).then((post) => {
     if (post) {
       show(entry, post);
     } else {
@@ -168,7 +169,7 @@ async function load(entry) {
     if (!post) throw new HttpError('no release description on the topic page');
     backoffs = 0;
     // A full storage only costs the cache
-    writeCache(entry, post.outerHTML).catch((err) => console.warn('[RuTracker Games] cache', err));
+    writeCache(entry, post.outerHTML).catch((err) => extensionAlive() && console.warn('[RuTracker Games] cache', err));
     show(entry, post.outerHTML);
   } catch (err) {
     entry.retries = (entry.retries || 0) + 1;
@@ -202,7 +203,7 @@ function show(entry, post) {
 
 // A section's data from elsewhere (Steam Deck rating), not cached with the topic
 function lookUp(entry) {
-  if (!entry.section.lookup || !entry.topic) return;
+  if (!entry.section.lookup || !entry.topic || !extensionAlive()) return;
   Promise.resolve(entry.section.lookup(entry.topic, settings, context(entry)))
     .then((result) => {
       entry.lookup = result || null;
@@ -483,7 +484,7 @@ function renderFilterBar() {
   }
   const settingsButton = el('button', 'rts-settings', t('filter.settings'));
   settingsButton.type = 'button';
-  settingsButton.addEventListener('click', () => ext.runtime.sendMessage({ type: 'openOptions' }));
+  settingsButton.addEventListener('click', () => extensionAlive() && ext.runtime.sendMessage({ type: 'openOptions' }));
   filterBar.append(el('span', 'rts-status'), settingsButton);
   entries[0].row.closest('table').before(filterBar);
 }

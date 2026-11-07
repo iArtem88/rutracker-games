@@ -1,6 +1,6 @@
 {
   "name": "rutracker-games",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "private": true,
   "description": "Screenshots and badges in RuTracker release lists: Russian voice-over, Switch overclock, PS firmware, PC RAM. Filters and your own badges.",
   "license": "GPL-3.0-or-later",
@@ -10,7 +10,7 @@
     "test:e2e": "node --test --test-concurrency=1 \"tests/e2e/*.e2e.mjs\"",
     "build": "node scripts/build.mjs",
     "icons": "node scripts/icons.mjs",
-    "lint:firefox": "npm run build && npx --yes web-ext lint --source-dir build/firefox"
+    "lint:firefox": "npm run build && npx --yes web-ext lint --self-hosted --source-dir build/firefox"
   },
   "devDependencies": {
     "playwright-core": "^1.56.0"

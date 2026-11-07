@@ -106,6 +106,8 @@ export async function startBrowser() {
     options,
     open,
     storage,
+    // As when the extension is updated or reloaded: the pages keep its scripts
+    uninstall: () => cdp.send('Extensions.uninstall', { id }),
     async close() {
       await browser.close();
       await rm(dir, { recursive: true, force: true });

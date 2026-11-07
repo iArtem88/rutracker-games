@@ -1,5 +1,6 @@
 # Tests and builds every push and pull request. A v* tag also publishes a
-# GitHub release with the Chrome and Firefox zips.
+# GitHub release with the Chrome and Firefox zips and, with the AMO API keys in
+# the repository's secrets, the Firefox build signed by Mozilla.
 name: CI
 
 on:
@@ -38,11 +39,33 @@ jobs:
     runs-on: ubuntu-24.04
     permissions:
       contents: write
+    env:
+      AMO_JWT_ISSUER: ${{ secrets.AMO_JWT_ISSUER }}
+      AMO_JWT_SECRET: ${{ secrets.AMO_JWT_SECRET }}
     steps:
       - uses: actions/download-artifact@v4
         with:
           name: extension
+      # The tested zip, signed by Mozilla for installing from here (not listed
+      # on AMO), and updates.json, where Firefox looks for a newer version
+      - uses: actions/setup-node@v5
+        if: env.AMO_JWT_ISSUER != ''
+        with:
+          node-version: 22
+      - name: Sign for Firefox
+        if: env.AMO_JWT_ISSUER != ''
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          unzip -q "rutracker-games-$version-firefox.zip" -d firefox
+          npx --yes web-ext sign --channel=unlisted --source-dir firefox --artifacts-dir signed \
+            --api-key "$AMO_JWT_ISSUER" --api-secret "$AMO_JWT_SECRET"
+          mv signed/*.xpi "rutracker-games-$version-firefox.xpi"
+          link="https://github.com/$GITHUB_REPOSITORY/releases/download/$GITHUB_REF_NAME/rutracker-games-$version-firefox.xpi"
+          printf '{"addons":{"rutracker-games@iartem88":{"updates":[{"version":"%s","update_link":"%s"}]}}}\n' "$version" "$link" > updates.json
       - uses: softprops/action-gh-release@v2
         with:
-          files: '*.zip'
+          files: |
+            *.zip
+            *.xpi
+            updates.json
           generate_release_notes: true

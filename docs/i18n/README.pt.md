@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="Licença: GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.1-green.svg" alt="Versão 1.2.1"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.2-green.svg" alt="Versão 1.2.2"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10 idiomas">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -89,6 +89,7 @@ Filmes, música e o resto ficam de fora de propósito: é melhor que sejam exten
 ## Instalação
 
 - **Chrome, Edge, Brave, Opera, Yandex Browser:** baixe o `rutracker-games-…-chrome.zip` em [Releases](https://github.com/iArtem88/rutracker-games/releases) e descompacte. Abra `chrome://extensions`, ative o «Modo do desenvolvedor» e clique em «Carregar sem compactação».
+- **Firefox:** baixe o `rutracker-games-…-firefox.xpi` em [Releases](https://github.com/iArtem88/rutracker-games/releases) e abra no Firefox (ou arraste para a janela); depois clique em «Adicionar». Ele é assinado pela Mozilla e se atualiza sozinho.
 
 ## Como usar
 

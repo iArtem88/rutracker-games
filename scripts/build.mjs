@@ -10,7 +10,9 @@ const manifest = JSON.parse(await readFile(`${root}src/manifest.json`, 'utf8'));
 
 const targets = {
   chrome: (m) => m,
-  // Firefox runs background scripts, not service workers, and wants an add-on id
+  // Firefox runs background scripts, not service workers, and wants an add-on id.
+  // Signed by Mozilla but not listed on AMO, it learns of updates from the
+  // updates.json of the latest release (see .github/workflows/ci.yml)
   firefox: (m) => ({
     ...m,
     background: { scripts: [m.background.service_worker] },
@@ -19,6 +21,7 @@ const targets = {
         id: 'rutracker-games@iartem88',
         strict_min_version: '142.0',
         data_collection_permissions: { required: ['none'] },
+        update_url: 'https://github.com/iArtem88/rutracker-games/releases/latest/download/updates.json',
       },
     },
   }),

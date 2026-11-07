@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="ライセンス：GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.1-green.svg" alt="バージョン 1.2.1"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.2-green.svg" alt="バージョン 1.2.2"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome、Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10言語">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -89,6 +89,7 @@
 ## インストール
 
 - **Chrome、Edge、Brave、Opera、Yandex Browser：** [Releases](https://github.com/iArtem88/rutracker-games/releases) から `rutracker-games-…-chrome.zip` をダウンロードして展開します。`chrome://extensions` を開き、「デベロッパー モード」をオンにして「パッケージ化されていない拡張機能を読み込む」をクリックします。
+- **Firefox：** [Releases](https://github.com/iArtem88/rutracker-games/releases) から `rutracker-games-…-firefox.xpi` をダウンロードして Firefox で開き（ウィンドウにドラッグしても可）、「追加」をクリックします。Mozilla の署名済みで、自動で更新されます。
 
 ## 使い方
 

@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/ліцензія-GPL--3.0--or--later-blue.svg" alt="Ліцензія: GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/версія-1.2.1-green.svg" alt="Версія 1.2.1"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/версія-1.2.2-green.svg" alt="Версія 1.2.2"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/інтерфейс-10%20мов-orange.svg" alt="10 мов">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -89,6 +89,7 @@
 ## Встановлення
 
 - **Chrome, Edge, Brave, Opera, Яндекс Браузер:** завантажте `rutracker-games-…-chrome.zip` зі сторінки [Releases](https://github.com/iArtem88/rutracker-games/releases) і розпакуйте архів. Відкрийте `chrome://extensions`, увімкніть «Режим розробника» й натисніть «Завантажити розпаковане розширення».
+- **Firefox:** завантажте `rutracker-games-…-firefox.xpi` зі сторінки [Releases](https://github.com/iArtem88/rutracker-games/releases) і відкрийте його у Firefox (або перетягніть у вікно), потім натисніть «Додати». Файл підписаний Mozilla, розширення оновлюється саме.
 
 ## Як користуватися
 

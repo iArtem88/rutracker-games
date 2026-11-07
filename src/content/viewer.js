@@ -45,7 +45,8 @@ function fromFastpicPage(page) {
 function fullFromPage(link) {
   if (!fromPages.has(link)) {
     const page = fastpicPage(link);
-    const full = page ? fromFastpicPage(page) : ext.runtime.sendMessage({ type: 'pagePicture', link }).catch(() => null);
+    const full = page ? fromFastpicPage(page)
+      : extensionAlive() ? ext.runtime.sendMessage({ type: 'pagePicture', link }).catch(() => null) : Promise.resolve(null);
     fromPages.set(link, full);
     // Another try next time
     full.then((url) => url || fromPages.delete(link));

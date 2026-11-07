@@ -95,7 +95,15 @@ async function loadSettings() {
   };
 }
 
+// Updated or reloaded, the extension leaves the scripts already on a page
+// behind: their calls to it fail ("Extension context invalidated"). Such a
+// page stays as it is till it's reloaded.
+function extensionAlive() {
+  return Boolean(ext.runtime?.id);
+}
+
 async function saveSettings(patch) {
+  if (!extensionAlive()) return null;
   const next = { ...(await loadSettings()), ...patch };
   await ext.storage.sync.set({ settings: next });
   return next;
