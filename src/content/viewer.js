@@ -2,8 +2,8 @@
 
 // The full-size screenshots of a release on top of the page, instead of the
 // image host's page with its ads: ← → or the strip of thumbnails below
-// between them, Esc or a click beside the picture closes it. The host's page
-// stays a link away.
+// between them, Esc or a click beside the picture closes it. It links out to
+// no image host's page.
 
 let viewer = null;
 
@@ -91,19 +91,13 @@ function openViewer(shots, index, opener) {
   const img = make('img', 'rts-viewer-img');
   img.alt = '';
   const count = make('span', 'rts-viewer-count');
-  const original = make('a', 'rts-viewer-original', t('viewer.original'));
-  original.target = '_blank';
-  original.rel = 'noopener';
   const bar = make('div', 'rts-viewer-bar');
-  bar.append(count, original);
+  bar.append(count);
   // While the full picture comes: a shimmer, never the blurry thumbnail
   const wait = make('div', 'rts-viewer-wait rts-skeleton');
-  // No full picture to have (fastpic's "_…" files, imagebam), or it never came
+  // The full picture never came: a word, no links out to the image host's page
   const none = make('div', 'rts-viewer-none');
-  const noneLink = make('a', 'rts-viewer-none-link', t('viewer.original'));
-  noneLink.target = '_blank';
-  noneLink.rel = 'noopener';
-  none.append(make('p', '', t('viewer.hostOnly')), noneLink);
+  none.append(make('p', '', t('viewer.failed')));
   const stage = make('div', 'rts-viewer-stage');
   stage.append(wait, img, none, prev, next);
   // All the screenshots of the release, the current one lit
@@ -133,13 +127,11 @@ function openViewer(shots, index, opener) {
     at = Math.max(0, Math.min(shots.length - 1, i));
     const shot = shots[at];
     count.textContent = `${at + 1} / ${shots.length}`;
-    original.href = shot.link;
     prev.disabled = at === 0;
     next.disabled = at === shots.length - 1;
     tiles.forEach((tile, i) => tile.classList.toggle('rts-viewer-current', i === at));
     tiles[at].scrollIntoView({ block: 'nearest', inline: 'center' });
     root.classList.remove('rts-viewer-ready', 'rts-viewer-failed');
-    noneLink.href = shot.link;
     img.removeAttribute('src');
     if (shot.full) {
       img.referrerPolicy = '';

@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="Licencia: GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.2-green.svg" alt="Versión 1.2.2"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.3-green.svg" alt="Versión 1.2.3"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10 idiomas">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -51,7 +51,7 @@
 
 Directamente en la lista de publicaciones, entre el título y el autor:
 
-- **Capturas de pantalla** del spoiler «Скриншоты» de la publicación: las mismas miniaturas que en el tema. Las que llevan una lupa se abren a tamaño completo en el visor propio de la extensión, en la misma página y sin la publicidad del alojamiento: ← → o la tira de miniaturas de abajo pasan de una a otra, Esc cierra. Sin lupa, un clic abre la página del alojamiento. Se muestra una fila, y «N más» despliega el resto.
+- **Capturas de pantalla** del spoiler «Скриншоты» de la publicación: las mismas miniaturas que en el tema. Las que llevan una lupa se abren a tamaño completo en el visor propio de la extensión, en la misma página y sin la publicidad del alojamiento: ← → o la tira de miniaturas de abajo pasan de una a otra, Esc cierra. Sin lupa, es solo una imagen: la extensión no enlaza a las páginas de los alojamientos. Se muestra una fila, y «N más» despliega el resto.
 - **En el tema de la publicación**, los spoilers con capturas se abren solos (se puede desactivar en los ajustes), y las capturas se abren en el mismo visor.
 - **Etiquetas a partir de la descripción de la publicación:**
   - <img src="https://img.shields.io/badge/-Doblaje%20en%20ruso-d32f2f" alt="Doblaje en ruso"> — doblaje en tu idioma, con detalles entre paréntesis: automático, amateur, parcial, mod;
@@ -64,6 +64,10 @@ Directamente en la lista de publicaciones, entre el título y el autor:
 - **Una barra de filtros** sobre la lista: «Doblaje en mis idiomas», «En mis idiomas», «Funciona en mi Switch», «Funciona en mi firmware», «Basta la RAM de mi PC», «Funciona en Steam Deck» y tus propias etiquetas.
 - **Tus idiomas.** Las etiquetas de doblaje y de texto aparecen para los idiomas que marques en «Mis idiomas»: inglés, ucraniano, ruso, alemán, francés, español, italiano, polaco, portugués y japonés. El ruso, el ucraniano y el idioma de la interfaz vienen marcados por defecto. La interfaz de la extensión también está disponible en estos 10 idiomas.
 - **Tus etiquetas**, por palabras o con una expresión regular, y **tus propias palabras** para la etiqueta de overclock de Switch.
+
+<p align="center">
+  <img src="../media/screenshot-viewer.png" alt="El visor integrado: una captura a tamaño completo y, debajo, la tira con las demás" width="900">
+</p>
 
 ## Secciones compatibles
 
@@ -79,7 +83,7 @@ La extensión funciona en las listas, en los resultados de búsqueda y en los te
 | Juegos para dispositivos móviles (Android, Oculus Quest, Symbian, Windows Mobile) | capturas, idiomas |
 | Complementos: mods y traducciones para juegos de Windows, Train Simulator, simuladores de vuelo | capturas, idiomas |
 
-Las películas, la música y todo lo demás quedan fuera a propósito: es mejor que sean extensiones aparte, para que cada una siga siendo sencilla.
+Las películas, la música y todo lo demás quedan fuera a propósito: es mejor que sean extensiones aparte, para que cada una siga siendo sencilla. En el resto del foro, la extensión no hace nada ni envía ninguna solicitud.
 
 <p align="center">
   <img src="../media/screenshot-ps4.png" alt="La lista de PS4: idiomas y firmware" width="440">
@@ -88,7 +92,7 @@ Las películas, la música y todo lo demás quedan fuera a propósito: es mejor 
 
 ## Instalación
 
-- **Chrome, Edge, Brave, Opera, Yandex Browser:** descarga `rutracker-games-…-chrome.zip` desde [Releases](https://github.com/iArtem88/rutracker-games/releases) y descomprímelo. Abre `chrome://extensions`, activa «Modo de desarrollador» y haz clic en «Cargar descomprimida».
+- **Chrome, Edge, Brave, Opera, Yandex Browser:** descarga `rutracker-games-…-chrome-full.zip` desde [Releases](https://github.com/iArtem88/rutracker-games/releases) y descomprímelo. Abre `chrome://extensions`, activa «Modo de desarrollador» y haz clic en «Cargar descomprimida». Es la versión completa; `…-chrome.zip`, a su lado, es la de Chrome Web Store, donde las capturas protegidas de fastpic (archivos `_…`) se quedan como miniaturas.
 - **Firefox:** descarga `rutracker-games-…-firefox.xpi` desde [Releases](https://github.com/iArtem88/rutracker-games/releases) y ábrelo en Firefox (o arrástralo a la ventana); luego haz clic en «Añadir». Está firmado por Mozilla y se actualiza solo.
 
 ## Cómo se usa
@@ -190,7 +194,7 @@ Dos valoraciones:
 ## Privacidad
 
 - Sin anuncios, sin analíticas, sin cuentas, sin servidores propios.
-- Solo solicita páginas del propio RuTracker, como si abrieras el tema tú mismo, y carga las imágenes desde los mismos servicios de alojamiento que usa el tema. La única excepción es la valoración de Steam Deck de Valve: si la activas, la extensión pide a Steam el id y la valoración del juego (sin tus cookies ni tus datos). Con las imágenes de fastpic que el servicio solo entrega a través de su propia página, el visor abre esa página sin mostrarla, sin sus scripts ni su publicidad, y toma de ella el enlace a la imagen, como si hicieras clic en la miniatura tú mismo. Con las imágenes de ImgBB y PostImages, toma la dirección de la imagen completa de su página en el alojamiento (sin tus cookies).
+- Solo solicita páginas del propio RuTracker, como si abrieras el tema tú mismo, y carga las imágenes desde los mismos servicios de alojamiento que usa el tema. La única excepción es la valoración de Steam Deck de Valve: si la activas, la extensión pide a Steam el id y la valoración del juego (sin tus cookies ni tus datos). En la versión completa, con las imágenes de fastpic que el servicio solo entrega a través de su propia página, el visor carga esa página sin mostrarla y con sus scripts desactivados, y toma de ella el enlace a la imagen; la versión de Chrome Web Store no carga páginas de fastpic. Con las imágenes de ImgBB y PostImages, toma la dirección de la imagen completa de su página en el alojamiento (sin tus cookies).
 - Los ajustes y la caché de descripciones de publicaciones se quedan en tu navegador.
 - El código es abierto y cualquiera puede revisarlo. Más información en [PRIVACY.md](../../PRIVACY.md).
 

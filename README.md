@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="License: GPL-3.0-or-later"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.2-green.svg" alt="Version 1.2.2"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.3-green.svg" alt="Version 1.2.3"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10 languages">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -51,7 +51,7 @@
 
 Right in the list of releases, between the title and the author:
 
-- **Screenshots** from the release's «Скриншоты» spoiler: the same thumbnails as in the topic. One with a magnifier opens full-size in the extension's own viewer, right on the page and without the image host's ads: ← → or the strip of thumbnails below switch between them, Esc closes. Without a magnifier, a click opens the image host's page. One row is shown, «N more» unfolds the rest.
+- **Screenshots** from the release's «Скриншоты» spoiler: the same thumbnails as in the topic. One with a magnifier opens full-size in the extension's own viewer, right on the page and without the image host's ads: ← → or the strip of thumbnails below switch between them, Esc closes. Those without one are just pictures: the extension doesn't link to image hosts' pages. One row is shown, «N more» unfolds the rest.
 - **In a release's topic** the spoilers with screenshots open by themselves (this can be turned off in the settings), and the screenshots open in the same viewer.
 - **Badges from the release description:**
   - <img src="https://img.shields.io/badge/-Russian%20voice--over-d32f2f" alt="Russian voice-over"> — voice-over in your language, with details in brackets: machine, amateur, partial, a mod;
@@ -64,6 +64,10 @@ Right in the list of releases, between the title and the author:
 - **A filter bar** above the list: «Voice-over in my languages», «In my languages», «Runs on my Switch», «Runs on my firmware», «Enough RAM in my PC», «Runs on Steam Deck», and your own badges.
 - **Your languages.** Voice-over and text badges are shown for the languages you tick in «My languages»: English, Ukrainian, Russian, German, French, Spanish, Italian, Polish, Portuguese, Japanese. Russian, Ukrainian and the interface language are ticked by default. The extension's interface speaks these 10 languages too.
 - **Your own badges** by words or a regular expression, and **your own words** for the Switch overclock badge.
+
+<p align="center">
+  <img src="docs/media/screenshot-viewer.png" alt="The built-in viewer: a screenshot in full size, the strip of the others below" width="900">
+</p>
 
 ## Supported sections
 
@@ -79,7 +83,7 @@ The extension works in the section lists, in the search results and in the relea
 | Games for mobile devices (Android, Oculus Quest, Symbian, Windows Mobile) | screenshots, languages |
 | Add-ons: mods and translations for Windows games, Train Simulator, flight simulators | screenshots, languages |
 
-Films, music and the rest are out of scope on purpose: they'd better be separate extensions, so that each one stays simple.
+Films, music and the rest are out of scope on purpose: they'd better be separate extensions, so that each one stays simple. Everywhere else on the forum the extension does nothing and sends no requests.
 
 <p align="center">
   <img src="docs/media/screenshot-ps4.png" alt="The PS4 list: languages and firmware" width="440">
@@ -88,7 +92,7 @@ Films, music and the rest are out of scope on purpose: they'd better be separate
 
 ## Install
 
-- **Chrome, Edge, Brave, Opera, Yandex Browser:** download `rutracker-games-…-chrome.zip` from [Releases](https://github.com/iArtem88/rutracker-games/releases) and unzip it. Open `chrome://extensions`, turn on «Developer mode» and click «Load unpacked».
+- **Chrome, Edge, Brave, Opera, Yandex Browser:** download `rutracker-games-…-chrome-full.zip` from [Releases](https://github.com/iArtem88/rutracker-games/releases) and unzip it. Open `chrome://extensions`, turn on «Developer mode» and click «Load unpacked». This is the full version; `…-chrome.zip` next to it is the Chrome Web Store's, where fastpic's protected screenshots (files named `_…`) stay thumbnails.
 - **Firefox:** download `rutracker-games-…-firefox.xpi` from [Releases](https://github.com/iArtem88/rutracker-games/releases) and open it in Firefox (or drag it into the window), then click «Add». It's signed by Mozilla and updates by itself.
 
 ## How to use
@@ -190,7 +194,7 @@ Two ratings:
 ## Privacy
 
 - No ads, no analytics, no accounts, no servers of its own.
-- It only requests RuTracker's own pages, as if you opened the topic yourself, and loads pictures from the same image hosts the topic uses. The one exception is Valve's Steam Deck rating: if you turn it on, the extension asks Steam for the game's id and rating (without your cookies or data). For fastpic pictures that the host hands out only through its own page, the viewer opens that page unseen, with its scripts and ads off, and takes the picture's link from it, as a click on the thumbnail would. For ImgBB and PostImages pictures it reads the full picture's address off the host's page (without your cookies).
+- It only requests RuTracker's own pages, as if you opened the topic yourself, and loads pictures from the same image hosts the topic uses. The one exception is Valve's Steam Deck rating: if you turn it on, the extension asks Steam for the game's id and rating (without your cookies or data). In the full version, for fastpic pictures that the host hands out only through its own page, the viewer loads that page unseen, with its scripts off, and takes the picture's link from it; the Chrome Web Store's version doesn't load fastpic's pages. For ImgBB and PostImages pictures it reads the full picture's address off the host's page (without your cookies).
 - The settings and the cache of release descriptions stay in your browser.
 - The code is open for anyone to check. More in [PRIVACY.md](PRIVACY.md).
 

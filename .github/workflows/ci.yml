@@ -68,4 +68,12 @@ jobs:
             *.zip
             *.xpi
             updates.json
+          body: |
+            **Chrome**
+            - `rutracker-games-…-chrome.zip`: the Chrome Web Store's version, exactly the package sent to the store.
+            - `rutracker-games-…-chrome-full.zip`: the full version, to install by hand (`chrome://extensions` → Developer mode → Load unpacked). On top of the store's, fastpic's protected screenshots (files named `_…`) open in the viewer too: for them the viewer loads fastpic's page unseen, with its scripts off, and takes the picture's address from it.
+
+            **Firefox**
+            - `rutracker-games-…-firefox.xpi`: the full version, signed by Mozilla. Open it in Firefox to install; it updates itself.
+            - `rutracker-games-…-firefox.zip`: the same, unsigned.
           generate_release_notes: true

@@ -66,13 +66,18 @@ function fullImage(thumb, link) {
 // fastpic hands these out only through a signed link on its own page
 const FASTPIC_PROTECTED = /\.fastpic\.(?:org|ru)\/big\/.*\/_[^/]*$/i;
 
-// fastpic's page of a picture, marked: in a tab it gives way to the picture
-// itself, in our viewer it hands the picture over (see fastpic.js)
+// fastpic's page of a picture, marked: in our viewer's unseen frame it hands
+// the picture over (see fastpic.js)
 const FASTPIC_VIEW = /^https?:\/\/(?:www\.)?fastpic\.(?:org|ru)\/view\//i;
 // i128.fastpic.org/big/2026/0923/77/_6c1d….jpg, a "_…" one linked as is (it
 // opens no more): its page is fastpic.org/view/128/2026/0923/_6c1d….jpg.html
 const FASTPIC_BIG = /^https?:\/\/i(\d+)\.fastpic\.(org|ru)\/big\/(\d{4})\/(\d{4})\/[^/]+\/([^/?#]+)$/i;
+// Only in a build with fastpic.js: the Chrome Web Store's has none (see
+// scripts/build.mjs), there fastpic's "_…" pictures stay thumbnails
+const FASTPIC_PAGES = !ext?.runtime?.getManifest
+  || ext.runtime.getManifest().content_scripts.some((entry) => entry.js.includes('content/fastpic.js'));
 function fastpicPage(link) {
+  if (!FASTPIC_PAGES) return null;
   if (FASTPIC_VIEW.test(link)) return `${link.replace(/#.*$/, '')}#rutracker-games`;
   const big = FASTPIC_PROTECTED.test(link) && FASTPIC_BIG.exec(link);
   return big ? `https://fastpic.${big[2]}/view/${big[1]}/${big[3]}/${big[4]}/${big[5]}.html#rutracker-games` : null;
@@ -91,11 +96,6 @@ const FULL_SIZE_MIN = 600;
 // (see background.js)
 const IMAGE_PAGE = /^https?:\/\/(?:ibb\.co(?:\.com)?\/[A-Za-z0-9]+|postimg\.cc\/(?:image\/)?[A-Za-z0-9]+)\/?$/i;
 const IMAGEBAM = /^https?:\/\/[^/]*imagebam\.com\//i;
-
-// The link of a thumbnail
-function hostLink(link) {
-  return fastpicPage(link) || link;
-}
 
 // Opens in our viewer: a full picture to have, or a page to get it from
 function viewable(shot) {

@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="Licenza: GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.2-green.svg" alt="Versione 1.2.2"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.3-green.svg" alt="Versione 1.2.3"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10 lingue">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -51,7 +51,7 @@
 
 Direttamente nell’elenco delle pubblicazioni, tra il titolo e l’autore:
 
-- **Screenshot** dallo spoiler «Скриншоты» della pubblicazione: le stesse miniature della discussione. Quelle con la lente si aprono a grandezza piena nel visualizzatore dell’estensione, sulla pagina stessa e senza la pubblicità del servizio di hosting: ← → o la striscia di miniature in basso per scorrerle, Esc per chiudere. Senza lente, un clic apre la pagina del servizio di hosting. Viene mostrata una sola riga, e «altri N» espande il resto.
+- **Screenshot** dallo spoiler «Скриншоты» della pubblicazione: le stesse miniature della discussione. Quelle con la lente si aprono a grandezza piena nel visualizzatore dell’estensione, sulla pagina stessa e senza la pubblicità del servizio di hosting: ← → o la striscia di miniature in basso per scorrerle, Esc per chiudere. Senza lente è solo un’immagine: l’estensione non rimanda alle pagine dei servizi di hosting. Viene mostrata una sola riga, e «altri N» espande il resto.
 - **Nella discussione della pubblicazione** gli spoiler con gli screenshot si aprono da soli (si può disattivare nelle impostazioni), e gli screenshot si aprono nello stesso visualizzatore.
 - **Etichette ricavate dalla descrizione della pubblicazione:**
   - <img src="https://img.shields.io/badge/-Doppiaggio%20in%20russo-d32f2f" alt="Doppiaggio in russo"> — doppiaggio nella tua lingua, con i dettagli tra parentesi: automatico, amatoriale, parziale, mod;
@@ -64,6 +64,10 @@ Direttamente nell’elenco delle pubblicazioni, tra il titolo e l’autore:
 - **Una barra dei filtri** sopra l’elenco: «Doppiaggio nelle mie lingue», «Nelle mie lingue», «Funziona sulla mia Switch», «Funziona sul mio firmware», «Basta la RAM del mio PC», «Funziona su Steam Deck» e le tue etichette.
 - **Le tue lingue.** Le etichette di doppiaggio e testo compaiono per le lingue selezionate in «Le mie lingue»: inglese, ucraino, russo, tedesco, francese, spagnolo, italiano, polacco, portoghese e giapponese. Russo, ucraino e la lingua dell’interfaccia sono selezionati di default. Anche l’interfaccia dell’estensione è disponibile in queste 10 lingue.
 - **Le tue etichette**, basate su parole o su un’espressione regolare, e **parole tue** per l’etichetta dell’overclock della Switch.
+
+<p align="center">
+  <img src="../media/screenshot-viewer.png" alt="Il visualizzatore integrato: uno screenshot a grandezza piena, sotto la striscia degli altri" width="900">
+</p>
 
 ## Sezioni supportate
 
@@ -79,7 +83,7 @@ L’estensione funziona negli elenchi, nei risultati di ricerca e nelle discussi
 | Giochi per dispositivi mobili (Android, Oculus Quest, Symbian, Windows Mobile) | screenshot, lingue |
 | Componenti aggiuntivi: mod e traduzioni per giochi Windows, Train Simulator, simulatori di volo | screenshot, lingue |
 
-Film, musica e tutto il resto sono esclusi di proposito: è meglio che siano estensioni separate, così ognuna resta semplice.
+Film, musica e tutto il resto sono esclusi di proposito: è meglio che siano estensioni separate, così ognuna resta semplice. Nel resto del forum l’estensione non fa nulla e non invia alcuna richiesta.
 
 <p align="center">
   <img src="../media/screenshot-ps4.png" alt="L’elenco PS4: lingue e firmware" width="440">
@@ -88,7 +92,7 @@ Film, musica e tutto il resto sono esclusi di proposito: è meglio che siano est
 
 ## Installazione
 
-- **Chrome, Edge, Brave, Opera, Yandex Browser:** scarica `rutracker-games-…-chrome.zip` da [Releases](https://github.com/iArtem88/rutracker-games/releases) ed estrailo. Apri `chrome://extensions`, attiva «Modalità sviluppatore» e fai clic su «Carica estensione non pacchettizzata».
+- **Chrome, Edge, Brave, Opera, Yandex Browser:** scarica `rutracker-games-…-chrome-full.zip` da [Releases](https://github.com/iArtem88/rutracker-games/releases) ed estrailo. Apri `chrome://extensions`, attiva «Modalità sviluppatore» e fai clic su «Carica estensione non pacchettizzata». È la versione completa; `…-chrome.zip` accanto è quella del Chrome Web Store, dove gli screenshot protetti di fastpic (file `_…`) restano miniature.
 - **Firefox:** scarica `rutracker-games-…-firefox.xpi` da [Releases](https://github.com/iArtem88/rutracker-games/releases) e aprilo in Firefox (o trascinalo nella finestra), poi fai clic su «Aggiungi». È firmato da Mozilla e si aggiorna da solo.
 
 ## Come si usa
@@ -190,7 +194,7 @@ Due valutazioni:
 ## Privacy
 
 - Niente pubblicità, niente analytics, niente account, nessun server proprio.
-- Richiede solo le pagine di RuTracker stesso, come se aprissi tu la discussione, e carica le immagini dagli stessi servizi di hosting usati nella discussione. L’unica eccezione è la valutazione Steam Deck di Valve: se la attivi, l’estensione chiede a Steam l’id e la valutazione del gioco (senza i tuoi cookie né i tuoi dati). Per le immagini di fastpic che il servizio fornisce solo tramite la propria pagina, il visualizzatore apre quella pagina senza mostrarla, senza i suoi script né la pubblicità, e ne prende il link all’immagine, come se cliccassi tu sulla miniatura. Per le immagini di ImgBB e PostImages, legge l’indirizzo dell’immagine intera dalla sua pagina sul servizio di hosting (senza i tuoi cookie).
+- Richiede solo le pagine di RuTracker stesso, come se aprissi tu la discussione, e carica le immagini dagli stessi servizi di hosting usati nella discussione. L’unica eccezione è la valutazione Steam Deck di Valve: se la attivi, l’estensione chiede a Steam l’id e la valutazione del gioco (senza i tuoi cookie né i tuoi dati). Nella versione completa, per le immagini di fastpic che il servizio fornisce solo tramite la propria pagina, il visualizzatore carica quella pagina senza mostrarla, con gli script disattivati, e ne prende il link all’immagine; la versione del Chrome Web Store non carica pagine di fastpic. Per le immagini di ImgBB e PostImages, legge l’indirizzo dell’immagine intera dalla sua pagina sul servizio di hosting (senza i tuoi cookie).
 - Le impostazioni e la cache delle descrizioni delle pubblicazioni restano nel tuo browser.
 - Il codice è aperto e chiunque può verificarlo. Maggiori dettagli in [PRIVACY.md](../../PRIVACY.md).
 

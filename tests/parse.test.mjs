@@ -199,8 +199,8 @@ describe('screenshots', () => {
     ]);
   });
 
-  test("fastpic's page from a thumbnail is marked to open as the picture itself", async () => {
-    const link = (url) => page.evaluate((url) => hostLink(url), url);
+  test("fastpic's page of a picture, for the viewer's unseen frame", async () => {
+    const link = (url) => page.evaluate((url) => fastpicPage(url), url);
     assert.equal(
       await link('https://fastpic.org/view/126/2025/1204/_b4ba236b0677732b420367d70c420be5.png.html'),
       'https://fastpic.org/view/126/2025/1204/_b4ba236b0677732b420367d70c420be5.png.html#rutracker-games',
@@ -211,9 +211,9 @@ describe('screenshots', () => {
       await link('https://i128.fastpic.org/big/2026/0923/77/_6c1d83934c8bbc7aed71e1484d4c1377.jpg'),
       'https://fastpic.org/view/128/2026/0923/_6c1d83934c8bbc7aed71e1484d4c1377.jpg.html#rutracker-games',
     );
-    // Other hosts and fastpic's own picture links as they are
-    assert.equal(await link('https://imageban.ru/show/2021/12/17/2c4bc8c4/png'), 'https://imageban.ru/show/2021/12/17/2c4bc8c4/png');
-    assert.equal(await link('https://i128.fastpic.org/big/2026/0922/a0/1.jpg'), 'https://i128.fastpic.org/big/2026/0922/a0/1.jpg');
+    // Not fastpic's page: none
+    assert.equal(await link('https://imageban.ru/show/2021/12/17/2c4bc8c4/png'), null);
+    assert.equal(await link('https://i128.fastpic.org/big/2026/0922/a0/1.jpg'), null);
     // Opens in our viewer: a full picture, or fastpic's page to get it from
     const viewable = (shot) => page.evaluate((shot) => viewable(shot), shot);
     assert.equal(await viewable({ link: 'https://fastpic.org/view/126/2025/1204/_b4ba.png.html', full: null }), true);

@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="ライセンス：GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.2-green.svg" alt="バージョン 1.2.2"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.3-green.svg" alt="バージョン 1.2.3"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome、Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10言語">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -51,7 +51,7 @@
 
 配布一覧のタイトルと投稿者のあいだに、次のものを表示します。
 
-- **スクリーンショット**：配布の「Скриншоты」スポイラーから取得します。トピックと同じサムネイルです。虫眼鏡の付いたものは、拡張機能のビューアーでページ上にそのまま元の大きさで開き、画像ホスティングの広告は表示されません。← → または下のサムネイル列で切り替え、Escで閉じます。虫眼鏡のないものは、クリックすると画像ホスティングのページが開きます。最初は1列だけ表示され、「あとN枚」で残りを展開できます。
+- **スクリーンショット**：配布の「Скриншоты」スポイラーから取得します。トピックと同じサムネイルです。虫眼鏡の付いたものは、拡張機能のビューアーでページ上にそのまま元の大きさで開き、画像ホスティングの広告は表示されません。← → または下のサムネイル列で切り替え、Escで閉じます。虫眼鏡のないものはただの画像で、拡張機能は画像ホスティングのページへリンクしません。最初は1列だけ表示され、「あとN枚」で残りを展開できます。
 - **配布のトピック**では、スクリーンショットのスポイラーが自動で開き（設定でオフにできます）、スクリーンショットは同じビューアーで開きます。
 - **配布の説明から読み取ったラベル：**
   - <img src="https://img.shields.io/badge/-ロシア語音声-d32f2f" alt="ロシア語音声"> — 自分の言語の音声です。かっこ内に詳細（機械音声、有志、一部、MOD）が付きます。
@@ -64,6 +64,10 @@
 - **フィルターバー**：一覧の上に「自分の言語の音声」「自分の言語あり」「自分のSwitchで動く」「自分のファームウェアで動く」「自分のPCのRAMで足りる」「Steam Deckで動く」と、自分で作ったラベルが並びます。
 - **自分の言語**：音声とテキストのラベルは、「自分の言語」でチェックした言語について表示されます。選べるのは英語、ウクライナ語、ロシア語、ドイツ語、フランス語、スペイン語、イタリア語、ポーランド語、ポルトガル語、日本語です。ロシア語、ウクライナ語、表示言語は最初からチェックされています。拡張機能の画面もこの10言語に対応しています。
 - **自分のラベル**を単語や正規表現で作れます。Switchのオーバークロックのラベルには**独自の単語**も追加できます。
+
+<p align="center">
+  <img src="../media/screenshot-viewer.png" alt="内蔵ビューアー：スクリーンショットを元の大きさで表示し、下に他のスクリーンショットの列" width="900">
+</p>
 
 ## 対応区分
 
@@ -79,7 +83,7 @@
 | モバイル端末用ゲーム（Android、Oculus Quest、Symbian、Windows Mobile） | スクリーンショット、言語 |
 | 追加コンテンツ：Windowsゲーム用MODと翻訳、Train Simulator、フライトシミュレーター | スクリーンショット、言語 |
 
-映画や音楽などは、あえて対象外にしています。それぞれをシンプルに保つため、別の拡張機能にしたほうがよいと考えているからです。
+映画や音楽などは、あえて対象外にしています。それぞれをシンプルに保つため、別の拡張機能にしたほうがよいと考えているからです。 フォーラムのそれ以外の場所では、拡張機能は何もせず、リクエストも送りません。
 
 <p align="center">
   <img src="../media/screenshot-ps4.png" alt="PS4の一覧：言語とファームウェア" width="440">
@@ -88,7 +92,7 @@
 
 ## インストール
 
-- **Chrome、Edge、Brave、Opera、Yandex Browser：** [Releases](https://github.com/iArtem88/rutracker-games/releases) から `rutracker-games-…-chrome.zip` をダウンロードして展開します。`chrome://extensions` を開き、「デベロッパー モード」をオンにして「パッケージ化されていない拡張機能を読み込む」をクリックします。
+- **Chrome、Edge、Brave、Opera、Yandex Browser：** [Releases](https://github.com/iArtem88/rutracker-games/releases) から `rutracker-games-…-chrome-full.zip` をダウンロードして展開します。`chrome://extensions` を開き、「デベロッパー モード」をオンにして「パッケージ化されていない拡張機能を読み込む」をクリックします。これは完全版です。隣の `…-chrome.zip` は Chrome ウェブストア版で、fastpic の保護されたスクリーンショット（`_…` のファイル）はサムネイルのままです。
 - **Firefox：** [Releases](https://github.com/iArtem88/rutracker-games/releases) から `rutracker-games-…-firefox.xpi` をダウンロードして Firefox で開き（ウィンドウにドラッグしても可）、「追加」をクリックします。Mozilla の署名済みで、自動で更新されます。
 
 ## 使い方
@@ -190,7 +194,7 @@
 ## プライバシー
 
 - 広告、アクセス解析、アカウント、独自のサーバーは一切ありません。
-- リクエストするのはRuTracker自体のページだけで、自分でトピックを開いたときと変わりません。画像も、トピックが使っているのと同じ画像ホスティングから読み込みます。唯一の例外はValveのSteam Deck評価です。これをオンにすると、拡張機能はSteamにゲームのIDと評価を問い合わせます（あなたのCookieやデータは送りません）。fastpicが自分のページ経由でしか渡さない画像については、ビューアーがそのページを見えない状態で、スクリプトと広告を無効にして開き、そこから画像へのリンクを取得します。自分でサムネイルをクリックしたときと同じです。ImgBBとPostImagesの画像については、ホスティングのページから元の画像のアドレスを読み取ります（あなたのCookieは送りません）。
+- リクエストするのはRuTracker自体のページだけで、自分でトピックを開いたときと変わりません。画像も、トピックが使っているのと同じ画像ホスティングから読み込みます。唯一の例外はValveのSteam Deck評価です。これをオンにすると、拡張機能はSteamにゲームのIDと評価を問い合わせます（あなたのCookieやデータは送りません）。完全版では、fastpicが自分のページ経由でしか渡さない画像について、ビューアーがそのページを見えない状態でスクリプトを無効にして読み込み、そこから画像へのリンクを取得します。Chrome ウェブストア版は fastpic のページを読み込みません。ImgBBとPostImagesの画像については、ホスティングのページから元の画像のアドレスを読み取ります（あなたのCookieは送りません）。
 - 設定と配布の説明のキャッシュは、ブラウザー内に保存されます。
 - コードは公開されており、誰でも確認できます。詳しくは[PRIVACY.md](../../PRIVACY.md)をご覧ください。
 

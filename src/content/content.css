@@ -375,17 +375,8 @@ a.rts-topic-zoom:hover::after {
   font: 13px Verdana, Arial, sans-serif;
 }
 
-.rts-viewer-original {
-  color: aliceblue !important;
-  opacity: 0.75;
-}
-
-.rts-viewer-original:hover {
-  opacity: 1;
-}
-
-/* The picture shows once it's here; till then a shimmer in its place; with
-   no full picture to have, a word and the link to the host instead */
+/* The picture shows once it's here; till then a shimmer in its place; if it
+   never comes, a word instead */
 .rts-viewer-img,
 .rts-viewer-none {
   display: none;
@@ -418,20 +409,6 @@ a.rts-topic-zoom:hover::after {
   color: aliceblue;
   font: 15px/1.5 Verdana, Arial, sans-serif;
   text-align: center;
-}
-
-.rts-viewer-none-link {
-  display: inline-block;
-  margin-top: 6px;
-  padding: 8px 18px;
-  border-radius: 18px;
-  background: linear-gradient(90deg, #1565c0, #6a1b9a);
-  color: #fff !important;
-  text-decoration: none !important;
-}
-
-.rts-viewer-none-link:hover {
-  filter: brightness(1.15);
 }
 
 .rts-viewer-strip {

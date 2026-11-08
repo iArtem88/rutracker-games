@@ -291,20 +291,29 @@ function renderThumbs(box, shots) {
   // The viewer shows the ones still in the list: dead image hosts drop out
   const anchors = [];
   shots.forEach((shot) => {
-    // A magnifier on the ones that open in our viewer
-    const a = el('a', viewable(shot) ? 'rts-pending rts-zoom' : 'rts-pending');
+    // Pictures, not links: no image host's page with its ads is a click away.
+    // The ones with a magnifier open in our viewer, the rest do nothing
+    const a = el('a', 'rts-pending');
     anchors.push(a);
-    a.href = hostLink(shot.link);
-    a.target = '_blank';
-    a.rel = 'noopener';
-    // A plain click shows the full pictures in our viewer; Ctrl, Shift or the
-    // middle button open the link as before
-    a.addEventListener('click', (event) => {
-      if (!viewable(shot) || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-      event.preventDefault();
-      // The viewer has the ones it can show, still in the list
+    const zoomable = () => {
+      a.classList.add('rts-zoom');
+      a.tabIndex = 0;
+      a.setAttribute('role', 'button');
+      a.setAttribute('aria-label', t('viewer.label'));
+    };
+    if (viewable(shot)) zoomable();
+    // The viewer has the ones it can show, still in the list
+    const open = () => {
       const shown = shots.filter((s, i) => viewable(s) && anchors[i].isConnected);
       openViewer(shown, shown.indexOf(shot), a);
+    };
+    a.addEventListener('click', (event) => {
+      if (viewable(shot) && event.button === 0) open();
+    });
+    a.addEventListener('keydown', (event) => {
+      if (!viewable(shot) || (event.key !== 'Enter' && event.key !== ' ')) return;
+      event.preventDefault();
+      open();
     });
     const img = el('img');
     img.alt = '';
@@ -332,7 +341,7 @@ function renderThumbs(box, shots) {
       a.classList.remove('rts-pending');
       if (!viewable(shot) && Math.max(img.naturalWidth, img.naturalHeight) >= FULL_SIZE_MIN) {
         shot.full = shot.thumb;
-        a.classList.add('rts-zoom');
+        zoomable();
       }
       scheduleUpdate();
     });

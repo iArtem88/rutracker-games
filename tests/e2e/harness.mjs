@@ -10,15 +10,16 @@ import { chromium } from 'playwright-core';
 const SRC = new URL('../../src/', import.meta.url).pathname;
 export const sleep = (ms) => new Promise((ok) => setTimeout(ok, ms));
 
-async function extensionCopy() {
+// src/, or a build of it (build/chrome/, the Chrome Web Store's)
+async function extensionCopy(source = SRC) {
   const dir = await mkdtemp(join(tmpdir(), 'rutracker-games-e2e-'));
-  await cp(SRC, dir, { recursive: true });
+  await cp(source, dir, { recursive: true });
   const manifest = JSON.parse(await readFile(join(dir, 'manifest.json'), 'utf8'));
   // Match patterns ignore the port
   const script = (file) => manifest.content_scripts.find((entry) => entry.js.includes(file));
   script('content/content.js').matches.push('http://127.0.0.1/forum/viewforum.php*', 'http://127.0.0.1/forum/tracker.php*');
   script('content/topic.js').matches.push('http://127.0.0.1/forum/viewtopic.php*');
-  script('content/fastpic.js').matches.push('http://127.0.0.1/view/*');
+  script('content/fastpic.js')?.matches.push('http://127.0.0.1/view/*');
   manifest.host_permissions = [...(manifest.host_permissions || []), 'https://store.steampowered.com/*'];
   await writeFile(join(dir, 'manifest.json'), JSON.stringify(manifest, null, 2));
   // fastpic's pages are the mock's own
@@ -37,8 +38,8 @@ async function launch() {
   return chromium.launch({ ...options, channel: 'chrome' });
 }
 
-export async function startBrowser() {
-  const dir = await extensionCopy();
+export async function startBrowser({ source } = {}) {
+  const dir = await extensionCopy(source);
   const browser = await launch();
   const cdp = await browser.newBrowserCDPSession();
   const { id } = await cdp.send('Extensions.loadUnpacked', { path: dir });

@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/licencja-GPL--3.0--or--later-blue.svg" alt="Licencja: GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/wersja-1.2.2-green.svg" alt="Wersja 1.2.2"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/wersja-1.2.3-green.svg" alt="Wersja 1.2.3"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/interfejs-10%20języków-orange.svg" alt="10 języków">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -51,7 +51,7 @@
 
 Prosto na liście wydań, między tytułem a autorem:
 
-- **Zrzuty ekranu** ze spoilera „Скриншоты” w wydaniu: te same miniatury co w temacie. Te z lupą otwierają się w pełnym rozmiarze we własnej przeglądarce obrazów rozszerzenia, na tej samej stronie i bez reklam hostingu: ← → albo pasek miniatur pod spodem przełączają obrazy, Esc zamyka. Bez lupy kliknięcie otwiera stronę hostingu. Widać jeden rząd, resztę rozwija przycisk „jeszcze N”.
+- **Zrzuty ekranu** ze spoilera „Скриншоты” w wydaniu: te same miniatury co w temacie. Te z lupą otwierają się w pełnym rozmiarze we własnej przeglądarce obrazów rozszerzenia, na tej samej stronie i bez reklam hostingu: ← → albo pasek miniatur pod spodem przełączają obrazy, Esc zamyka. Bez lupy to zwykły obraz: rozszerzenie nie odsyła do stron hostingów. Widać jeden rząd, resztę rozwija przycisk „jeszcze N”.
 - **W temacie wydania** spoilery ze zrzutami ekranu rozwijają się same (można to wyłączyć w ustawieniach), a zrzuty otwierają się w tej samej przeglądarce obrazów.
 - **Etykiety z opisu wydania:**
   - <img src="https://img.shields.io/badge/-Dubbing:%20rosyjski-d32f2f" alt="Dubbing: rosyjski"> — dubbing w twoim języku, ze szczegółami w nawiasie: maszynowy, amatorski, częściowy, mod;
@@ -64,6 +64,10 @@ Prosto na liście wydań, między tytułem a autorem:
 - **Pasek filtrów** nad listą: „Dubbing w moich językach”, „W moich językach”, „Działa na moim Switchu”, „Działa na moim firmware”, „Wystarczy RAM mojego PC”, „Działa na Steam Decku” oraz twoje własne etykiety.
 - **Twoje języki.** Etykiety dubbingu i tekstu pojawiają się dla języków zaznaczonych w sekcji „Moje języki”: angielskiego, ukraińskiego, rosyjskiego, niemieckiego, francuskiego, hiszpańskiego, włoskiego, polskiego, portugalskiego i japońskiego. Domyślnie zaznaczone są rosyjski, ukraiński i język interfejsu. Interfejs rozszerzenia również jest dostępny w tych 10 językach.
 - **Twoje etykiety** według słów lub wyrażenia regularnego oraz **własne słowa** dla etykiety podkręcania Switcha.
+
+<p align="center">
+  <img src="../media/screenshot-viewer.png" alt="Wbudowana przeglądarka obrazów: zrzut w pełnym rozmiarze, pod spodem pasek z pozostałymi" width="900">
+</p>
 
 ## Obsługiwane działy
 
@@ -79,7 +83,7 @@ Rozszerzenie działa na listach tematów, w wynikach wyszukiwania i w tematach w
 | Gry na urządzenia mobilne (Android, Oculus Quest, Symbian, Windows Mobile) | zrzuty ekranu, języki |
 | Dodatki: mody i tłumaczenia do gier na Windows, Train Simulator, symulatory lotu | zrzuty ekranu, języki |
 
-Filmy, muzyka i cała reszta celowo pozostają poza zakresem: lepiej, żeby trafiły do osobnych rozszerzeń — wtedy każde z nich pozostaje proste.
+Filmy, muzyka i cała reszta celowo pozostają poza zakresem: lepiej, żeby trafiły do osobnych rozszerzeń — wtedy każde z nich pozostaje proste. W pozostałych działach forum rozszerzenie nic nie robi i nie wysyła żadnych zapytań.
 
 <p align="center">
   <img src="../media/screenshot-ps4.png" alt="Lista gier na PS4: języki i firmware" width="440">
@@ -88,7 +92,7 @@ Filmy, muzyka i cała reszta celowo pozostają poza zakresem: lepiej, żeby traf
 
 ## Instalacja
 
-- **Chrome, Edge, Brave, Opera, Yandex Browser:** pobierz `rutracker-games-…-chrome.zip` z [Releases](https://github.com/iArtem88/rutracker-games/releases) i rozpakuj archiwum. Otwórz `chrome://extensions`, włącz „Tryb dewelopera” i kliknij „Załaduj rozpakowane”.
+- **Chrome, Edge, Brave, Opera, Yandex Browser:** pobierz `rutracker-games-…-chrome-full.zip` z [Releases](https://github.com/iArtem88/rutracker-games/releases) i rozpakuj archiwum. Otwórz `chrome://extensions`, włącz „Tryb dewelopera” i kliknij „Załaduj rozpakowane”. To pełna wersja; `…-chrome.zip` obok to wersja z Chrome Web Store, w której chronione zrzuty z fastpic (pliki `_…`) zostają miniaturami.
 - **Firefox:** pobierz `rutracker-games-…-firefox.xpi` z [Releases](https://github.com/iArtem88/rutracker-games/releases) i otwórz go w Firefoksie (albo przeciągnij do okna), a potem kliknij „Dodaj”. Plik jest podpisany przez Mozillę, a rozszerzenie aktualizuje się samo.
 
 ## Jak używać
@@ -190,7 +194,7 @@ Dwie oceny:
 ## Prywatność
 
 - Bez reklam, analityki, kont i własnych serwerów.
-- Rozszerzenie odpytuje wyłącznie strony samego RuTrackera, zupełnie jak przy ręcznym otwarciu tematu, i wczytuje obrazy z tych samych hostingów co temat. Jedyny wyjątek to ocena Steam Decka od Valve: jeśli ją włączysz, rozszerzenie pyta Steam o identyfikator i ocenę gry (bez twoich plików cookie i danych). W przypadku obrazów z fastpic, które hosting udostępnia tylko przez swoją stronę, przeglądarka obrazów otwiera tę stronę niewidocznie, bez jej skryptów i reklam, i bierze z niej link do obrazu, tak jakbyś sam kliknął miniaturę. W przypadku obrazów z ImgBB i PostImages odczytuje adres pełnego obrazu z jego strony na hostingu (bez twoich plików cookie).
+- Rozszerzenie odpytuje wyłącznie strony samego RuTrackera, zupełnie jak przy ręcznym otwarciu tematu, i wczytuje obrazy z tych samych hostingów co temat. Jedyny wyjątek to ocena Steam Decka od Valve: jeśli ją włączysz, rozszerzenie pyta Steam o identyfikator i ocenę gry (bez twoich plików cookie i danych). W pełnej wersji, w przypadku obrazów z fastpic, które hosting udostępnia tylko przez swoją stronę, przeglądarka obrazów wczytuje tę stronę niewidocznie, z wyłączonymi skryptami, i bierze z niej link do obrazu; wersja z Chrome Web Store nie wczytuje stron fastpic. W przypadku obrazów z ImgBB i PostImages odczytuje adres pełnego obrazu z jego strony na hostingu (bez twoich plików cookie).
 - Ustawienia i pamięć podręczna opisów wydań zostają w twojej przeglądarce.
 - Kod jest otwarty, więc każdy może go sprawdzić. Więcej w [PRIVACY.md](../../PRIVACY.md).
 

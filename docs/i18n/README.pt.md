@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="Licença: GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.2-green.svg" alt="Versão 1.2.2"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.3-green.svg" alt="Versão 1.2.3"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10 idiomas">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -51,7 +51,7 @@
 
 Direto na lista de lançamentos, entre o título e o autor:
 
-- **Capturas de tela** do spoiler «Скриншоты» do lançamento: as mesmas miniaturas do tópico. As que têm uma lupa abrem em tamanho real no visualizador da própria extensão, na mesma página e sem os anúncios do serviço de hospedagem: ← → ou a faixa de miniaturas embaixo passam de uma para outra, Esc fecha. Sem lupa, um clique abre a página do serviço de hospedagem. Aparece uma fileira, e «mais N» mostra o resto.
+- **Capturas de tela** do spoiler «Скриншоты» do lançamento: as mesmas miniaturas do tópico. As que têm uma lupa abrem em tamanho real no visualizador da própria extensão, na mesma página e sem os anúncios do serviço de hospedagem: ← → ou a faixa de miniaturas embaixo passam de uma para outra, Esc fecha. Sem lupa, é só uma imagem: a extensão não leva às páginas dos serviços de hospedagem. Aparece uma fileira, e «mais N» mostra o resto.
 - **No tópico do lançamento**, os spoilers com capturas se abrem sozinhos (dá para desativar nas configurações), e as capturas abrem no mesmo visualizador.
 - **Etiquetas tiradas da descrição do lançamento:**
   - <img src="https://img.shields.io/badge/-Dublagem%20em%20russo-d32f2f" alt="Dublagem em russo"> — dublagem no seu idioma, com detalhes entre parênteses: automática, amadora, parcial, mod;
@@ -64,6 +64,10 @@ Direto na lista de lançamentos, entre o título e o autor:
 - **Uma barra de filtros** acima da lista: «Dublagem nos meus idiomas», «Nos meus idiomas», «Roda no meu Switch», «Roda no meu firmware», «A RAM do meu PC basta», «Roda no Steam Deck» e as suas próprias etiquetas.
 - **Seus idiomas.** As etiquetas de dublagem e de texto aparecem para os idiomas marcados em «Meus idiomas»: inglês, ucraniano, russo, alemão, francês, espanhol, italiano, polonês, português e japonês. Russo, ucraniano e o idioma da interface já vêm marcados. A interface da extensão também está disponível nesses 10 idiomas.
 - **Suas etiquetas**, por palavras ou por uma expressão regular, e **suas próprias palavras** para a etiqueta de overclock do Switch.
+
+<p align="center">
+  <img src="../media/screenshot-viewer.png" alt="O visualizador embutido: uma captura em tamanho real e, embaixo, a faixa com as outras" width="900">
+</p>
 
 ## Seções suportadas
 
@@ -79,7 +83,7 @@ A extensão funciona nas listas, nos resultados de busca e nos tópicos dos lan�
 | Jogos para dispositivos móveis (Android, Oculus Quest, Symbian, Windows Mobile) | capturas, idiomas |
 | Complementos: mods e traduções para jogos de Windows, Train Simulator, simuladores de voo | capturas, idiomas |
 
-Filmes, música e o resto ficam de fora de propósito: é melhor que sejam extensões separadas, para que cada uma continue simples.
+Filmes, música e o resto ficam de fora de propósito: é melhor que sejam extensões separadas, para que cada uma continue simples. No resto do fórum, a extensão não faz nada nem envia nenhuma solicitação.
 
 <p align="center">
   <img src="../media/screenshot-ps4.png" alt="A lista do PS4: idiomas e firmware" width="440">
@@ -88,7 +92,7 @@ Filmes, música e o resto ficam de fora de propósito: é melhor que sejam exten
 
 ## Instalação
 
-- **Chrome, Edge, Brave, Opera, Yandex Browser:** baixe o `rutracker-games-…-chrome.zip` em [Releases](https://github.com/iArtem88/rutracker-games/releases) e descompacte. Abra `chrome://extensions`, ative o «Modo do desenvolvedor» e clique em «Carregar sem compactação».
+- **Chrome, Edge, Brave, Opera, Yandex Browser:** baixe o `rutracker-games-…-chrome-full.zip` em [Releases](https://github.com/iArtem88/rutracker-games/releases) e descompacte. Abra `chrome://extensions`, ative o «Modo do desenvolvedor» e clique em «Carregar sem compactação». Esta é a versão completa; o `…-chrome.zip` ao lado é a da Chrome Web Store, em que as capturas protegidas do fastpic (arquivos `_…`) ficam como miniaturas.
 - **Firefox:** baixe o `rutracker-games-…-firefox.xpi` em [Releases](https://github.com/iArtem88/rutracker-games/releases) e abra no Firefox (ou arraste para a janela); depois clique em «Adicionar». Ele é assinado pela Mozilla e se atualiza sozinho.
 
 ## Como usar
@@ -190,7 +194,7 @@ Há duas classificações:
 ## Privacidade
 
 - Sem anúncios, sem analytics, sem contas, sem servidores próprios.
-- A extensão só acessa as páginas do próprio RuTracker, como se você mesmo abrisse o tópico, e carrega as imagens dos mesmos serviços de hospedagem que o tópico usa. A única exceção é a classificação da Valve para o Steam Deck: se você ativá-la, a extensão consulta na Steam o id do jogo e a classificação dele (sem seus cookies nem seus dados). Nas imagens do fastpic que o serviço só entrega pela própria página, o visualizador abre essa página sem mostrá-la, sem os scripts e os anúncios dela, e pega ali o link da imagem, como se você mesmo clicasse na miniatura. Nas imagens do ImgBB e do PostImages, ela lê o endereço da imagem completa na página dela no serviço de hospedagem (sem seus cookies).
+- A extensão só acessa as páginas do próprio RuTracker, como se você mesmo abrisse o tópico, e carrega as imagens dos mesmos serviços de hospedagem que o tópico usa. A única exceção é a classificação da Valve para o Steam Deck: se você ativá-la, a extensão consulta na Steam o id do jogo e a classificação dele (sem seus cookies nem seus dados). Na versão completa, nas imagens do fastpic que o serviço só entrega pela própria página, o visualizador carrega essa página sem mostrá-la, com os scripts desativados, e pega ali o link da imagem; a versão da Chrome Web Store não carrega páginas do fastpic. Nas imagens do ImgBB e do PostImages, ela lê o endereço da imagem completa na página dela no serviço de hospedagem (sem seus cookies).
 - As configurações e o cache das descrições dos lançamentos ficam no seu navegador.
 - O código é aberto, e qualquer pessoa pode conferi-lo. Mais detalhes em [PRIVACY.md](../../PRIVACY.md).
 

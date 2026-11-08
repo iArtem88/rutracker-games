@@ -90,13 +90,15 @@ describe('screenshots', () => {
     await sleep(500);
     const viewer = () => tab.ev(`(() => { const v = document.querySelector('.rts-viewer');
       return v && { count: v.querySelector('.rts-viewer-count').textContent, img: v.querySelector('.rts-viewer-img').src,
-        original: v.querySelector('.rts-viewer-original').href }; })()`);
+        links: v.querySelectorAll('a[href]').length }; })()`);
+    // Pictures, not links: nothing leads to an image host's page
+    assert.equal(await tab.ev(`document.querySelectorAll('.rts-thumbs a[href]').length`), 0);
     // A magnifier on the ones that open in the viewer
     assert.equal(await tab.ev(`document.querySelectorAll('tr[data-topic_id="101"] .rts-thumbs a.rts-zoom').length`), 3);
     await tab.ev(`document.querySelector('tr[data-topic_id="101"] .rts-thumbs a').click()`);
     await sleep(300);
     let state = await viewer();
-    assert.deepEqual([state.count, picture(state.img), picture(state.original)], ['1 / 3', 'full-0.png', 'full-0.png']);
+    assert.deepEqual([state.count, picture(state.img), state.links], ['1 / 3', 'full-0.png', 0]);
     await tab.ev(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }))`);
     await sleep(300);
     state = await viewer();
@@ -112,18 +114,18 @@ describe('screenshots', () => {
     await sleep(200);
     assert.equal(await viewer(), null);
 
-    // No full picture comes (404): no blurry thumbnail, a word and the link to the host
+    // No full picture comes (404): no blurry thumbnail, a word, no link out
     await tab.ev(`document.querySelector('tr[data-topic_id="104"] .rts-thumbs a').click()`);
     await sleep(500);
     const failed = await tab.ev(`(() => { const v = document.querySelector('.rts-viewer');
       return { failed: v.classList.contains('rts-viewer-failed'), ready: v.classList.contains('rts-viewer-ready'),
         imgShown: getComputedStyle(v.querySelector('.rts-viewer-img')).display !== 'none',
-        link: v.querySelector('.rts-viewer-none-link').href }; })()`);
-    assert.deepEqual({ ...failed, link: picture(failed.link) }, { failed: true, ready: false, imgShown: false, link: 'missing-0.png' });
+        word: v.querySelector('.rts-viewer-none').textContent, links: v.querySelectorAll('a[href]').length }; })()`);
+    assert.deepEqual(failed, { failed: true, ready: false, imgShown: false, word: 'Картинка не загрузилась.', links: 0 });
     await tab.ev(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))`);
 
     // fastpic's "_…" picture: its page, unseen, hands the full one over. No
-    // magnifier where there's nothing to show: the click goes to the host's page
+    // magnifier where there's nothing to show: the click does nothing
     const thumbs = `[...document.querySelectorAll('tr[data-topic_id="102"] .rts-thumbs a')]`;
     assert.deepEqual(await tab.ev(`${thumbs}.map((a) => a.classList.contains('rts-zoom'))`), [true, false]);
     await tab.ev(`${thumbs}[0].click()`);
@@ -132,7 +134,8 @@ describe('screenshots', () => {
     assert.deepEqual([state.count, state.img], ['1 / 1', `${site.origin}/big/2025/1204/ab/_0.png?md5=abc&expires=1793988000`]);
     assert.equal(await tab.ev(`document.querySelectorAll('iframe').length`), 0);
     await tab.ev(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))`);
-    assert.equal(await tab.ev(`!${thumbs}[1].dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 }))`), false);
+    await tab.ev(`${thumbs}[1].click()`);
+    await sleep(300);
     assert.equal(await viewer(), null);
 
     // A big picture put in with no link is the full one; imagebam's stubs aren't shown
@@ -144,17 +147,6 @@ describe('screenshots', () => {
     await tab.ev(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))`);
   });
 
-  test("fastpic's page opened from a thumbnail gives way to the picture", async () => {
-    const page = `${site.origin}/view/126/2025/1204/_b4ba.png.html`;
-    // The signed link, not the download
-    let tab = await chrome.open(`${page}#rutracker-games`);
-    assert.equal(await tab.ev('location.pathname + location.search'), '/big/2025/1204/ab/_b4ba.png?md5=abc&expires=1793988000');
-    await tab.close();
-    // Opened any other way, the page stays
-    tab = await chrome.open(page);
-    assert.equal(await tab.ev('location.pathname'), '/view/126/2025/1204/_b4ba.png.html');
-    await tab.close();
-  });
 
   test('the large size shows the full pictures, the thumbnail when the full one fails', async () => {
     await chrome.storage.setSettings({ uiLanguage: 'ru', thumbHeight: 120 });

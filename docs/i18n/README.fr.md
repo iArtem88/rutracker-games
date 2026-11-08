@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg" alt="Licence : GPL-3.0-or-later"></a>
-  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.2-green.svg" alt="Version 1.2.2"></a>
+  <a href="../../CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.3-green.svg" alt="Version 1.2.3"></a>
   <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4.svg" alt="Chrome, Manifest V3">
   <img src="https://img.shields.io/badge/UI-10%20languages-orange.svg" alt="10 langues">
   <a href="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml"><img src="https://github.com/iArtem88/rutracker-games/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -51,7 +51,7 @@
 
 Directement dans la liste des publications, entre le titre et l’auteur :
 
-- **Des captures d’écran** tirées du spoiler « Скриншоты » de la publication : les mêmes miniatures que dans le sujet. Celles qui portent une loupe s’ouvrent en taille réelle dans la visionneuse de l’extension, sur la page même et sans les publicités de l’hébergeur : ← → ou le bandeau de miniatures en dessous pour passer de l’une à l’autre, Échap pour fermer. Sans loupe, un clic ouvre la page de l’hébergeur. Une seule rangée est affichée, « N de plus » déplie le reste.
+- **Des captures d’écran** tirées du spoiler « Скриншоты » de la publication : les mêmes miniatures que dans le sujet. Celles qui portent une loupe s’ouvrent en taille réelle dans la visionneuse de l’extension, sur la page même et sans les publicités de l’hébergeur : ← → ou le bandeau de miniatures en dessous pour passer de l’une à l’autre, Échap pour fermer. Sans loupe, c’est une simple image : l’extension ne renvoie pas vers les pages des hébergeurs. Une seule rangée est affichée, « N de plus » déplie le reste.
 - **Dans le sujet d’une publication**, les spoilers de captures s’ouvrent d’eux-mêmes (désactivable dans les réglages), et les captures s’ouvrent dans la même visionneuse.
 - **Des étiquettes tirées de la description de la publication :**
   - <img src="https://img.shields.io/badge/-Doublage%20russe-d32f2f" alt="Doublage russe"> — un doublage dans votre langue, avec des précisions entre parenthèses : automatique, amateur, partiel, mod ;
@@ -64,6 +64,10 @@ Directement dans la liste des publications, entre le titre et l’auteur :
 - **Une barre de filtres** au-dessus de la liste : « Doublage dans mes langues », « Dans mes langues », « Tourne sur ma Switch », « Tourne sur mon firmware », « Assez de RAM dans mon PC », « Tourne sur Steam Deck », ainsi que vos propres étiquettes.
 - **Vos langues.** Les étiquettes de doublage et de texte s’affichent pour les langues que vous cochez dans « Mes langues » : anglais, ukrainien, russe, allemand, français, espagnol, italien, polonais, portugais, japonais. Le russe, l’ukrainien et la langue de l’interface sont cochés par défaut. L’interface de l’extension existe elle aussi dans ces 10 langues.
 - **Vos étiquettes**, définies par des mots ou une expression régulière, et **vos propres mots** pour l’étiquette d’overclocking de la Switch.
+
+<p align="center">
+  <img src="../media/screenshot-viewer.png" alt="La visionneuse intégrée : une capture en taille réelle, avec le bandeau des autres en dessous" width="900">
+</p>
 
 ## Sections prises en charge
 
@@ -79,7 +83,7 @@ L’extension fonctionne dans les listes des sections de jeux de RuTracker, dans
 | Jeux pour appareils mobiles (Android, Oculus Quest, Symbian, Windows Mobile) | captures, langues |
 | Extensions : mods et traductions pour jeux Windows, Train Simulator, simulateurs de vol | captures, langues |
 
-Les films, la musique et le reste sont volontairement laissés de côté : mieux vaut en faire des extensions séparées, pour que chacune reste simple.
+Les films, la musique et le reste sont volontairement laissés de côté : mieux vaut en faire des extensions séparées, pour que chacune reste simple. Partout ailleurs sur le forum, l’extension ne fait rien et n’envoie aucune requête.
 
 <p align="center">
   <img src="../media/screenshot-ps4.png" alt="La liste PS4 : langues et firmware" width="440">
@@ -88,7 +92,7 @@ Les films, la musique et le reste sont volontairement laissés de côté : mieux
 
 ## Installation
 
-- **Chrome, Edge, Brave, Opera, Yandex Browser :** téléchargez `rutracker-games-…-chrome.zip` depuis les [Releases](https://github.com/iArtem88/rutracker-games/releases) et décompressez-le. Ouvrez `chrome://extensions`, activez le « Mode développeur » et cliquez sur « Charger l’extension non empaquetée ».
+- **Chrome, Edge, Brave, Opera, Yandex Browser :** téléchargez `rutracker-games-…-chrome-full.zip` depuis les [Releases](https://github.com/iArtem88/rutracker-games/releases) et décompressez-le. Ouvrez `chrome://extensions`, activez le « Mode développeur » et cliquez sur « Charger l’extension non empaquetée ». C’est la version complète ; `…-chrome.zip`, à côté, est celle du Chrome Web Store, où les captures protégées de fastpic (fichiers `_…`) restent des miniatures.
 - **Firefox :** téléchargez `rutracker-games-…-firefox.xpi` depuis les [Releases](https://github.com/iArtem88/rutracker-games/releases) et ouvrez-le dans Firefox (ou glissez-le dans la fenêtre), puis cliquez sur « Ajouter ». Il est signé par Mozilla et se met à jour tout seul.
 
 ## Utilisation
@@ -190,7 +194,7 @@ Deux évaluations :
 ## Confidentialité
 
 - Ni publicité, ni statistiques d’utilisation, ni comptes, ni serveurs à elle.
-- L’extension ne demande que des pages de RuTracker, comme si vous ouvriez le sujet vous-même, et charge les images depuis les mêmes hébergeurs que ceux du sujet. La seule exception est la note Steam Deck de Valve : si vous l’activez, l’extension demande à Steam l’identifiant et la note du jeu (sans vos cookies ni vos données). Pour les images fastpic que l’hébergeur ne donne que par sa propre page, la visionneuse ouvre cette page sans l’afficher, sans ses scripts ni ses publicités, et y prend le lien vers l’image, comme si vous aviez cliqué vous-même sur la miniature. Pour les images ImgBB et PostImages, elle lit l’adresse de l’image complète sur sa page chez l’hébergeur (sans vos cookies).
+- L’extension ne demande que des pages de RuTracker, comme si vous ouvriez le sujet vous-même, et charge les images depuis les mêmes hébergeurs que ceux du sujet. La seule exception est la note Steam Deck de Valve : si vous l’activez, l’extension demande à Steam l’identifiant et la note du jeu (sans vos cookies ni vos données). Dans la version complète, pour les images fastpic que l’hébergeur ne donne que par sa propre page, la visionneuse charge cette page sans l’afficher, scripts désactivés, et y prend le lien vers l’image ; la version du Chrome Web Store ne charge pas les pages de fastpic. Pour les images ImgBB et PostImages, elle lit l’adresse de l’image complète sur sa page chez l’hébergeur (sans vos cookies).
 - Les paramètres et le cache des descriptions de publications restent dans votre navigateur.
 - Le code est ouvert, chacun peut le vérifier. Plus de détails dans [PRIVACY.md](../../PRIVACY.md).
 
