@@ -87,7 +87,7 @@ Filme, Musik und alles Übrige bleiben bewusst außen vor: Dafür sind eigene Er
 
 <p align="center">
   <img src="../media/screenshot-ps4.png" alt="Die PS4-Liste: Sprachen und Firmware" width="440">
-  <img src="../media/screenshot-windows.png" alt="Windows-Spiele: Anforderungen, Sammlungen und Steam Deck" width="440">
+  <img src="../media/screenshot-windows.png" alt="Windows-Spiele: Sprachen, Anforderungen und Steam Deck" width="440">
 </p>
 
 ## Installation

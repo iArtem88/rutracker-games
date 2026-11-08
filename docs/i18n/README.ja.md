@@ -87,7 +87,7 @@
 
 <p align="center">
   <img src="../media/screenshot-ps4.png" alt="PS4の一覧：言語とファームウェア" width="440">
-  <img src="../media/screenshot-windows.png" alt="Windows用ゲーム：動作環境、コレクション、Steam Deck" width="440">
+  <img src="../media/screenshot-windows.png" alt="Windows用ゲーム：言語、動作環境、Steam Deck" width="440">
 </p>
 
 ## インストール

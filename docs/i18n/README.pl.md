@@ -87,7 +87,7 @@ Filmy, muzyka i cała reszta celowo pozostają poza zakresem: lepiej, żeby traf
 
 <p align="center">
   <img src="../media/screenshot-ps4.png" alt="Lista gier na PS4: języki i firmware" width="440">
-  <img src="../media/screenshot-windows.png" alt="Gry na Windows: wymagania, kolekcje i Steam Deck" width="440">
+  <img src="../media/screenshot-windows.png" alt="Gry na Windows: języki, wymagania i Steam Deck" width="440">
 </p>
 
 ## Instalacja

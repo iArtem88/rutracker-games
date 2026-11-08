@@ -87,7 +87,7 @@ Films, music and the rest are out of scope on purpose: they'd better be separate
 
 <p align="center">
   <img src="docs/media/screenshot-ps4.png" alt="The PS4 list: languages and firmware" width="440">
-  <img src="docs/media/screenshot-windows.png" alt="Windows games: requirements, collections and Steam Deck" width="440">
+  <img src="docs/media/screenshot-windows.png" alt="Windows games: languages, requirements and Steam Deck" width="440">
 </p>
 
 ## Install

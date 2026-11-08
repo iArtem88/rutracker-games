@@ -87,7 +87,7 @@ Film, musica e tutto il resto sono esclusi di proposito: è meglio che siano est
 
 <p align="center">
   <img src="../media/screenshot-ps4.png" alt="L’elenco PS4: lingue e firmware" width="440">
-  <img src="../media/screenshot-windows.png" alt="Giochi per Windows: requisiti, raccolte e Steam Deck" width="440">
+  <img src="../media/screenshot-windows.png" alt="Giochi per Windows: lingue, requisiti e Steam Deck" width="440">
 </p>
 
 ## Installazione

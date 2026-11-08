@@ -87,7 +87,7 @@
 
 <p align="center">
   <img src="../media/screenshot-ps4.png" alt="Список роздач для PS4: мови та прошивка" width="440">
-  <img src="../media/screenshot-windows.png" alt="Ігри для Windows: вимоги, збірки та Steam Deck" width="440">
+  <img src="../media/screenshot-windows.png" alt="Ігри для Windows: мови, вимоги та Steam Deck" width="440">
 </p>
 
 ## Встановлення

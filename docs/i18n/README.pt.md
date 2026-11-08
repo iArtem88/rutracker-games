@@ -87,7 +87,7 @@ Filmes, música e o resto ficam de fora de propósito: é melhor que sejam exten
 
 <p align="center">
   <img src="../media/screenshot-ps4.png" alt="A lista do PS4: idiomas e firmware" width="440">
-  <img src="../media/screenshot-windows.png" alt="Jogos para Windows: requisitos, coletâneas e Steam Deck" width="440">
+  <img src="../media/screenshot-windows.png" alt="Jogos para Windows: idiomas, requisitos e Steam Deck" width="440">
 </p>
 
 ## Instalação

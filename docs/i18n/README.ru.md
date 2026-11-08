@@ -87,7 +87,7 @@
 
 <p align="center">
   <img src="../media/screenshot-ps4.png" alt="Список PS4: языки и прошивка" width="440">
-  <img src="../media/screenshot-windows.png" alt="Игры для Windows: требования, сборники и Steam Deck" width="440">
+  <img src="../media/screenshot-windows.png" alt="Игры для Windows: языки, требования и Steam Deck" width="440">
 </p>
 
 ## Установка
